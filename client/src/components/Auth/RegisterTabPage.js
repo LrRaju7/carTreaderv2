@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
-import BuyerReg from './RegisterPage';
+import AuctioneerRegister from './AuctioneerRegisterPage';
+import BidderRegister from './BidderRegisterPage';
+import BuyerRegister from './BuyerRegisterPage';
 
 const LoginTab = (props) => {
   const [activeTab, setActiveTab] = useState('1');
@@ -42,21 +44,21 @@ const LoginTab = (props) => {
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-              <BuyerReg/>
+              <BuyerRegister/>
             </Col>
           </Row>
         </TabPane>
         <TabPane tabId="2">
           <Row>
             <Col sm="12">
-            <BuyerReg/>
+            <BidderRegister/>
             </Col>
           </Row>
         </TabPane>
         <TabPane tabId="3">
           <Row>
             <Col sm="12">
-            <BuyerReg/>
+            <AuctioneerRegister/>
             </Col>
           </Row>
         </TabPane>

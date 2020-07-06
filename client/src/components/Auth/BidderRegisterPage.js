@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
-import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input,FormText } from 'reactstrap';
 
 const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -38,10 +38,10 @@ const Register = ({ register, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <div className='row container'>
+      <div className='row container mt-5'>
         <Form>
         <FormGroup>
-          <Label for="exampleName">Name</Label>
+          <Label for="exampleName">Bidder Name</Label>
           <Input type="text" name="name" id="examplename"/>
         </FormGroup>
         <FormGroup>
@@ -63,7 +63,11 @@ const Register = ({ register, isAuthenticated }) => {
           </Col>
         </Row>
         <FormGroup>
-          <Label for="exampleAddress">Address</Label>
+          <Label for="examplePhone">Bidder Phone</Label>
+          <Input type="number" name="phone" id="examplephone"/>
+        </FormGroup>
+        <FormGroup>
+          <Label for="exampleAddress">Bidder Address</Label>
           <Input type="text" name="address" id="exampleAddress"/>
         </FormGroup>
         <FormGroup>
@@ -90,6 +94,13 @@ const Register = ({ register, isAuthenticated }) => {
             </FormGroup>  
           </Col>
         </Row>
+        <FormGroup>
+        <Label for="exampleFile">Bidder Trade License</Label>
+        <Input type="file" name="file" id="exampleFile" />
+        <FormText color="muted">
+          Please upload your tradelicense above. PDF or jpeg format only.
+        </FormText>
+      </FormGroup>
         <FormGroup check>
           <Input type="checkbox" name="termsAndConditions" id="exampleTerms"/>
           <Label for="exampleTerms" check>I agree with terms and conditions.</Label>

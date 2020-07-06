@@ -4,7 +4,6 @@ import { loadUser } from '../../actions/auth';
 import { connect } from 'react-redux';
 import Login from '../Auth/LoginPage';
 import LoginTab from '../Auth/LoginTabPage';
-import Register from '../Auth/RegisterPage';
 import RegisterTab from '../Auth/RegisterTabPage';
 import ListingsPage from '../Listings/ListingsPage';
 import ListingPage from '../Listing/ListingPage';

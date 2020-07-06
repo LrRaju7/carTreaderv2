@@ -27,15 +27,15 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <div className='row container'>
+      <div className='row container mt-5'>
         <Form>
         <FormGroup>
-          <Label for="userEmail">Email</Label>
-          <Input type="email" name="userEmail" id="userEmail"/>
+          <Label for="exampleEmail">Email</Label>
+          <Input type="email" name="email" id="exampleEmail" />
         </FormGroup>
         <FormGroup>
-          <Label for="userPass">Password</Label>
-          <Input type="password" name="password" id="userPass" />
+          <Label for="examplepassword">Password</Label>
+          <Input type="password" name="password" id="examplepass"/>
         </FormGroup>
         <FormGroup>
           <p className='small-text'>

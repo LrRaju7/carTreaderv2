@@ -69,16 +69,16 @@ class Navbar extends Component {
         </NavItem>
       </Nav>
     } else {
-      signupElement =
-      <NavItem className={this.tabClass('/signup')}>
-        <NavLink href='/signup'> Sign Up
+      signupElement =<Nav navbar style={{justifyContent: 'flex-end'}}>
+      <NavItem className={this.tabClass('/register')}>
+        <NavLink href='/register'>SignUp
         </NavLink>
       </NavItem>
-      
+      </Nav>
+
       roleElement = <Nav navbar style={{justifyContent: 'flex-end'}}>
         <NavItem className={this.tabClass('/login')}>
-          <NavLink href='/login'>
-            <i className='fa fa-user' /> Login
+          <NavLink href='/login'>Login
           </NavLink>
         </NavItem>
       </Nav>
@@ -113,11 +113,11 @@ class Navbar extends Component {
                 <NavItem className={this.tabClass('/contact')}>
                   <NavLink href='/contact'> Contact
                   </NavLink>
-                </NavItem>
-              
-                       
+                </NavItem>    
                  </Nav>
+
                  {roleElement}
+                 {signupElement}
             </Collapse>
 
           </Container>
