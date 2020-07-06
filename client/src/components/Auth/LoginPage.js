@@ -27,7 +27,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <div className='row container mt-5'>
+      <div className='row container mt-5 align-items-center justify-content-center'>
         <Form>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
@@ -42,7 +42,7 @@ const Login = ({ login, isAuthenticated }) => {
             Don't have an account? <Link to='/register'>Sign up</Link>
           </p>
         </FormGroup>
-        <Button>Log in</Button>
+        <Button className="btn-success">Log in</Button>
         </Form>
       </div>
     </Fragment>

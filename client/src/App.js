@@ -24,7 +24,7 @@ const App = () => {
             <Route component={Routes} />
           </Switch>
           </Container>
-        </div>          
+        </div>         
         </Fragment>
       </Router>
       <Notification />

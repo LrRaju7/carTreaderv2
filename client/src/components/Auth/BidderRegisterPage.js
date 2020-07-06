@@ -38,7 +38,7 @@ const Register = ({ register, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <div className='row container mt-5'>
+      <div className='row container mt-5 align-items-center justify-content-center'>
         <Form>
         <FormGroup>
           <Label for="exampleName">Bidder Name</Label>
@@ -110,7 +110,7 @@ const Register = ({ register, isAuthenticated }) => {
             Already have an account? <Link to='/login'>Log in</Link>
           </p>
         </FormGroup>
-        <Button>Sign in</Button>
+        <Button className="btn-success">Register</Button>
       </Form>
     </div>
     </Fragment>

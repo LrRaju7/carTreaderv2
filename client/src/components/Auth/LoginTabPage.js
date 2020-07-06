@@ -12,7 +12,7 @@ const LoginTab = (props) => {
 
   return (
     <div>
-      <Nav tabs>
+      <Nav tabs className="align-items-center justify-content-center">
         <NavItem>
           <NavLink
             className={classnames({ active: activeTab === '1' })}

@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 const Footer = props => {
   return (
-    <footer className='footer'>
-      <p className='small-text-white'>
-        Created by Jarrod Malkovic using the MERN Stack. Find the code at:
-        github.com
-      </p>
+    <footer className='footer container justify-content-center'>
+      <div className='navbar-brand '>
+      <img className='navbar-logo w-300 h-100' src='/media/autotrade_logo.png' alt='' />
+      </div>
     </footer>
   );
 };

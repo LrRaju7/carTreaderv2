@@ -26,8 +26,8 @@ const Routes = ({ loadUser, dispatch }) => {
   return (
     <div>
       <Switch>
-        <Route exact path='/' component={HomePage} />\
-        <Route exact path='/login' component={LoginTab} />\
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/login' component={LoginTab} />
         <Route exact path='/register' component={RegisterTab} />
         <Route exact path='/listings' component={ListingsPage} />
         <Route exact path='/listings/:slug' component={ListingPage} />
