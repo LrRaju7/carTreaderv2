@@ -12,7 +12,7 @@ import CreateReportModal from '../Report/CreateReportModal';
 import ViewReviewsModal from './ViewReviewsModal';
 import CreateReviewModal from '../Reviews/CreateReviewModal';
 import ListingCard from '../Listing/ListingCard';
-import Spinner from '../Layout/Spinner';
+import Spinner from '../Layouts/Components/Spinner';
 
 const ProfilePage = ({
   match,

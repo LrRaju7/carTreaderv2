@@ -39,8 +39,8 @@ const Register = ({ register, isAuthenticated }) => {
   return (
     <Fragment >
       <div className='row mt-5 align-items-center justify-content-center' >
-        <Form >
-        <FormGroup>
+        <Form row>
+        <FormGroup row>
           <Label for="exampleName">Buyer Name</Label>
           <Input type="text" name="name" id="examplename"/>
         </FormGroup>

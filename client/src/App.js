@@ -17,14 +17,9 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
-        <div className='toppad80 pad120lr'>
-          <Container fluid>
-                      <Switch>
+          <Switch>
             <Route component={Routes} />
-          </Switch>
-          </Container>
-        </div>         
+          </Switch>     
         </Fragment>
       </Router>
       <Notification />

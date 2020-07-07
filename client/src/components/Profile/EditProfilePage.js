@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getUserByToken, updateUserProfile } from '../../actions/user';
 import { updatePassword } from '../../actions/auth';
 import { Link } from 'react-router-dom';
-import Spinner from '../Layout/Spinner';
+import Spinner from '../Layouts/Components/Spinner';
 
 const EditProfilePage = ({
   getUserByToken,

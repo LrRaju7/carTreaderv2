@@ -8,7 +8,7 @@ import {
 } from '../../actions/listing';
 import ListItem from '../Listings/ListItem';
 import { Link } from 'react-router-dom';
-import Spinner from '../Layout/Spinner';
+import Spinner from '../Layouts/Components/Spinner';
 
 const YourListingsPage = ({
   getActiveListingsByToken,

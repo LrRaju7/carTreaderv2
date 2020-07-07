@@ -9,7 +9,7 @@ import {
 import { clearListings } from '../../actions/listing';
 import { Link } from 'react-router-dom';
 import ReviewItem from '../Reviews/ReviewItem';
-import Spinner from '../Layout/Spinner';
+import Spinner from '../Layouts/Components/Spinner';
 
 const YourReviewsPage = ({
   clearListings,

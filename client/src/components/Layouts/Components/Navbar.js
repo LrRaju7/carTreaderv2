@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import ClassNames from 'classnames'
 import PropTypes from 'prop-types';
 import {  withRouter} from 'react-router-dom';
-import SearchBar from '../Forms/SearchBar';
+import SearchBar from '../../Forms/SearchBar';
 import { connect } from 'react-redux';
-import { logout } from '../../actions/auth';
+import { logout } from '../../../actions/auth';
 import { Container, NavLink, Collapse, Navbar as BootstrapNavbar, NavbarToggler, NavbarBrand, Nav, NavItem, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap';
 
 

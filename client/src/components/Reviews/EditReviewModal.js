@@ -3,7 +3,7 @@ import { editReview, clearReview, getReview } from '../../actions/review';
 import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 import ReCAPTCHA from 'react-google-recaptcha';
-import Spinner from '../Layout/Spinner';
+import Spinner from '../Layouts/Components/Spinner';
 import PropTypes from 'prop-types';
 
 const EditReviewModal = ({
