@@ -38,7 +38,7 @@ const Register = ({ register, isAuthenticated }) => {
 
   return (
     <Fragment >
-      <div className='row container mt-5 align-items-center justify-content-center' >
+      <div className='row mt-5 align-items-center justify-content-center' >
         <Form >
         <FormGroup>
           <Label for="exampleName">Buyer Name</Label>

@@ -35,11 +35,12 @@ const Register = ({ register, isAuthenticated }) => {
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
+  
 
   return (
-    <Fragment>
-      <div className='row container mt-5 align-items-center justify-content-center'>
-        <Form>
+    <Fragment >
+      <div className='row mt-5 align-items-center justify-content-center'>
+        <Form >
         <FormGroup>
           <Label for="exampleName">Auctioneer Name</Label>
           <Input type="text" name="name" id="examplename"/>
@@ -96,7 +97,7 @@ const Register = ({ register, isAuthenticated }) => {
         </Row>
         <FormGroup>
         <Label for="exampleFile">Auctioneer Trade License</Label>
-        <Input type="file" name="file" id="exampleFile" />
+        <Input type="file" name="file" id="exampleFile" multiple/>
         <FormText color="muted">
           Please upload your tradelicense above. PDF or jpeg format only.
         </FormText>
