@@ -91,7 +91,7 @@ class Navbar extends Component {
 
     return (
       <Container fluid>
-        <BootstrapNavbar color="white" fixed="top" expand="lg" className='pad80lr marg15lr nopadtb'>
+        <BootstrapNavbar color="white" fixed="top" expand="lg" className='pad80lr marg15lr'>
           <Container fluid>
 
               <NavbarBrand className='navbar-brand' href='/'>
