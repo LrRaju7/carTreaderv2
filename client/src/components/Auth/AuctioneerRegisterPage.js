@@ -9,10 +9,18 @@ const Register = ({ register, isAuthenticated }) => {
     name: '',
     email: '',
     password: '',
-    passwordConfirm: ''
+    passwordConfirm: '',
+    phone: '',
+    address: '',
+    address2: '',
+    termsAndConditions: '',
+    city: '',
+    state: '',
+    zip: '',
+    file: '',
   });
 
-  const { email, name, password, passwordConfirm } = formData;
+  const { email, name, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip, file} = formData;
 
   const [verified, setVerified] = useState(false);
 
@@ -22,7 +30,7 @@ const Register = ({ register, isAuthenticated }) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (verified) {
-      register(name, email, password, passwordConfirm);
+      register(name, email, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip, file);
     } else {
       alert('Do the CAPTCHA');
     }
