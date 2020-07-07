@@ -33,7 +33,8 @@ const UserSchema = new mongoose.Schema({
   },
   bio: {
     type: String
-  }
+  },
+  
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

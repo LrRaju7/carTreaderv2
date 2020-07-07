@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import { loadUser } from '../../actions/auth';
 import { connect } from 'react-redux';
 import Login from '../Auth/LoginPage';
+import AdminLogin from '../Auth/Admin/AdminLoginPage';
+import AdminSignup from '../Auth/Admin/AdminRegisterPage';
 import LoginTab from '../Auth/LoginTabPage';
 import RegisterTab from '../Auth/RegisterTabPage';
 import ListingsPage from '../Listings/ListingsPage';
@@ -27,6 +29,8 @@ const Routes = ({ loadUser, dispatch }) => {
     <div>
       <Switch>
         <Route exact path='/' component={HomePage} />
+        <Route exact path='/ct-panel' component={AdminLogin} />
+        <Route exact path='/ct-panel/admin-reg' component={AdminSignup} />
         <Route exact path='/login' component={LoginTab} />
         <Route exact path='/register' component={RegisterTab} />
         <Route exact path='/listings' component={ListingsPage} />
