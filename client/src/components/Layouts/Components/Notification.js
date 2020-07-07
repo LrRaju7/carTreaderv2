@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addNotification } from '../../actions/notification';
+import { addNotification } from '../../../actions/notification';
 import {
   NotificationContainer,
   NotificationManager

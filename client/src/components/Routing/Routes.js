@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { loadUser } from '../../actions/auth';
 import { connect } from 'react-redux';
+import BuyBidAuctionLayout from '../Layouts/BuyBidAuctionLayout';
 import Login from '../Auth/LoginPage';
 import AdminLogin from '../Auth/Admin/AdminLoginPage';
 import AdminSignup from '../Auth/Admin/AdminRegisterPage';
@@ -14,12 +15,21 @@ import CreateListingPage from '../Listing/CreateListingPage';
 import PrivateRoute from '../Routing/PrivateRoute';
 import ProfilePage from '../Profile/ProfilePage';
 import Dashboard from '../Dashboard/Dashboard';
+import AdminDashboard from '../Dashboard/AdminDashboard';
 import EditProfilePage from '../Profile/EditProfilePage';
 import HomePage from '../Homepage/HomePage';
 import YourListingsPage from '../Dashboard/YourListingsPage';
 import BiddingHistoryPage from '../Dashboard/BiddingHistoryPage';
 import YourReviewsPage from '../Dashboard/YourReviewsPage';
-import PageNotFound from '../Layout/PageNotFound';
+import PageNotFound from '../Layouts/Components/PageNotFound';
+
+const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
+  <Route {...rest} render={props => (
+    <Layout>
+      <Component {...props} />
+    </Layout>
+  )} />
+)
 
 const Routes = ({ loadUser, dispatch }) => {
   useEffect(() => {
@@ -28,42 +38,43 @@ const Routes = ({ loadUser, dispatch }) => {
   return (
     <div>
       <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route exact path='/ct-panel' component={AdminLogin} />
-        <Route exact path='/ct-panel/admin-reg' component={AdminSignup} />
-        <Route exact path='/login' component={LoginTab} />
-        <Route exact path='/register' component={RegisterTab} />
-        <Route exact path='/listings' component={ListingsPage} />
-        <Route exact path='/listings/:slug' component={ListingPage} />
-        <PrivateRoute exact path='/create' component={CreateListingPage} />
+        <AppRoute exact path='/' layout={BuyBidAuctionLayout} component={HomePage} />
+        <AppRoute exact path='/ct-panel' layout={BuyBidAuctionLayout} component={AdminLogin} />
+        <AppRoute exact path='/ct-panel/admin-reg' layout={BuyBidAuctionLayout} component={AdminSignup} />
+        <AppRoute exact path='/login' layout={BuyBidAuctionLayout} component={LoginTab} />
+        <AppRoute exact path='/register' layout={BuyBidAuctionLayout} component={RegisterTab} />
+        <AppRoute exact path='/listings' layout={BuyBidAuctionLayout} component={ListingsPage} />
+        <AppRoute exact path='/listings/:slug' layout={BuyBidAuctionLayout} component={ListingPage} />
+        <PrivateRoute exact path='/create' layout={BuyBidAuctionLayout} component={CreateListingPage} />
         <PrivateRoute
           exact
           path='/listings/:slug/edit'
-          component={EditListingPage}
+          layout={BuyBidAuctionLayout} component={(EditListingPage)}
         />
-        <Route exact path='/profile/:id' component={ProfilePage} />
-        <PrivateRoute exact path='/dashboard' component={Dashboard} />
+        <AppRoute exact path='/profile/:id' layout={BuyBidAuctionLayout} component={(ProfilePage)} />
+        <PrivateRoute exact path='/dashboard' layout={BuyBidAuctionLayout} component={(Dashboard)} />
+        <PrivateRoute exact path='/ct-panel/dashboard' layout={BuyBidAuctionLayout} component={(AdminDashboard)} />
         <PrivateRoute
           exact
           path='/dashboard/edit'
-          component={EditProfilePage}
+          layout={BuyBidAuctionLayout} component={(EditProfilePage)}
         />
         <PrivateRoute
           exact
           path='/dashboard/listings'
-          component={YourListingsPage}
+          layout={BuyBidAuctionLayout} component={(YourListingsPage)}
         />
         <PrivateRoute
           exact
           path='/dashboard/reviews'
-          component={YourReviewsPage}
+          layout={BuyBidAuctionLayout} component={(YourReviewsPage)}
         />
         <PrivateRoute
           exact
           path='/dashboard/bids'
-          component={BiddingHistoryPage}
+          layout={BuyBidAuctionLayout} component={(BiddingHistoryPage)}
         />
-        <Route component={PageNotFound} />
+        <AppRoute layout={BuyBidAuctionLayout} component={(PageNotFound)} />
       </Switch>
     </div>
   );

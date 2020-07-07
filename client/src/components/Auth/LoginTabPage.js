@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Container, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import BuyerLogin from './LoginPage';
 
@@ -11,8 +11,8 @@ const LoginTab = (props) => {
   }
 
   return (
-    <div>
-      <Nav tabs className="align-items-center justify-content-center">
+    <Container>
+      <Nav tabs className="nav-justified">
         <NavItem>
           <NavLink
             className={classnames({ active: activeTab === '1' })}
@@ -61,7 +61,7 @@ const LoginTab = (props) => {
           </Row>
         </TabPane>
       </TabContent>
-    </div>
+    </Container>
   );
 }
 

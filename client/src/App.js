@@ -2,11 +2,10 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Routes from './components/Routing/Routes';
 import {Container} from 'reactstrap'
-import Navbar from './components/Layout/Navbar';
-import Footer from './components/Layout/Footer';
+import Navbar from './components/Layouts/Components/Navbar';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fal } from '@fortawesome/pro-light-svg-icons';
-import Notification from './components/Layout/Notification';
+import Notification from './components/Layouts/Components/Notification';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import { Provider } from 'react-redux';
@@ -17,14 +16,9 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
-        <div className='toppad80 pad120lr'>
-          <Container fluid>
-                      <Switch>
+          <Switch>
             <Route component={Routes} />
-          </Switch>
-          </Container>
-        </div>         
+          </Switch>     
         </Fragment>
       </Router>
       <Notification />

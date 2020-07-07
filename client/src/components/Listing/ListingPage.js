@@ -11,10 +11,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import CreateReportModal from '../Report/CreateReportModal';
-import Countdown from '../Layout/Countdown';
+import Countdown from '../Layouts/Components/Countdown';
 import ViewBidsModal from '../Bids/ViewBidsModal';
 import ListingCard from './ListingCard';
-import Spinner from './../Layout/Spinner';
+import Spinner from './../Layouts/Components/Spinner';
 
 const Listing = ({
   getListing,

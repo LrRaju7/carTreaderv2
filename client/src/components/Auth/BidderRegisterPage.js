@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
-import { Col, Row, Button, Form, FormGroup, Label, Input,FormText } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input,FormText, Container } from 'reactstrap';
 
 const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -37,9 +37,8 @@ const Register = ({ register, isAuthenticated }) => {
   }
 
   return (
-    <Fragment>
-      <div className='row mt-5 align-items-center justify-content-center'>
-        <Form>
+      <Container className='mt-5'>
+        <Form style={{width: '100%'}}>
         <FormGroup>
           <Label for="exampleName">Bidder Name</Label>
           <Input type="text" name="name" id="examplename"/>
@@ -112,8 +111,7 @@ const Register = ({ register, isAuthenticated }) => {
         </FormGroup>
         <Button className="btn-success">Register</Button>
       </Form>
-    </div>
-    </Fragment>
+    </Container>
   );
 };
 

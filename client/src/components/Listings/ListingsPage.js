@@ -3,9 +3,9 @@ import { getListings, clearListings } from '../../actions/listing';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import ListItem from './ListItem';
-import PaginationButtons from '../Layout/PaginationButtons';
+import PaginationButtons from '../Layouts/Components/PaginationButtons';
 import AdvancedSearchForm from '../Forms/AdvancedSearchForm';
-import Spinner from '../Layout/Spinner';
+import Spinner from '../Layouts/Components/Spinner';
 const queryString = require('query-string');
 
 export const Listings = ({

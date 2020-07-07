@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { editListing, getListing, clearListing } from '../../actions/listing';
 import { Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import Spinner from '../Layout/Spinner';
+import Spinner from '../Layouts/Components/Spinner';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const EditListingPage = ({

@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../../actions/auth';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 
 const AdminLogin = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -26,9 +26,8 @@ const AdminLogin = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <Fragment>
-      <div className='row mt-5 align-items-center justify-content-center'>
-        <Form>
+      <Container className='mt-5'>
+        <Form style={{width: '100%'}}>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
           <Input type="email" name="email" id="exampleEmail" />
@@ -39,8 +38,7 @@ const AdminLogin = ({ login, isAuthenticated }) => {
         </FormGroup>
         <Button className="btn-success">Log in</Button>
         </Form>
-      </div>
-    </Fragment>
+      </Container>
   );
 };
 

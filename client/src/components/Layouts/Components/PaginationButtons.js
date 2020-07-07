@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getListings, clearListings } from '../../actions/listing';
+import { getListings, clearListings } from '../../../actions/listing';
 const queryString = require('query-string');
 
 const PaginationButtons = ({
