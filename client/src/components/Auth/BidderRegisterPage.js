@@ -69,10 +69,6 @@ const Register = ({ register, isAuthenticated }) => {
           <Label for="exampleAddress">Bidder Address</Label>
           <Input type="text" name="address" id="exampleAddress"/>
         </FormGroup>
-        <FormGroup>
-          <Label for="exampleAddress2">Address 2</Label>
-          <Input type="text" name="address2" id="exampleAddress2"/>
-        </FormGroup>
         <Row form>
           <Col md={6}>
             <FormGroup>
