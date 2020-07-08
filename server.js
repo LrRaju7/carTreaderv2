@@ -8,18 +8,8 @@ const globalErrorHandler = require('./controllers/errorController.js');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const AppError = require('./utils/appError');
-const AdminBro = require('admin-bro')
-const AdminBroMongoose = require('admin-bro-mongoose')
-const AdminBroExpress = require('admin-bro-expressjs')
 const dotenv = require('dotenv').config({ path: './config.env' });
-AdminBro.registerAdapter(AdminBroMongoose)
-const User = require('./models/userModel');
-const AdminBroOptions = {
-  resources: [User],
-  rootPath: '/admin',
-}
-const adminBro = new AdminBro(AdminBroOptions)
-const router = AdminBroExpress.buildRouter(adminBro)
+
 // Connect Database
 connectDB();
 
@@ -72,9 +62,9 @@ app.use(xss());
 
 // Init Middleware
 app.use(express.json({ extended: false })); //allows us to get the data on req.body
-
+app.use(express.static('public'))
 // Define Routes
-app.use(adminBro.options.rootPath, router)
+app.use('/admin', require('./routes/api/adminRouter'))
 app.use('/api/users', require('./routes/api/userRouter'));
 app.use('/api/listings', require('./routes/api/listingRouter'));
 app.use('/api/auth', require('./routes/api/authRouter'));
