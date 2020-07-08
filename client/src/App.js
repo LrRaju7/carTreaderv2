@@ -4,7 +4,6 @@ import Routes from './components/Routing/Routes';
 import {Container} from 'reactstrap'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fal } from '@fortawesome/pro-light-svg-icons';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import { Provider } from 'react-redux';

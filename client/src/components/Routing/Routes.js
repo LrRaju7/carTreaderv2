@@ -4,6 +4,8 @@ import { loadUser } from '../../actions/auth';
 import { connect } from 'react-redux';
 import BuyBidAuctionLayout from '../Layouts/BuyBidAuctionLayout';
 import Login from '../Auth/LoginPage';
+import AdminLogin from '../Auth/Admin/AdminLoginPage';
+import AdminSignup from '../Auth/Admin/AdminRegisterPage';
 import LoginTab from '../Auth/LoginTabPage';
 import RegisterTab from '../Auth/RegisterTabPage';
 import ListingsPage from '../Listings/ListingsPage';
@@ -13,6 +15,7 @@ import CreateListingPage from '../Listing/CreateListingPage';
 import PrivateRoute from '../Routing/PrivateRoute';
 import ProfilePage from '../Profile/ProfilePage';
 import Dashboard from '../Dashboard/Dashboard';
+import AdminDashboard from '../Dashboard/AdminDashboard';
 import EditProfilePage from '../Profile/EditProfilePage';
 import HomePage from '../Homepage/HomePage';
 import YourListingsPage from '../Dashboard/YourListingsPage';
@@ -35,12 +38,14 @@ const Routes = ({ loadUser, dispatch }) => {
   return (
     <div>
       <Switch>
-        <AppRoute exact path='/' layout={BuyBidAuctionLayout} component={(HomePage)} />
-        <AppRoute exact path='/login' layout={BuyBidAuctionLayout} component={(LoginTab)} />
-        <AppRoute exact path='/register' layout={BuyBidAuctionLayout} component={(RegisterTab)} />
-        <AppRoute exact path='/listings' layout={BuyBidAuctionLayout} component={(ListingsPage)} />
-        <AppRoute exact path='/listings/:slug' layout={BuyBidAuctionLayout} component={(ListingPage)} />
-        <PrivateRoute exact path='/create' layout={BuyBidAuctionLayout} component={(CreateListingPage)} />
+        <AppRoute exact path='/' layout={BuyBidAuctionLayout} component={HomePage} />
+        <AppRoute exact path='/ct-panel' layout={BuyBidAuctionLayout} component={AdminLogin} />
+        <AppRoute exact path='/ct-panel/admin-reg' layout={BuyBidAuctionLayout} component={AdminSignup} />
+        <AppRoute exact path='/login' layout={BuyBidAuctionLayout} component={LoginTab} />
+        <AppRoute exact path='/register' layout={BuyBidAuctionLayout} component={RegisterTab} />
+        <AppRoute exact path='/listings' layout={BuyBidAuctionLayout} component={ListingsPage} />
+        <AppRoute exact path='/listings/:slug' layout={BuyBidAuctionLayout} component={ListingPage} />
+        <PrivateRoute exact path='/create' layout={BuyBidAuctionLayout} component={CreateListingPage} />
         <PrivateRoute
           exact
           path='/listings/:slug/edit'
@@ -48,6 +53,7 @@ const Routes = ({ loadUser, dispatch }) => {
         />
         <AppRoute exact path='/profile/:id' layout={BuyBidAuctionLayout} component={(ProfilePage)} />
         <PrivateRoute exact path='/dashboard' layout={BuyBidAuctionLayout} component={(Dashboard)} />
+        <PrivateRoute exact path='/ct-panel/dashboard' layout={BuyBidAuctionLayout} component={(AdminDashboard)} />
         <PrivateRoute
           exact
           path='/dashboard/edit'

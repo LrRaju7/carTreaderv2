@@ -1,18 +1,25 @@
 import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { register } from '../../actions/auth';
+import { register } from '../../../actions/auth';
 import { Col, Row, Button, Form, FormGroup, Label, Input,FormText, Container } from 'reactstrap';
 
-const Register = ({ register, isAuthenticated }) => {
+const AdminRegister = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    passwordConfirm: ''
+    passwordConfirm: '',
+    phone: '',
+    address: '',
+    address2: '',
+    city: '',
+    state: '',
+    zip: '',
+    file: '',
   });
 
-  const { email, name, password, passwordConfirm } = formData;
+  const { email, name, password, passwordConfirm, phone, address, address2, city, state, zip, file} = formData;
 
   const [verified, setVerified] = useState(false);
 
@@ -22,7 +29,7 @@ const Register = ({ register, isAuthenticated }) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (verified) {
-      register(name, email, password, passwordConfirm);
+      register(name, email, password, passwordConfirm, phone, address, address2, city, state, zip, file);
     } else {
       alert('Do the CAPTCHA');
     }
@@ -35,12 +42,13 @@ const Register = ({ register, isAuthenticated }) => {
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
+  
 
   return (
       <Container className='mt-5'>
         <Form style={{width: '100%'}}>
         <FormGroup>
-          <Label for="exampleName">Bidder Name</Label>
+          <Label for="exampleName">Admin Name</Label>
           <Input type="text" name="name" id="examplename"/>
         </FormGroup>
         <FormGroup>
@@ -62,11 +70,18 @@ const Register = ({ register, isAuthenticated }) => {
           </Col>
         </Row>
         <FormGroup>
-          <Label for="examplePhone">Bidder Phone</Label>
+          <Label for="examplePhone">Admin Phone</Label>
           <Input type="number" name="phone" id="examplephone"/>
         </FormGroup>
         <FormGroup>
-          <Label for="exampleAddress">Bidder Address</Label>
+        <Label for="exampleFile">Admin Trade License</Label>
+        <Input type="file" name="file" id="exampleFile" multiple/>
+        <FormText color="muted">
+          Please upload your tradelicense above. PDF or jpeg format only.
+        </FormText>
+      </FormGroup>
+        <FormGroup>
+          <Label for="exampleAddress">Admin Address</Label>
           <Input type="text" name="address" id="exampleAddress"/>
         </FormGroup>
         <Row form>
@@ -89,22 +104,6 @@ const Register = ({ register, isAuthenticated }) => {
             </FormGroup>  
           </Col>
         </Row>
-        <FormGroup>
-        <Label for="exampleFile">Bidder Trade License</Label>
-        <Input type="file" name="file" id="exampleFile" />
-        <FormText color="muted">
-          Please upload your tradelicense above. PDF or jpeg format only.
-        </FormText>
-      </FormGroup>
-        <FormGroup check>
-          <Input type="checkbox" name="termsAndConditions" id="exampleTerms"/>
-          <Label for="exampleTerms" check>I agree with terms and conditions.</Label>
-        </FormGroup>
-        <FormGroup>
-          <p className='small-text'>
-            Already have an account? <Link to='/login'>Log in</Link>
-          </p>
-        </FormGroup>
         <Button className="btn-success">Register</Button>
       </Form>
     </Container>
@@ -115,4 +114,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { register })(AdminRegister);
