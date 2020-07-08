@@ -2,11 +2,9 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Routes from './components/Routing/Routes';
 import {Container} from 'reactstrap'
-import Navbar from './components/Layout/Navbar';
-import Footer from './components/Layout/Footer';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fal } from '@fortawesome/pro-light-svg-icons';
-import Notification from './components/Layout/Notification';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import { Provider } from 'react-redux';
@@ -22,7 +20,7 @@ const App = () => {
           </Switch>     
         </Fragment>
       </Router>
-      <Notification />
+
     </Provider>
   );
 };
