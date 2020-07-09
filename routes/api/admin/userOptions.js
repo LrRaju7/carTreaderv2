@@ -1,4 +1,5 @@
 const User = require('../../../models/userModel');
+const bcrypt = require('bcryptjs');
 
 const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Administrator'
 const UserAdminOptions = {
@@ -18,24 +19,16 @@ const UserAdminOptions = {
 		},
 		actions: {
 			new: {
+				actionType: "resource",
 				before: async (request) => {
-					console.log(request.payload)
-					if (request.payload.record.password) {
-						request.payload.record = {
-							...request.payload.record,
-							encryptedPassword: await bcrypt.hash(
-								request.payload.record.password,
-								10
-							),
-							password: undefined,
-						};
-					}
-					return request;
-				},
-				after: (originalResponse, request, context) => {
-					console.log(originalResponse)
-					console.log(request)
-					console.log(context)
+					const user = request.payload;
+
+					const salt = await bcrypt.genSalt(10);
+					user.password = await bcrypt.hash(user.password, salt);
+					console.log(user)
+					request.payload = user
+					console.log('hjola')
+					return request
 				}
 			},
 			edit: { isAccessible: canModifyUsers },

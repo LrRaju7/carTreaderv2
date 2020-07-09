@@ -10,6 +10,7 @@ const User = require('../models/userModel');
 const Listing = require('../models/listingModel');
 
 exports.createUser = catchAsync(async (req, res, next) => {
+  console.log('Received')
   const { name, email, password } = req.body;
 
   if (!(name && email && password)) {
