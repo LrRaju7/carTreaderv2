@@ -3,19 +3,23 @@ const AdminBroExpress = require('admin-bro-expressjs')
 const UserAdminOptions = require('./admin/userOptions.js')
 
 
+const generateAdmin = (db) => {
+	const AdminBroOptions = {
+	  branding: {
+	  	softwareBrothers: false,
+		  companyName: 'CarTrader',
+		  logo: '/media/logo.svg'
+		},
+	  resources: [UserAdminOptions],
+	  rootPath: '/admin',
+	  database: db
+	}
+	const adminBro = new AdminBro(AdminBroOptions)
+	const router = AdminBroExpress.buildRouter(adminBro)
+	return router
 
-
-const AdminBroOptions = {
-  branding: {
-  	softwareBrothers: false,
-	  companyName: 'CarTrader',
-	  logo: '/media/logo.svg'
-	},
-  resources: [UserAdminOptions],
-  rootPath: '/admin',
 }
 
-const adminBro = new AdminBro(AdminBroOptions)
 // const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
 //   authenticate: async (email, password) => {
 //     const user = await User.findOne({ email })
@@ -30,7 +34,7 @@ const adminBro = new AdminBro(AdminBroOptions)
 //   cookiePassword: 'some-secret-password-used-to-secure-cookie',
 // })
 
-const router = AdminBroExpress.buildRouter(adminBro)
 
 
-module.exports = router;
+
+module.exports = generateAdmin;

@@ -9,7 +9,7 @@ const connectDB = async () => {
       var dbName = 'production';
     }
 
-    await mongoose.connect(process.env.MONGO_URI, {
+    const db = await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
@@ -18,6 +18,7 @@ const connectDB = async () => {
     });
 
     console.log(`MongoDB Connected to ${dbName} DB...`);
+    return db;
   } catch (err) {
     console.log(err.message);
     process.exit(1);
