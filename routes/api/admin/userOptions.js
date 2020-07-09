@@ -19,6 +19,7 @@ const UserAdminOptions = {
 		actions: {
 			new: {
 				before: async (request) => {
+					console.log(request.payload)
 					if (request.payload.record.password) {
 						request.payload.record = {
 							...request.payload.record,
@@ -31,10 +32,14 @@ const UserAdminOptions = {
 					}
 					return request;
 				},
+				after: (originalResponse, request, context) => {
+					console.log(originalResponse)
+					console.log(request)
+					console.log(context)
+				}
 			},
 			edit: { isAccessible: canModifyUsers },
-			delete: { isAccessible: canModifyUsers },
-			new: { isAccessible: canModifyUsers },
+			delete: { isAccessible: canModifyUsers }
 		},
 	},
 };
