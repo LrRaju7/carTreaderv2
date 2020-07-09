@@ -1,0 +1,98 @@
+[33mcommit a6e4ac792b9f0db980bcff0a171d98eea6223e5e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 06ff593 1a714da
+Author: LrRaju7 <lutforrahmanraju9141@gmail.com>
+Date:   Wed Jul 8 15:27:05 2020 +0600
+
+    Merge branch 'master' of https://github.com/LrRaju7/carTreaderv2
+
+[33mcommit 06ff59312cd7f0480b50c149d98ac4d4235e3cd2[m
+Author: LrRaju7 <lutforrahmanraju9141@gmail.com>
+Date:   Wed Jul 8 15:26:56 2020 +0600
+
+    test
+
+[33mcommit 1a714da69b85e9d8237d39dacf80eac1b0dd3bfd[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: abrarmusa <abrar.musa.89@gmail.com>
+Date:   Wed Jul 8 15:01:29 2020 +0600
+
+    added authentication for admin
+
+[33mcommit 2f4416397ee925723f096ae2180f469517f28b23[m
+Merge: ab95b93 86c2208
+Author: abrarmusa <abrar.musa.89@gmail.com>
+Date:   Wed Jul 8 14:21:07 2020 +0600
+
+    resolved conflict
+
+[33mcommit ab95b93ad1995660f3f80a4f8a87a2137609a1be[m
+Author: abrarmusa <abrar.musa.89@gmail.com>
+Date:   Wed Jul 8 14:04:48 2020 +0600
+
+    added adminbro
+
+[33mcommit 86c22085debbbeab4ec1a540420dfc79716a3794[m
+Author: LrRaju7 <lutforrahmanraju9141@gmail.com>
+Date:   Tue Jul 7 17:02:58 2020 +0600
+
+    change the layout of register according to login layout
+
+[33mcommit a142a08a7456d82986d0bbf87fa2163b793aa52c[m
+Merge: c61d9cf 416936e
+Author: LrRaju7 <lutforrahmanraju9141@gmail.com>
+Date:   Tue Jul 7 16:56:28 2020 +0600
+
+    change the layout of register according to login layout
+
+[33mcommit c61d9cfa8b8d702ed7aa22620872e6031a938f7b[m
+Author: LrRaju7 <lutforrahmanraju9141@gmail.com>
+Date:   Tue Jul 7 15:03:15 2020 +0600
+
+    small modification
+
+[33mcommit 6e21431dd7cbf4772a5a670bcf0503867e1d7834[m
+Author: abrarmusa <abrar.musa.89@gmail.com>
+Date:   Tue Jul 7 14:32:39 2020 +0600
+
+    pushed layouting system
+
+[33mcommit 416936e826c55ef719c3ef02bb79983db2400cbd[m
+Author: abrarmusa <abrar.musa.89@gmail.com>
+Date:   Tue Jul 7 14:29:32 2020 +0600
+
+    pushed layouting system
+
+[33mcommit 04d3555b45a8d0669a022605e9a84af009a51fe1[m
+Author: abrarmusa <abrar.musa.89@gmail.com>
+Date:   Tue Jul 7 12:34:44 2020 +0600
+
+    added schemas
+
+[33mcommit 5b245d3c3cfc1b53de3d273f3667eb78b548a0ab[m
+Author: LrRaju7 <lutforrahmanraju9141@gmail.com>
+Date:   Tue Jul 7 11:15:03 2020 +0600
+
+    store form data
+
+[33mcommit 3f096cae1df3020f5ba7b3366d372febc7497131[m
+Author: LrRaju7 <lutforrahmanraju9141@gmail.com>
+Date:   Tue Jul 7 11:14:41 2020 +0600
+
+    store form data
+
+[33mcommit 7a0a0bfca169b0328d6edcced32de65710309eee[m
+Author: Lrraju7 <lutforrahmanraju9141@gmail.com>
+Date:   Mon Jul 6 23:09:27 2020 +0600
+
+    redesign auth components
+
+[33mcommit d25404753bcccf8a5efa2eb49cbb43be5f1d892e[m
+Author: LrRaju7 <lutforrahmanraju9141@gmail.com>
+Date:   Mon Jul 6 17:54:15 2020 +0600
+
+    Different Signup Page
+
+[33mcommit 6004b4d9f46300d8da757bf2fbcc190410bea860[m
+Author: Lrraju7 <lutforrahmanraju9141@gmail.com>
+Date:   Sun Jul 5 22:33:33 2020 +0600
+
+    first Commit

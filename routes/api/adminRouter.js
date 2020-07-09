@@ -7,7 +7,7 @@ const generateAdmin = (db) => {
 	const AdminBroOptions = {
 	  branding: {
 	  	softwareBrothers: false,
-		  companyName: 'CarTrader',
+		  companyName: '',
 		  logo: '/media/logo.svg'
 		},
 	  resources: [UserAdminOptions],
