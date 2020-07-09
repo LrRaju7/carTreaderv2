@@ -4,9 +4,9 @@ const dotenv = require('dotenv').config({ path: './config.env' });
 const connectDB = async () => {
   try {
     if (process.env.NODE_ENV === 'test') {
-      var dbName = 'test';
+      var dbName = 'testing';
     } else {
-      var dbName = 'Production';
+      var dbName = 'production';
     }
 
     await mongoose.connect(process.env.MONGO_URI, {

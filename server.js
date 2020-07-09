@@ -1,5 +1,8 @@
 const express = require('express');
-const connectDB = require('./config/db');
+const AdminBro = require('admin-bro')
+const AdminBroMongoose = require('admin-bro-mongoose')
+// const connectDB = require('./config/db');
+AdminBro.registerAdapter(AdminBroMongoose)
 const cloudinary = require('cloudinary');
 const app = express();
 var server = require('http').Server(app);
@@ -9,9 +12,25 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const AppError = require('./utils/appError');
 const dotenv = require('dotenv').config({ path: './config.env' });
+const mongoose = require('mongoose');
 
-// Connect Database
-connectDB();
+const connectDB = async () => {
+  try {
+    if (process.env.NODE_ENV === 'test') {
+      var dbName = 'test';
+    } else {
+      var dbName = 'cartrader';
+    }
+
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      dbName
+    });
+// // Connect Database
+// connectDB();
 
 // Cloudinary Setup for image upload
 cloudinary.config({
@@ -83,4 +102,11 @@ if (process.env.NODE_ENV !== 'test') {
   server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 }
 
+    console.log(`MongoDB Connected to ${dbName} DB...`);
+  } catch (err) {
+    console.log(err.message);
+    process.exit(1);
+  }
+};
+connectDB()
 module.exports = server;
