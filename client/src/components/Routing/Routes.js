@@ -51,7 +51,11 @@ const Routes = ({ loadUser, dispatch }) => {
           path='/listings/:slug/edit'
           layout={BuyBidAuctionLayout} component={(EditListingPage)}
         />
-        <AppRoute exact path='/profile/:id' layout={BuyBidAuctionLayout} component={(ProfilePage)} />
+        <AppRoute 
+          exact 
+          path='/profile/:id' 
+          layout={BuyBidAuctionLayout} component={ProfilePage}
+        />
         <PrivateRoute exact path='/dashboard' layout={BuyBidAuctionLayout} component={(Dashboard)} />
         <PrivateRoute exact path='/ct-panel/dashboard' layout={BuyBidAuctionLayout} component={(AdminDashboard)} />
         <PrivateRoute

@@ -1,43 +1,19 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Container, } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import '../../styles/components/_dashboard.scss'
+import '../../styles/components/_dashboard.scss';
+
 const Dashboard = props => {
+	
   return (
     <Fragment>
-		<div id="sidebar-nav" className="sidebar">
-			<div className="sidebar-scroll">
-				<nav>
-					<ul className="nav">
-						<li><a href="#" className="active"><i className="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-						<li><a href="#" className=""><i className="lnr lnr-code"></i> <span>Elements</span></a></li>
-						<li><a href="#" className=""><i className="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-						<li><a href="#" className=""><i className="lnr lnr-cog"></i> <span>Panels</span></a></li>
-						<li><a href="#" className=""><i className="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
-						<li>
-							<a href="#" data-toggle="collapse" className="collapsed"><i className="lnr lnr-file-empty"></i> <span>Pages</span> <i className="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages" className="collapse ">
-								<ul className="nav">
-									<li><a href="#" className="">Profile</a></li>
-									<li><a href="#" className="">Login</a></li>
-									<li><a href="#" className="">Lockscreen</a></li>
-								</ul>
-							</div>
-						</li>
-						<li><a href="#" className=""><i className="lnr lnr-dice"></i> <span>Tables</span></a></li>
-						<li><a href="#" className=""><i className="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-						<li><a href="#" className=""><i className="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+		
     <Container>
-		<div className="main">
+	<div className="main">
 			<div className="main-content">
-				<div className="container-fluid">
 					<div className="panel panel-headline">
 						<div className="panel-heading">
 							<h3 className="panel-title">Weekly Overview</h3>
@@ -197,7 +173,7 @@ const Dashboard = props => {
 									</div>
 								</div>
 								<div className="panel-body">
-									<ul className="list-unstyled todo-list">
+									<ul className="list-unstylesd todo-list">
 										<li>
 											<label className="control-inline fancy-checkbox">
 												<input type="checkbox"/><span></span>
@@ -251,25 +227,25 @@ const Dashboard = props => {
 									</div>
 								</div>
 								<div className="panel-body">
-									<ul className="list-unstyled activity-list">
+									<ul className="list-unstylesd activity-list">
 										<li>
-											<img src="" alt="Avatar" className="img-circle pull-left avatar"/>
+											<img src="assets/img/user1.png" alt="Avatar" className="img-circle pull-left avatar"/>
 											<p><a href="#">Michael</a> has achieved 80% of his completed tasks <span className="timestamp">20 minutes ago</span></p>
 										</li>
 										<li>
-											<img src="" alt="Avatar" className="img-circle pull-left avatar"/>
+											<img src="assets/img/user2.png" alt="Avatar" className="img-circle pull-left avatar"/>
 											<p><a href="#">Daniel</a> has been added as a team member to project <a href="#">System Update</a> <span className="timestamp">Yesterday</span></p>
 										</li>
 										<li>
-											<img src="" alt="Avatar" className="img-circle pull-left avatar"/>
+											<img src="assets/img/user3.png" alt="Avatar" className="img-circle pull-left avatar"/>
 											<p><a href="#">Martha</a> created a new heatmap view <a href="#">Landing Page</a> <span className="timestamp">2 days ago</span></p>
 										</li>
 										<li>
-											<img src="" alt="Avatar" className="img-circle pull-left avatar"/>
+											<img src="assets/img/user4.png" alt="Avatar" className="img-circle pull-left avatar"/>
 											<p><a href="#">Jane</a> has completed all of the tasks <span className="timestamp">2 days ago</span></p>
 										</li>
 										<li>
-											<img src="" alt="Avatar" className="img-circle pull-left avatar"/>
+											<img src="assets/img/user5.png" alt="Avatar" className="img-circle pull-left avatar"/>
 											<p><a href="#">Jason</a> started a discussion about <a href="#">Weekly Meeting</a> <span className="timestamp">3 days ago</span></p>
 										</li>
 									</ul>
@@ -279,9 +255,100 @@ const Dashboard = props => {
 						</div>
 					</div>
 					<div className="row">
-						
+						<div className="col-md-4">
+							<div className="panel">
+								<div className="panel-heading">
+									<h3 className="panel-title">My Tasks</h3>
+									<div className="right">
+										<button type="button" className="btn-toggle-collapse"><i className="lnr lnr-chevron-up"></i></button>
+										<button type="button" className="btn-remove"><i className="lnr lnr-cross"></i></button>
+									</div>
+								</div>
+								<div className="panel-body">
+									<ul className="list-unstylesd task-list">
+										<li>
+											<p>Updating Users Settings <span className="label-percent">23%</span></p>
+											<div className="progress progress-xs">
+												<div className="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" styles="width:23%">
+													<span className="sr-only">23% Complete</span>
+												</div>
+											</div>
+										</li>
+										<li>
+											<p>Load &amp; Stress Test <span className="label-percent">80%</span></p>
+											<div className="progress progress-xs">
+												<div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" styles="width: 80%">
+													<span className="sr-only">80% Complete</span>
+												</div>
+											</div>
+										</li>
+										<li>
+											<p>Data Duplication Check <span className="label-percent">100%</span></p>
+											<div className="progress progress-xs">
+												<div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" styles="width: 100%">
+													<span className="sr-only">Success</span>
+												</div>
+											</div>
+										</li>
+										<li>
+											<p>Server Check <span className="label-percent">45%</span></p>
+											<div className="progress progress-xs">
+												<div className="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" styles="width: 45%">
+													<span className="sr-only">45% Complete</span>
+												</div>
+											</div>
+										</li>
+										<li>
+											<p>Mobile App Development <span className="label-percent">10%</span></p>
+											<div className="progress progress-xs">
+												<div className="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" styles="width: 10%">
+													<span className="sr-only">10% Complete</span>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div className="col-md-4">
+							<div className="panel">
+								<div className="panel-heading">
+									<h3 className="panel-title">Website Visits</h3>
+									<div className="right">
+										<button type="button" className="btn-toggle-collapse"><i className="lnr lnr-chevron-up"></i></button>
+										<button type="button" className="btn-remove"><i className="lnr lnr-cross"></i></button>
+									</div>
+								</div>
+								<div className="panel-body">
+									<div id="visits-chart" className="ct-chart"></div>
+								</div>
+							</div>
+						</div>
+						<div className="col-md-4">
+							<div className="panel">
+								<div className="panel-heading">
+									<h3 className="panel-title">System Load</h3>
+									<div className="right">
+										<button type="button" className="btn-toggle-collapse"><i className="lnr lnr-chevron-up"></i></button>
+										<button type="button" className="btn-remove"><i className="lnr lnr-cross"></i></button>
+									</div>
+								</div>
+								<div className="panel-body">
+									<div id="system-load" className="easy-pie-chart" data-percent="70">
+										<span className="percent">70</span>
+									</div>
+									<h4>CPU Load</h4>
+									<ul className="list-unstylesd list-justify">
+										<li>High: <span>95%</span></li>
+										<li>Average: <span>87%</span></li>
+										<li>Low: <span>20%</span></li>
+										<li>Threads: <span>996</span></li>
+										<li>Processes: <span>259</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
 			</div>
 		</div>
       </Container>

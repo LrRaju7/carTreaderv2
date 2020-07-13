@@ -42,16 +42,17 @@ class Navbar extends Component {
 
   render () {
     let roleElement = []
-    let roleLinkElement = <NavLink href='/account' ><i className='fa fa-user' />Account</NavLink>
+    let roleLinkElement = <NavLink href='/dashboard/edit' ><span><i className='fa fa-pencil' /></span><span className="ml-3">Edit Account</span></NavLink>
     let signupElement = []
 
     if (this.props.role === 'admin') {
-      roleLinkElement = <NavLink href='/admin' ><i className='fa fa-user' />Account</NavLink>
+      roleLinkElement = <NavLink href='/admin' ><span><i className='fa fa-user' /></span><spsn>Account</spsn></NavLink>
     }
 
-    if (this.props.auth.authenticated === true) {
+    if (this.props.auth.isAuthenticated === true) {
+      const id = this.props.auth.user._id
       roleElement = <Nav navbar style={{justifyContent: 'flex-end'}}>
-        <NavItem className={this.tabClass('/account')}>
+        <NavItem className={this.tabClass('/dashboard')}>
          
               <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
@@ -59,10 +60,16 @@ class Navbar extends Component {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
+                  <NavLink href='/dashboard' ><i className='fa fa-clipboard' /><span className="ml-3">Dashboard</span></NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href={`/profile/${this.props.auth.user._id}`} ><i className='fa fa-user' /><span className="ml-3">Profile</span></NavLink>
+                </DropdownItem>
+                <DropdownItem>
                   {roleLinkElement}
                 </DropdownItem>
                 <DropdownItem>
-                   <NavLink href='/logout' ><i className='fa fa-user' />Log Out</NavLink>
+                   <NavLink href='/logout' ><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>          
@@ -117,7 +124,6 @@ class Navbar extends Component {
                  </Nav>
 
                  {roleElement}
-                 {signupElement}
             </Collapse>
 
           </Container>
