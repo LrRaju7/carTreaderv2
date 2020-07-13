@@ -6,6 +6,7 @@ import { getListings, clearListings } from '../../actions/listing';
 import { clearReviews, getReviewsWrittenForUser } from '../../actions/review';
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
+import { Container } from 'reactstrap';
 import { Helmet } from 'react-helmet';
 import Moment from 'react-moment';
 import CreateReportModal from '../Report/CreateReportModal';
@@ -13,6 +14,7 @@ import ViewReviewsModal from './ViewReviewsModal';
 import CreateReviewModal from '../Reviews/CreateReviewModal';
 import ListingCard from '../Listing/ListingCard';
 import Spinner from '../Layouts/Components/Spinner';
+import '../../styles/components/_dashboard.scss';
 
 const ProfilePage = ({
   match,
@@ -56,60 +58,210 @@ const ProfilePage = ({
     <div>No user found</div>
   ) : (
     <Fragment>
-      <Helmet>
-        <title>{user.data.name}'s profile | Auction</title>
-      </Helmet>
-      <div class='row'>
-        <div className='profile-top'>
-          <img
-            onLoad={console.log('xd')}
-            src={user.data.avatar}
-            className='round-image'
-            alt='User profile picture'
-          />
-          <h2 className='large-heading'>{user.data.name}</h2>
-          <h4 className='medium-heading'>
-            User since <Moment>{user.data.date}</Moment>
-          </h4>
-          {user.data.location && (
-            <h4 className='medium-heading'>Located in {user.data.location}</h4>
-          )}
-          {auth.isAuthenticated && auth.user._id != user.data._id && (
-            <CreateReportModal type={'user'} id={user.data._id} />
-          )}
-          {auth.isAuthenticated && auth.user._id != user.data._id && (
-            <CreateReviewModal id={user.data._id} />
-          )}
-          <ViewReviewsModal match={match} />
-        </div>
-        <div>
-          <h2 className='large-heading'>
-            {user.data.name.split(' ')[0]}'s bio
-          </h2>
-          <p className='small-text'>
-            {user.data.bio ? user.data.bio : 'This user has no bio'}
-          </p>
-        </div>
-
-        <div className='listing-card-row'>
-          <h2 className='large-heading'>
-            Browse {user.data.name.split(' ')[0]}'s recent listings
-            <span>
-              <Link
-                className='link see-more'
-                to={`/listings?createdBy=${user.data._id}`}
-              >
-                <h4>See more</h4>
-              </Link>
-            </span>
-          </h2>
-          {listings.data.length === 0
-            ? 'This user has no active listenings at the moment'
-            : listings.data.map(listing => (
-                <ListingCard id={listing._id} listing={listing} />
-              ))}
-        </div>
-      </div>
+      <Container>
+		<div className="main">
+			<div className="main-content">
+					<div className="panel panel-profile">
+						<div className="clearfix">
+							<div className="profile-left">
+								<div className="profile-header">
+									<div className="overlay"></div>
+									<div className="profile-main">
+										<img src="assets/img/user-medium.png" className="img-circle" alt="Avatar"/>
+										<h3 className="name">{user.data.name}</h3>
+										<span className="online-status status-available">Available</span>
+									</div>
+									<div className="profile-stat">
+										<div className="row">
+											<div className="col-md-4 stat-item">
+												{user.data.ratingsAverage} <span>Rating</span>
+											</div>
+											<div className="col-md-4 stat-item">
+												* <span>Uploads</span>
+											</div>
+											<div className="col-md-4 stat-item">
+												* <span>Sold</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="profile-detail">
+									<div className="profile-info">
+										<h4 className="heading">Basic Info</h4>
+										<ul className="list-unstylesd list-justify">
+											<li className="list-group-item">Birthdate <span>*birthday</span></li>
+											<li className="list-group-item">Mobile <span>*mobile</span></li>
+											<li className="list-group-item">Email <span>{user.data.email}</span></li>
+											<li className="list-group-item">Website <span><a href="">*website</a></span></li>
+										</ul>
+									</div>
+									<div className="profile-info">
+										<h4 className="heading">Social</h4>
+										<ul className="list-inline social-icons">
+											<li><a href="#" className="facebook-bg"><i className="fa fa-facebook"></i></a></li>
+											<li><a href="#" className="twitter-bg"><i className="fa fa-twitter"></i></a></li>
+											<li><a href="#" className="google-plus-bg"><i className="fa fa-google-plus"></i></a></li>
+											<li><a href="#" className="github-bg"><i className="fa fa-github"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div className="profile-right">
+								<h4 className="heading">{user.data.name} Awards</h4>
+								<div className="awards">
+									<div className="row">
+										<div className="col-md-3 col-sm-6">
+											<div className="award-item">
+												<div className="hexagon">
+													<span className="lnr lnr-sun award-icon"></span>
+												</div>
+												<span>Most Bright Idea</span>
+											</div>
+										</div>
+										<div className="col-md-3 col-sm-6">
+											<div className="award-item">
+												<div className="hexagon">
+													<span className="lnr lnr-clock award-icon"></span>
+												</div>
+												<span>Most On-Time</span>
+											</div>
+										</div>
+										<div className="col-md-3 col-sm-6">
+											<div className="award-item">
+												<div className="hexagon">
+													<span className="lnr lnr-magic-wand award-icon"></span>
+												</div>
+												<span>Problem Solver</span>
+											</div>
+										</div>
+										<div className="col-md-3 col-sm-6">
+											<div className="award-item">
+												<div className="hexagon">
+													<span className="lnr lnr-heart award-icon"></span>
+												</div>
+												<span>Most Loved</span>
+											</div>
+										</div>
+									</div>
+									<div className="text-center"><a href="#" className="btn btn-default">See all awards</a></div>
+								</div>
+								<div className="tab-content">
+									<div className="tab-pane fade in active" id="tab-bottom-left1">
+										<ul className="list-unstylesd activity-timeline">
+											<li>
+												<i className="fa fa-comment activity-icon"></i>
+												<p>Commented on post <a href="#">Prototyping</a> <span className="timestamp">2 minutes ago</span></p>
+											</li>
+											<li>
+												<i className="fa fa-cloud-upload activity-icon"></i>
+												<p>Uploaded new file <a href="#">Proposal.docx</a> to project <a href="#">New Year Campaign</a> <span className="timestamp">7 hours ago</span></p>
+											</li>
+											<li>
+												<i className="fa fa-plus activity-icon"></i>
+												<p>Added <a href="#">Martin</a> and <a href="#">3 others colleagues</a> to project repository <span className="timestamp">Yesterday</span></p>
+											</li>
+											<li>
+												<i className="fa fa-check activity-icon"></i>
+												<p>Finished 80% of all <a href="#">assigned tasks</a> <span className="timestamp">1 day ago</span></p>
+											</li>
+										</ul>
+										<div className="margin-top-30 text-center"><a href="#" className="btn btn-default">See all activity</a></div>
+									</div>
+									<div className="tab-pane fade" id="tab-bottom-left2">
+										<div className="table-responsive">
+											<table className="table project-table">
+												<thead>
+													<tr>
+														<th>Title</th>
+														<th>Progress</th>
+														<th>Leader</th>
+														<th>Status</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><a href="#">Spot Media</a></td>
+														<td>
+															<div className="progress">
+																<div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" styles="width: 60%;">
+																	<span>60% Complete</span>
+																</div>
+															</div>
+														</td>
+														<td><img src="assets/img/user2.png" alt="Avatar" className="avatar img-circle"/> <a href="#">Michael</a></td>
+														<td><span className="label label-success">ACTIVE</span></td>
+													</tr>
+													<tr>
+														<td><a href="#">E-Commerce Site</a></td>
+														<td>
+															<div className="progress">
+																<div className="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" styles="width: 33%;">
+																	<span>33% Complete</span>
+																</div>
+															</div>
+														</td>
+														<td><img src="assets/img/user1.png" alt="Avatar" className="avatar img-circle"/> <a href="#">Antonius</a></td>
+														<td><span className="label label-warning">PENDING</span></td>
+													</tr>
+													<tr>
+														<td><a href="#">Project 123GO</a></td>
+														<td>
+															<div className="progress">
+																<div className="progress-bar" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" styles="width: 68%;">
+																	<span>68% Complete</span>
+																</div>
+															</div>
+														</td>
+														<td><img src="assets/img/user1.png" alt="Avatar" className="avatar img-circle"/> <a href="#">Antonius</a></td>
+														<td><span className="label label-success">ACTIVE</span></td>
+													</tr>
+													<tr>
+														<td><a href="#">Wordpress Theme</a></td>
+														<td>
+															<div className="progress">
+																<div className="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" styles="width: 75%;">
+																	<span>75%</span>
+																</div>
+															</div>
+														</td>
+														<td><img src="assets/img/user2.png" alt="Avatar" className="avatar img-circle"/> <a href="#">Michael</a></td>
+														<td><span className="label label-success">ACTIVE</span></td>
+													</tr>
+													<tr>
+														<td><a href="#">Project 123GO</a></td>
+														<td>
+															<div className="progress">
+																<div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" styles="width: 100%;">
+																	<span>100%</span>
+																</div>
+															</div>
+														</td>
+														<td><img src="assets/img/user1.png" alt="Avatar" className="avatar img-circle" /> <a href="#">Antonius</a></td>
+														<td><span className="label label-default">CLOSED</span></td>
+													</tr>
+													<tr>
+														<td><a href="#">Redesign Landing Page</a></td>
+														<td>
+															<div className="progress">
+																<div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" styles="width: 100%;">
+																	<span>100%</span>
+																</div>
+															</div>
+														</td>
+														<td><img src="assets/img/user5.png" alt="Avatar" className="avatar img-circle" /> <a href="#">Jason</a></td>
+														<td><span className="label label-default">CLOSED</span></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+      </Container>
     </Fragment>
   );
 };
