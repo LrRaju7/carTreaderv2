@@ -9,10 +9,17 @@ const Register = ({ register, isAuthenticated }) => {
     name: '',
     email: '',
     password: '',
-    passwordConfirm: ''
+    passwordConfirm: '',
+    phone: '',
+    address: '',
+    address2: '',
+    termsAndConditions: '',
+    city: '',
+    state: '',
+    zip: '',
   });
 
-  const { email, name, password, passwordConfirm } = formData;
+  const { email, name, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip} = formData;
 
   const [verified, setVerified] = useState(false);
 
@@ -21,8 +28,8 @@ const Register = ({ register, isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    if (verified) {
-      register(name, email, password, passwordConfirm);
+    if (verifyCallback) {
+      register(name, email, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip);
     } else {
       alert('Do the CAPTCHA');
     }
@@ -38,59 +45,59 @@ const Register = ({ register, isAuthenticated }) => {
 
   return (
     <Container className='mt-5'>
-        <Form style={{width: '100%'}}>
+        <Form style={{width: '100%'}} action="/api/users" method="POST" onSubmit={e => onSubmit(e)}>
         <FormGroup>
           <Label for="exampleName">Buyer Name</Label>
-          <Input type="text" name="name" id="examplename"/>
+          <Input type="text" name="name" value={name} id="examplename"/>
         </FormGroup>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" />
+          <Input type="email" name="email" value={email} id="exampleEmail" />
         </FormGroup>
         <Row form>
           <Col md={6}>
           <FormGroup>
               <Label for="examplePassword">Password</Label>
-              <Input type="password" name="password" id="examplePassword"/>
+              <Input type="password" name="password" value={password} id="examplePassword"/>
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="examplePasswordConfirm">Confirm Password</Label>
-              <Input type="password" name="passwordConfirm" id="examplePasswordConfirm"/>
+              <Input type="password" name="passwordConfirm" value={passwordConfirm} id="examplePasswordConfirm"/>
             </FormGroup>
           </Col>
         </Row>
         <FormGroup>
           <Label for="examplePhone">Buyer Phone</Label>
-          <Input type="number" name="phone" id="examplephone"/>
+          <Input type="number" name="phone" value={phone} id="examplephone"/>
         </FormGroup>
         <FormGroup>
           <Label for="exampleAddress">Buyer Address</Label>
-          <Input type="text" name="address" id="exampleAddress"/>
+          <Input type="text" name="address" value={address} id="exampleAddress"/>
         </FormGroup>
         <Row form>
           <Col md={6}>
             <FormGroup>
               <Label for="exampleCity">City</Label>
-              <Input type="text" name="city" id="exampleCity"/>
+              <Input type="text" name="city" value={city} id="exampleCity"/>
             </FormGroup>
           </Col>
           <Col md={4}>
             <FormGroup>
               <Label for="exampleState">State</Label>
-              <Input type="text" name="state" id="exampleState"/>
+              <Input type="text" name="state" value={state} id="exampleState"/>
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
               <Label for="exampleZip">Zip</Label>
-              <Input type="text" name="zip" id="exampleZip"/>
+              <Input type="text" name="zip" value={zip} id="exampleZip"/>
             </FormGroup>  
           </Col>
         </Row>
         <FormGroup check>
-          <Input type="checkbox" name="termsAndConditions" id="exampleTerms"/>
+          <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms"/>
           <Label for="exampleTerms" check>I agree with terms and conditions.</Label>
         </FormGroup>
         <FormGroup>

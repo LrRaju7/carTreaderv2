@@ -2,16 +2,17 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Container } from 'reactstrap';
+import { Container, } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../styles/components/_dashboard.scss'
 const Dashboard = props => {
   return (
     <Fragment>
 		<div id="sidebar-nav" className="sidebar">
+			<div className="sidebar-scroll">
 				<nav>
 					<ul className="nav">
-						<li><a href="#" className=""><i className="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li><a href="#" className="active"><i className="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 						<li><a href="#" className=""><i className="lnr lnr-code"></i> <span>Elements</span></a></li>
 						<li><a href="#" className=""><i className="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
 						<li><a href="#" className=""><i className="lnr lnr-cog"></i> <span>Panels</span></a></li>
@@ -31,6 +32,7 @@ const Dashboard = props => {
 						<li><a href="#" className=""><i className="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
 					</ul>
 				</nav>
+			</div>
 		</div>
     <Container>
 		<div className="main">
