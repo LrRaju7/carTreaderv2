@@ -48,56 +48,56 @@ const Register = ({ register, isAuthenticated }) => {
         <Form style={{width: '100%'}} action="/api/users" method="POST" onSubmit={e => onSubmit(e)}>
         <FormGroup>
           <Label for="exampleName">Buyer Name</Label>
-          <Input type="text" name="name" value={name} id="examplename"/>
+          <Input type="text" name="name" value={name} id="examplename" onChange={e => onChange(e)}/>
         </FormGroup>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" value={email} id="exampleEmail" />
+          <Input type="email" name="email" value={email} id="exampleEmail" onChange={e => onChange(e)}/>
         </FormGroup>
         <Row form>
           <Col md={6}>
           <FormGroup>
               <Label for="examplePassword">Password</Label>
-              <Input type="password" name="password" value={password} id="examplePassword"/>
+              <Input type="password" name="password" value={password} id="examplePassword" onChange={e => onChange(e)}/>
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="examplePasswordConfirm">Confirm Password</Label>
-              <Input type="password" name="passwordConfirm" value={passwordConfirm} id="examplePasswordConfirm"/>
+              <Input type="password" name="passwordConfirm" value={passwordConfirm} id="examplePasswordConfirm" onChange={e => onChange(e)}/>
             </FormGroup>
           </Col>
         </Row>
         <FormGroup>
           <Label for="examplePhone">Buyer Phone</Label>
-          <Input type="number" name="phone" value={phone} id="examplephone"/>
+          <Input type="number" name="phone" value={phone} id="examplephone" onChange={e => onChange(e)}/>
         </FormGroup>
         <FormGroup>
           <Label for="exampleAddress">Buyer Address</Label>
-          <Input type="text" name="address" value={address} id="exampleAddress"/>
+          <Input type="text" name="address" value={address} id="exampleAddress" onChange={e => onChange(e)}/>
         </FormGroup>
         <Row form>
           <Col md={6}>
             <FormGroup>
               <Label for="exampleCity">City</Label>
-              <Input type="text" name="city" value={city} id="exampleCity"/>
+              <Input type="text" name="city" value={city} id="exampleCity" onChange={e => onChange(e)}/>
             </FormGroup>
           </Col>
           <Col md={4}>
             <FormGroup>
               <Label for="exampleState">State</Label>
-              <Input type="text" name="state" value={state} id="exampleState"/>
+              <Input type="text" name="state" value={state} id="exampleState" onChange={e => onChange(e)}/>
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
               <Label for="exampleZip">Zip</Label>
-              <Input type="text" name="zip" value={zip} id="exampleZip"/>
+              <Input type="text" name="zip" value={zip} id="exampleZip" onChange={e => onChange(e)}/>
             </FormGroup>  
           </Col>
         </Row>
         <FormGroup check>
-          <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms"/>
+          <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms" onChange={e => onChange(e)}/>
           <Label for="exampleTerms" check>I agree with terms and conditions.</Label>
         </FormGroup>
         <FormGroup>
