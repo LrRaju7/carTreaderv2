@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
-import { Col, Row, Button, Form, FormGroup, Label, Input,FormText, Container } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
 
 const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -20,7 +20,7 @@ const Register = ({ register, isAuthenticated }) => {
     file: '',
   });
 
-  const { email, name, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip, file} = formData;
+  const { email, name, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip, file } = formData;
 
   const [verified, setVerified] = useState(false);
 
@@ -45,67 +45,67 @@ const Register = ({ register, isAuthenticated }) => {
   }
 
   return (
-      <Container className='mt-5'>
-        <Form style={{width: '100%'}} action="/api/users" method="POST" onSubmit={e => onSubmit(e)}>
+    <Container className='mt-5'>
+      <Form style={{ width: '100%' }} action="/api/users" method="POST" onSubmit={e => onSubmit(e)}>
         <FormGroup>
           <Label for="exampleName">Bidder Name</Label>
-          <Input type="text" name="name" value={name} id="examplename" onChange={e => onChange(e)}/>
+          <Input type="text" name="name" value={name} id="examplename" onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" value={email} id="exampleEmail" onChange={e => onChange(e)}/>
+          <Input type="email" name="email" value={email} id="exampleEmail" onChange={e => onChange(e)} />
         </FormGroup>
         <Row form>
           <Col md={6}>
-          <FormGroup>
+            <FormGroup>
               <Label for="examplePassword">Password</Label>
-              <Input type="password" name="password" value={password} id="examplePassword" onChange={e => onChange(e)}/>
+              <Input type="password" name="password" value={password} id="examplePassword" onChange={e => onChange(e)} />
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="examplePasswordConfirm">Confirm Password</Label>
-              <Input type="password" name="passwordConfirm" value={passwordConfirm} id="examplePasswordConfirm" onChange={e => onChange(e)}/>
+              <Input type="password" name="passwordConfirm" value={passwordConfirm} id="examplePasswordConfirm" onChange={e => onChange(e)} />
             </FormGroup>
           </Col>
         </Row>
         <FormGroup>
           <Label for="examplePhone">Bidder Phone</Label>
-          <Input type="number" name="phone" value={phone} id="examplephone" onChange={e => onChange(e)}/>
+          <Input type="number" name="phone" value={phone} id="examplephone" onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup>
           <Label for="exampleAddress">Bidder Address</Label>
-          <Input type="text" name="address" value={address} id="exampleAddress" onChange={e => onChange(e)}/>
+          <Input type="text" name="address" value={address} id="exampleAddress" onChange={e => onChange(e)} />
         </FormGroup>
         <Row form>
           <Col md={6}>
             <FormGroup>
               <Label for="exampleCity">City</Label>
-              <Input type="text" name="city" value={city} id="exampleCity" onChange={e => onChange(e)}/>
+              <Input type="text" name="city" value={city} id="exampleCity" onChange={e => onChange(e)} />
             </FormGroup>
           </Col>
           <Col md={4}>
             <FormGroup>
               <Label for="exampleState">State</Label>
-              <Input type="text" name="state" value={state} id="exampleState" onChange={e => onChange(e)}/>
+              <Input type="text" name="state" value={state} id="exampleState" onChange={e => onChange(e)} />
             </FormGroup>
           </Col>
           <Col md={2}>
             <FormGroup>
               <Label for="exampleZip">Zip</Label>
-              <Input type="text" name="zip" value={zip} id="exampleZip" onChange={e => onChange(e)}/>
-            </FormGroup>  
+              <Input type="text" name="zip" value={zip} id="exampleZip" onChange={e => onChange(e)} />
+            </FormGroup>
           </Col>
         </Row>
         <FormGroup>
-        <Label for="exampleFile">Bidder Trade License</Label>
-        <Input type="file" name="file" value={file} id="exampleFile" multiple onChange={e => onChange(e)}/>
-        <FormText color="muted">
-          Please upload your tradelicense above. PDF or jpeg format only.
+          <Label for="exampleFile">Bidder Trade License</Label>
+          <Input type="file" name="file" value={file} id="exampleFile" multiple onChange={e => onChange(e)} />
+          <FormText color="muted">
+            Please upload your tradelicense above. PDF or jpeg format only.
         </FormText>
-      </FormGroup>
+        </FormGroup>
         <FormGroup check>
-          <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms" onChange={e => onChange(e)}/>
+          <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms" onChange={e => onChange(e)} />
           <Label for="exampleTerms" check>I agree with terms and conditions.</Label>
         </FormGroup>
         <FormGroup>

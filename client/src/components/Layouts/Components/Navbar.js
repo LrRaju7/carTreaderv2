@@ -124,6 +124,7 @@ class Navbar extends Component {
                  </Nav>
 
                  {roleElement}
+                 {signupElement}
             </Collapse>
 
           </Container>
