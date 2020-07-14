@@ -146,8 +146,8 @@ const ProfilePage = ({
 											</div>
 											<Form method="post" className="" autocomplete="off" novalidate="">
 												<div className="form-block">
-													<h2>Your Info</h2>
-													<fieldset className="form-group ">
+													<h2 className="text-center">Post new Item</h2>
+													<fieldset className="form-group mt-5">
 														<label for="owner_is_dealer">Dealer or private party?</label>
 														<div className="custom-radio-container">
 															<div className="form-check">
