@@ -70,7 +70,7 @@ const EditProfilePage = ({
     <Spinner />
   ) : (
     <Fragment>
-      <Container >
+      <section className='section-home container-fluid' >
 
   <div className="col">
     <div className="row">
@@ -210,7 +210,7 @@ const EditProfilePage = ({
 
   </div>
         
-      </Container>
+      </section>
     </Fragment>
   );
 };

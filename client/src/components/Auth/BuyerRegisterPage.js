@@ -17,10 +17,11 @@ const Register = ({ register, isAuthenticated }) => {
     city: '',
     state: '',
     zip: '',
+    avatar: '',
+    role: '',
   });
 
-  const { email, name, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip} = formData;
-
+  const { email, name, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip, avatar, role} = formData;
   const [verified, setVerified] = useState(false);
 
   const onChange = e =>
@@ -29,7 +30,7 @@ const Register = ({ register, isAuthenticated }) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (verifyCallback) {
-      register(name, email, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip);
+      register(name, email, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip, avatar, role);
     } else {
       alert('Do the CAPTCHA');
     }
@@ -44,7 +45,7 @@ const Register = ({ register, isAuthenticated }) => {
   }
 
   return (
-    <Container className='mt-5'>
+    <section className='section-home container-fluid mt-5'>
         <Form style={{width: '100%'}} action="/api/users" method="POST" onSubmit={e => onSubmit(e)}>
         <FormGroup>
           <Label for="exampleName">Buyer Name</Label>
@@ -73,6 +74,10 @@ const Register = ({ register, isAuthenticated }) => {
           <Input type="number" name="phone" value={phone} id="examplephone" onChange={e => onChange(e)}/>
         </FormGroup>
         <FormGroup>
+        <Label for="exampleAvatar">Avatar</Label>
+        <Input type="file" name="avatar" value={avatar} id="exampleAvatar" onChange={e => onChange(e)}/>
+      </FormGroup>
+        <FormGroup>
           <Label for="exampleAddress">Buyer Address</Label>
           <Input type="text" name="address" value={address} id="exampleAddress" onChange={e => onChange(e)}/>
         </FormGroup>
@@ -96,6 +101,10 @@ const Register = ({ register, isAuthenticated }) => {
             </FormGroup>  
           </Col>
         </Row>
+        <FormGroup>
+          <Label for="exampleRole">Role</Label>
+          <Input type="text" name="role" value={role} id="exampleRole" onChange={e => onChange(e)}/>
+        </FormGroup>
         <FormGroup check>
           <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms" onChange={e => onChange(e)}/>
           <Label for="exampleTerms" check>I agree with terms and conditions.</Label>
@@ -107,7 +116,7 @@ const Register = ({ register, isAuthenticated }) => {
         </FormGroup>
         <Button className="btn-success">Register</Button>
       </Form>
-    </Container>
+    </section>
   );
 };
 

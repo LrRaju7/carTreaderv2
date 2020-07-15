@@ -45,7 +45,7 @@ const Register = ({ register, isAuthenticated }) => {
   }
 
   return (
-    <Container className='mt-5'>
+    <section className='section-home container-fluid mt-5'>
       <Form style={{ width: '100%' }} action="/api/users" method="POST" onSubmit={e => onSubmit(e)}>
         <FormGroup>
           <Label for="exampleName">Bidder Name</Label>
@@ -115,7 +115,7 @@ const Register = ({ register, isAuthenticated }) => {
         </FormGroup>
         <Button className="btn-success">Register</Button>
       </Form>
-    </Container>
+    </section>
   );
 };
 

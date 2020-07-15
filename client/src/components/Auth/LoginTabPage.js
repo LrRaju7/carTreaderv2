@@ -11,7 +11,7 @@ const LoginTab = (props) => {
   }
 
   return (
-    <Container>
+    <section className='section-home container-fluid'>
       <Nav tabs className="nav-justified">
         <NavItem>
           <NavLink
@@ -61,7 +61,7 @@ const LoginTab = (props) => {
           </Row>
         </TabPane>
       </TabContent>
-    </Container>
+    </section>
   );
 }
 

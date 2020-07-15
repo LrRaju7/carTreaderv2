@@ -11,7 +11,7 @@ const Dashboard = props => {
   return (
     <Fragment>
 		
-    <Container>
+    <section className='section-home container-fluid'>
 	<div className="main">
 			<div className="main-content">
 					<div className="panel panel-headline">
@@ -351,7 +351,7 @@ const Dashboard = props => {
 					</div>
 			</div>
 		</div>
-      </Container>
+      </section>
     </Fragment>
   );
 };

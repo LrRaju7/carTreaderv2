@@ -27,15 +27,15 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
 
-      <Container className='mt-5'>
-        <Form style={{width: '100%'}}>
+    <section className='section-home container-fluid mt-5'>
+      <Form style={{ width: '100%' }} onSubmit={e => onSubmit(e)}>
         <FormGroup >
           <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" />
+          <Input type="email" name="email" id="exampleEmail" onChange={e => onChange(e)} value={email}/>
         </FormGroup>
         <FormGroup  >
           <Label for="examplepassword">Password</Label>
-          <Input type="password" name="password" id="examplepass"/>
+          <Input type="password" name="password" id="examplepass" onChange={e => onChange(e)} value={password}/>
         </FormGroup>
         <FormGroup>
           <p className='small-text'>
@@ -43,8 +43,8 @@ const Login = ({ login, isAuthenticated }) => {
           </p>
         </FormGroup>
         <Button className="btn-success">Log in</Button>
-        </Form>
-      </Container>
+      </Form>
+    </section>
 
   );
 };
