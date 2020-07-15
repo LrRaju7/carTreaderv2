@@ -2,9 +2,16 @@ import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createListing, getListing } from '../../actions/listing';
-
+import { getUserByToken, updateUserProfile } from '../../actions/user';
+import { clearReviews, getReviewsWrittenForUser } from '../../actions/review';
+import { Link } from 'react-router-dom';
+import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
+import { Helmet } from 'react-helmet';
+import Moment from 'react-moment';
+import '../../styles/components/_dashboard.scss';
 const ListingForm = ({
   createListing,
+  user,
   token,
   type,
   match,
@@ -57,74 +64,71 @@ const ListingForm = ({
 
   return (
     <Fragment>
-      <form className='form' onSubmit={e => onSubmit(e)}>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='* Name of Item'
-            name='title'
-            value={title}
-            onChange={e => onChange(e)}
-            required
-          />
-        </div>
-        <div>
-          <select
-            onChange={e => onChange(e)}
-            name='condition'
-            value={condition}
-          >
-            <option value='used'>Used</option>
-            <option value='new'>New</option>
+      <h2 className="text-center">Post New Item</h2>
+      <h4 className="text-center mt-5">
+      Tell us about your car
+      </h4>
+
+      <p className="h6">Give us the following info and we’ll quickly review your car to decide if it’s a fit for Cartrader. If your car is accepted, we’ll ask for more details and photos, collect the listing fee, and work with you to get the auction live.</p>
+      <Form style={{ width: '100%' }} className="mt-5" action="api/listings" method="POST" onSubmit={e=>onSubmit(e)}>
+        <FormGroup >
+          <Label for="title">Title</Label>
+          <Input type="text" name="title" id="title" value={title} onChange={e=>onChange(e)}/>
+        </FormGroup>
+        <FormGroup  >
+          <Label for="slug">Slug</Label>
+          <select class="custom-select">
+            <option selected>1</option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
           </select>
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='*category'
-            name='category'
-            value={category}
-            onChange={e => onChange(e)}
-            required
-          />
-        </div>
-
-        <div className='form-group'>
-          <input
-            type='number'
-            placeholder='Minimum Increment'
-            name='minIncrement'
-            value={minIncrement}
-            onChange={e => onChange(e)}
-          />
-        </div>
-
-        <div className='form-group'>
-          <input
-            type='number'
-            placeholder='Length'
-            name='length'
-            value={length}
-            onChange={e => onChange(e)}
-            required
-          />
-        </div>
-
-        <div className='form-group'>
-          <input
-            type='textarea'
-            placeholder='Description'
-            name='description'
-            value={description}
-            onChange={e => onChange(e)}
-          />
-        </div>
-        <input
-          type='submit'
-          className='btn btn-primary'
-          value={type === 'create' ? 'Create Listing' : 'Edit Listing'}
-        />
-      </form>
+        </FormGroup>
+        <FormGroup  >
+          <Label for="description">Description</Label>
+          <textarea className="form-control" type="text" name="description" id="description" rows="5" value={description} onChange={e=>onChange(e)}/>
+        </FormGroup>
+        <FormGroup  >
+          <Label for="createdAt">Created At</Label>
+          <Input type="date" name="createdAt" id="createdAt" />
+        </FormGroup>
+        <FormGroup  >
+          <Label for="car">Car</Label>
+          <Input type="text" name="car" id="car" />
+        </FormGroup>
+        <FormGroup>
+          <Label for="images">Images</Label>
+          <Input type="file" name="images" id="images" multiple />
+        </FormGroup>
+        <FormGroup  >
+          <Label for="cPrice">Current Price</Label>
+          <Input type="number" name="cPrice" id="cPrice" />
+        </FormGroup>
+        <FormGroup  >
+          <Label for="price">Start Price</Label>
+          <Input type="number" name="price" id="price" />
+        </FormGroup>
+        <FormGroup  >
+          <Label for="minInc">Min Increment</Label>
+          <Input type="number" name="minInc" id="minInc" />
+        </FormGroup>
+        <FormGroup  >
+          <Label for="createdBy">Created By</Label>
+          <Input type="text" name="createdBy" id="createdBy"/>
+        </FormGroup>
+        <FormGroup  >
+          <Label for="endTime">End Date Time</Label>
+          <Input type="date" name="endTime" id="endTime" />
+        </FormGroup>
+        <FormGroup  >
+          <Label for="slug">Active</Label>
+          <select class="custom-select">
+            <option selected value={true}>Active</option>
+            <option value={false} >Inactive</option>
+          </select>
+        </FormGroup>
+        <Button className="btn btn-block btn-success mt-5">Post Item</Button>
+      </Form>
     </Fragment>
   );
 };
