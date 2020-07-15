@@ -44,7 +44,6 @@ const Register = ({ register, isAuthenticated }) => {
     return <Redirect to='/dashboard' />;
   }
   
-
   return (
       <Container className='mt-5'>
         <Form style={{width: '100%'}} action="/api/users" method="POST" onSubmit={e => onSubmit(e)}>
