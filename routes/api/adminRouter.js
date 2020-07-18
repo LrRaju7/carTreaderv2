@@ -10,9 +10,18 @@ const generateAdmin = (db) => {
 		  companyName: '',
 		  logo: '/media/logo.svg'
 		},
-	  resources: [UserAdminOptions],
-	  rootPath: '/admin',
-	  database: db
+		// dashboard: {
+		// 	component: AdminBro.bundle('./adminDashboard')
+		// },
+		// dashboard: {
+		// 	handler: async () => {
+		
+		// 	},
+		// 	component: AdminBro.bundle('./adminDashboard')
+		//   },
+		resources: [UserAdminOptions],
+		rootPath: '/admin',
+		database: db
 	}
 	const adminBro = new AdminBro(AdminBroOptions)
 	const router = AdminBroExpress.buildRouter(adminBro)

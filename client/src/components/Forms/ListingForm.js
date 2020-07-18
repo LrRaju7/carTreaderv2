@@ -64,7 +64,6 @@ const ListingForm = ({
 
   return (
     <Fragment>
-      <h2 className="text-center">Post New Item</h2>
       <h4 className="text-center mt-5">
       Tell us about your car
       </h4>
@@ -78,8 +77,8 @@ const ListingForm = ({
         <FormGroup  >
           <Label for="slug">Slug</Label>
           <select class="custom-select">
-            <option selected>1</option>
-            <option value=""></option>
+            <option selected></option>
+            <option value="">1</option>
             <option value=""></option>
             <option value=""></option>
           </select>

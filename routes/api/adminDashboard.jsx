@@ -10,11 +10,7 @@ const Dashboard = props => {
       <Helmet>
         <title>Dashboard | Auction</title>
       </Helmet>
-      <Container >
-        <h1 className='large-heading'>Admin Dashboard</h1>
-        <br/>
-        <p className='small-text'>Welcome to your dashboard, user</p>
-      </Container>
+      <Dashboard/>
     </Fragment>
   );
 };

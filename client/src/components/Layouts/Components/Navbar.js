@@ -5,7 +5,8 @@ import {  withRouter} from 'react-router-dom';
 import SearchBar from '../../Forms/SearchBar';
 import { connect } from 'react-redux';
 import { logout } from '../../../actions/auth';
-import { Container, NavLink, Collapse, Navbar as BootstrapNavbar, NavbarToggler, NavbarBrand, Nav, NavItem, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap';
+import { Container, NavLink, Collapse, Navbar as BootstrapNavbar, NavbarToggler, NavbarBrand, Nav, NavItem, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap';
+import { setAuthToken } from '../../../utils/setAuthToken';
 
 
 
@@ -16,6 +17,9 @@ class Navbar extends Component {
       navBarOpen: false,
       modalOpen: false
     }
+  }
+  logoutHandler =(e) => {
+    logout();
   }
 
   compomentDidUpdate () {
@@ -63,13 +67,13 @@ class Navbar extends Component {
                   <NavLink href='/dashboard' ><i className='fa fa-clipboard' /><span className="ml-3">Dashboard</span></NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink href={`/profile/${this.props.auth.user._id}`} ><i className='fa fa-user' /><span className="ml-3">Profile</span></NavLink>
+                  <NavLink href={`/profile/${id}`} ><i className='fa fa-user' /><span className="ml-3">Profile</span></NavLink>
                 </DropdownItem>
                 <DropdownItem>
                   {roleLinkElement}
                 </DropdownItem>
                 <DropdownItem>
-                   <NavLink href='/logout' ><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
+                   <NavLink href='/logout'><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>          
@@ -109,7 +113,7 @@ class Navbar extends Component {
             <Collapse isOpen={this.state.navBarOpen} navbar>
             <Nav navbar style={{width: '100%'}}>
                 <NavItem className={this.tabClassIncludes('/auctions')}>
-                  <NavLink href='/auctions'> Auctions
+                  <NavLink href='/'> Auctions
                   </NavLink>
                 </NavItem>
                 <NavItem className={this.tabClass('/about')}>
