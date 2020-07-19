@@ -35,6 +35,7 @@ const EditProfilePage = ({
     confirmNewPassword,
     avatar,
     date,
+    role,
   } = formData;
 
   useEffect(() => {
@@ -50,6 +51,7 @@ const EditProfilePage = ({
       bio: loading || !data.bio ? '' : data.bio,
       avatar: loading || !data.avatar ? '' : data.avatar,
       date: loading || !data.date ? '' : data.date,
+      role: loading || !data.role ? '' : data.role,
     });
   }, [loading, data]);
   
@@ -90,7 +92,7 @@ const EditProfilePage = ({
                   <div className="text-center text-sm-left mb-2 mb-sm-0">
                     <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">{name}</h4>
                     <p className="mb-0">{email}</p>
-                    <div className="text-muted"><small>Last seen 2 hours ago</small></div>
+                    <div className="text-muted"><small>Active</small></div>
                     <div className="mt-2">
                       <button className="btn btn-primary" type="button">
                         <i className="fa fa-fw fa-camera"></i>
@@ -99,13 +101,13 @@ const EditProfilePage = ({
                     </div>
                   </div>
                   <div className="text-center text-sm-right">
-                    <span className="badge badge-secondary">*role</span>
+                    <span className="badge badge-secondary">{role}</span>
                     <div className="text-muted"><small>{date}</small></div>
-                    <div className="mt-5">
+                    {/* <div className="mt-5">
                       <Link to={`/dashboard`}>
                         <button className="btn btn-outline-dark" type="button">Back to Dashboard</button>
                       </Link> 
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

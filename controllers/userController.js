@@ -11,7 +11,7 @@ const Listing = require('../models/listingModel');
 
 exports.createUser = catchAsync(async (req, res, next) => {
   console.log('Received')
-  const { name, email, password } = req.body;
+  const { name, email, password, phone, avatar, address, termsAndConditions, city, state, zip, role } = req.body;
 
   if (!(name && email && password)) {
     return next(new AppError('Missing required fields', 400));
@@ -23,17 +23,23 @@ exports.createUser = catchAsync(async (req, res, next) => {
     return next(new AppError('Email is already in use', 400));
   }
 
-  const avatar = gravatar.url(email, {
-    s: '200',
-    r: 'pg',
-    d: 'mm'
-  });
+  // const avatar = gravatar.url(email, {
+  //   s: '200',
+  //   r: 'pg',
+  //   d: 'mm'
+  // });
 
   user = new User({
     name,
     email,
     avatar,
-    password
+    password,
+    phone,
+    address,
+    city,
+    state,
+    zip,
+    role
   });
 
   const salt = await bcrypt.genSalt(10);

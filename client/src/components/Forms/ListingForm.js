@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createListing, getListing } from '../../actions/listing';
-import { getUserByToken, updateUserProfile } from '../../actions/user';
+import { getUserByToken, updateUserProfile,getUserById, } from '../../actions/user';
 import { clearReviews, getReviewsWrittenForUser } from '../../actions/review';
 import { Link } from 'react-router-dom';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
@@ -11,6 +11,7 @@ import Moment from 'react-moment';
 import '../../styles/components/_dashboard.scss';
 const ListingForm = ({
   createListing,
+  getUserById,
   user,
   token,
   type,
@@ -113,7 +114,7 @@ const ListingForm = ({
         </FormGroup>
         <FormGroup  >
           <Label for="createdBy">Created By</Label>
-          <Input type="text" name="createdBy" id="createdBy"/>
+          <Input type="text" name="createdBy" id="createdBy" />
         </FormGroup>
         <FormGroup  >
           <Label for="endTime">End Date Time</Label>

@@ -67,7 +67,7 @@ const ProfilePage = ({
 											<div className="profile-header">
 												<div className="overlay"></div>
 												<div className="profile-main">
-													<img src="https://i.ya-webdesign.com/images/profile-avatar-png-4.png" className="img-circle" alt="Avatar" height='140' width='140' />
+													<img src={user.data.avatar} className="img-circle" alt="Avatar" height='140' width='140' />
 													<h3 className="name">{user.data.name}</h3>
 													<span className="online-status status-available">Available</span>
 												</div>
@@ -89,11 +89,10 @@ const ProfilePage = ({
 												<div className="profile-info">
 													<h4 className="heading">Basic Info</h4>
 													<ul className="list-unstylesd list-justify">
-														<li className="list-group-item">Role <span>*role</span></li>
-														<li className="list-group-item">Birthdate <span>*birthday</span></li>
-														<li className="list-group-item">Mobile <span>*mobile</span></li>
+														<li className="list-group-item">Role <span>{user.data.role}</span></li>
+														<li className="list-group-item">Mobile <span>+880{user.data.phone}</span></li>
 														<li className="list-group-item">Email <span>{user.data.email}</span></li>
-														<li className="list-group-item">Website <span><a href="">*website</a></span></li>
+														<li className="list-group-item">Address <span>{user.data.address}, {user.data.city}, {user.data.state}-{user.data.zip}</span></li>
 													</ul>
 												</div>
 												<div className="profile-info">
@@ -144,7 +143,6 @@ const ProfilePage = ({
 														</div>
 													</div>
 												</div>
-												<div className="text-center"><a href="#" className="btn btn-default">See all awards</a></div>
 											</div>
 											<ListingForm />
 

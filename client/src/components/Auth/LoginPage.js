@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
-import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -31,11 +31,11 @@ const Login = ({ login, isAuthenticated }) => {
       <Form style={{ width: '100%' }} onSubmit={e => onSubmit(e)}>
         <FormGroup >
           <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" onChange={e => onChange(e)} value={email}/>
+          <Input type="email" name="email" value={email} id="exampleEmail" onChange={e => onChange(e)} required/>
         </FormGroup>
         <FormGroup  >
-          <Label for="examplepassword">Password</Label>
-          <Input type="password" name="password" id="examplepass" onChange={e => onChange(e)} value={password}/>
+          <Label for="examplePassword">Password</Label>
+          <Input type="password" name="password" value={password} id="examplePassword" onChange={e => onChange(e)}/>
         </FormGroup>
         <FormGroup>
           <p className='small-text'>

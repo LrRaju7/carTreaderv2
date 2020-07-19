@@ -10,18 +10,17 @@ const Register = ({ register, isAuthenticated }) => {
     email: '',
     password: '',
     passwordConfirm: '',
+    avatar:'',
     phone: '',
     address: '',
-    address2: '',
-    termsAndConditions: '',
     city: '',
     state: '',
     zip: '',
-    avatar: '',
     role: '',
+    termsAndConditions: '',
   });
 
-  const { email, name, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip, avatar, role} = formData;
+  const { email, name, password, passwordConfirm, phone, avatar, address, city, state, zip, role, termsAndConditions} = formData;
   const [verified, setVerified] = useState(false);
 
   const onChange = e =>
@@ -30,7 +29,7 @@ const Register = ({ register, isAuthenticated }) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (verifyCallback) {
-      register(name, email, password, passwordConfirm, phone, address, address2, termsAndConditions, city, state, zip, avatar, role);
+      register(name, email, password, passwordConfirm, phone, avatar, address, city, state, zip, role, termsAndConditions);
     } else {
       alert('Do the CAPTCHA');
     }
@@ -97,13 +96,13 @@ const Register = ({ register, isAuthenticated }) => {
           <Col md={2}>
             <FormGroup>
               <Label for="exampleZip">Zip</Label>
-              <Input type="text" name="zip" value={zip} id="exampleZip" onChange={e => onChange(e)}/>
+              <Input type="number" name="zip" value={zip} id="exampleZip" onChange={e => onChange(e)}/>
             </FormGroup>  
           </Col>
         </Row>
         <FormGroup>
           <Label for="exampleRole">Role</Label>
-          <Input type="text" name="role" value={role} id="exampleRole" onChange={e => onChange(e)}/>
+          <Input type="text" name="role" defaultValue="Buyer" id="exampleRole" onChange={e => onChange(e)}/>
         </FormGroup>
         <FormGroup check>
           <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms" onChange={e => onChange(e)}/>

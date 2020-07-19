@@ -63,9 +63,9 @@ class Navbar extends Component {
                 {this.props.user}
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
+                {/* <DropdownItem>
                   <NavLink href='/dashboard' ><i className='fa fa-clipboard' /><span className="ml-3">Dashboard</span></NavLink>
-                </DropdownItem>
+                </DropdownItem> */}
                 <DropdownItem>
                   <NavLink href={`/profile/${id}`} ><i className='fa fa-user' /><span className="ml-3">Profile</span></NavLink>
                 </DropdownItem>
