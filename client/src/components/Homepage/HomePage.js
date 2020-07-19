@@ -22,16 +22,16 @@ class HomePage extends Component {
           </TabList>
 
           <TabPanel>
-            <Grid list_order='ending soon' />
+            <Grid paginate list_order='ending soon' />
           </TabPanel>
           <TabPanel>
-            <Grid list_order='newly listed' />
+            <Grid paginate list_order='newly listed' />
           </TabPanel>
           <TabPanel>
-            <Grid list_order='newest cars' />
+            <Grid paginate list_order='newest cars' />
           </TabPanel>
           <TabPanel>
-            <Grid list_order='oldest cars' />
+            <Grid paginate list_order='oldest cars' />
           </TabPanel>
         </Tabs>
         </div>

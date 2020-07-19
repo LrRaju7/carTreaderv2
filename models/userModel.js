@@ -45,7 +45,7 @@ const UserSchema = new mongoose.Schema({
   },
   role:{
     type: String,
-    default: 'Buyer'
+    default: "Buyer"
   },
   bio: {
     type: String

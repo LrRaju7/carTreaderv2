@@ -172,28 +172,6 @@ const EditProfilePage = ({
                           </div>
                         </div>
                       </div>
-                      {/* <div className="col-12 col-sm-5 offset-sm-1 mb-3">
-                        <div className="mb-2"><b>Keeping in Touch</b></div>
-                        <div className="row">
-                          <div className="col">
-                            <label>Email Notifications</label>
-                            <div className="custom-controls-stacked px-2">
-                              <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="notifications-blog" checked=""/>
-                                <label className="custom-control-label" for="notifications-blog">Blog posts</label>
-                              </div>
-                              <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="notifications-news" checked=""/>
-                                <label className="custom-control-label" for="notifications-news">Newsletter</label>
-                              </div>
-                              <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="notifications-offers" checked=""/>
-                                <label className="custom-control-label" for="notifications-offers">Personal Offers</label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
                     </div>
                     <div className="row">
                       <div className="col d-flex justify-content-center">
