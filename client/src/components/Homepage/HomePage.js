@@ -11,7 +11,6 @@ class HomePage extends Component {
     return (
       <section className='section-home container-fluid'>
         <div className="main">
-        <h1 className="mb-5">Auctions</h1>
         <Tabs>
           <TabList>
 
