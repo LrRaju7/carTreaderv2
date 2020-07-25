@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createListing, getListing } from '../../actions/listing';
-import { getUserByToken, updateUserProfile,getUserById, } from '../../actions/user';
+import { getUserByToken, updateUserProfile, getUserById, } from '../../actions/user';
 import { clearReviews, getReviewsWrittenForUser } from '../../actions/review';
 import { Link } from 'react-router-dom';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
@@ -24,7 +24,14 @@ const ListingForm = ({
     minIncrement: '',
     category: '',
     length: '',
-    condition: ''
+    condition: '',
+    slug: '',
+    images: '',
+    createdAt: '',
+    cPrice: '',
+    price: '',
+    createdBy: '',
+    endTime: '',
   });
 
   const {
@@ -33,7 +40,14 @@ const ListingForm = ({
     minIncrement,
     category,
     length,
-    condition
+    condition,
+    slug,
+    images,
+    createdAt,
+    currentPrice,
+    startPrice,
+    createdBy,
+    endTime,
   } = formData;
 
   useEffect(() => {
@@ -43,7 +57,14 @@ const ListingForm = ({
       minIncrement: loading || type == 'create' ? '' : listing.minIncrement,
       category: loading || type == 'create' ? '' : listing.category,
       length: loading || type == 'create' ? '' : listing.length,
-      condition: loading || type == 'create' ? '' : listing.condition
+      condition: loading || type == 'create' ? '' : listing.condition,
+      slug: loading || type == 'create' ? '' : listing.slug,
+      images: loading || type == 'create' ? '' : listing.images,
+      createdAt: loading || type == 'create' ? '' : listing.createdAt,
+      currentPrice: loading || type == 'create' ? '' : listing.currentPrice,
+      startPrice: loading || type == 'create' ? '' : listing.startPrice,
+      createdBy: loading || type == 'create' ? '' : listing.createdBy,
+      endTime: loading || type == 'create' ? '' : listing.endTime
     });
   }, [loading, listing]);
 
@@ -59,66 +80,68 @@ const ListingForm = ({
       category,
       length,
       condition,
+      slug,
+      images,
+      createdAt,
+      currentPrice,
+      startPrice,
+      createdBy,
+      endTime,
       token
     );
   };
 
   return (
     <Fragment>
-      <h4 className="text-center mt-5">
-      Tell us about your car
-      </h4>
+      <h2 className="text-center">
+        Tell us about your car
+      </h2>
 
       <p className="h6">Give us the following info and we’ll quickly review your car to decide if it’s a fit for Cartrader. If your car is accepted, we’ll ask for more details and photos, collect the listing fee, and work with you to get the auction live.</p>
-      <Form style={{ width: '100%' }} className="mt-5" action="api/listings" method="POST" onSubmit={e=>onSubmit(e)}>
+      <Form style={{ width: '100%' }} className="mt-5" onSubmit={e => onSubmit(e)}>
         <FormGroup >
           <Label for="title">Title</Label>
-          <Input type="text" name="title" id="title" value={title} onChange={e=>onChange(e)}/>
+          <Input type="text" name="title" id="title" value={title} onChange={e => onChange(e)} />
         </FormGroup>
-        <FormGroup  >
+        <FormGroup >
           <Label for="slug">Slug</Label>
-          <select class="custom-select">
-            <option selected></option>
-            <option value="">1</option>
-            <option value=""></option>
-            <option value=""></option>
-          </select>
+          <Input type="text" name="slug" id="slug" value={slug} onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup  >
           <Label for="description">Description</Label>
-          <textarea className="form-control" type="text" name="description" id="description" rows="5" value={description} onChange={e=>onChange(e)}/>
+          <textarea className="form-control" type="text" name="description" id="description" rows="5" value={description} onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup  >
           <Label for="createdAt">Created At</Label>
-          <Input type="date" name="createdAt" id="createdAt" />
-        </FormGroup>
-        <FormGroup  >
-          <Label for="car">Car</Label>
-          <Input type="text" name="car" id="car" />
+          <Input type="date" name="createdAt" id="createdAt" value={createdAt} onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup>
           <Label for="images">Images</Label>
-          <Input type="file" name="images" id="images" multiple />
+          <Input type="file" name="images" id="images" multiple value={images} onChange={e => onChange(e)} />
+        </FormGroup>
+        <FormGroup >
+          <Label for="condition">Condition</Label>
+          <Input type="text" name="condition" id="condition" value={condition} onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup  >
-          <Label for="cPrice">Current Price</Label>
-          <Input type="number" name="cPrice" id="cPrice" />
+          <Label for="cPrcurrentPriceice">Current Price</Label>
+          <Input type="number" name="currentPrice" id="currentPrice" value={currentPrice} onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup  >
-          <Label for="price">Start Price</Label>
-          <Input type="number" name="price" id="price" />
+          <Label for="startPrice">Start Price</Label>
+          <Input type="number" name="startPrice" id="startPrice" value={startPrice} onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup  >
-          <Label for="minInc">Min Increment</Label>
-          <Input type="number" name="minInc" id="minInc" />
+          <Label for="minIncrement">Min Increment</Label>
+          <Input type="number" name="minIncrement" id="minIncrement" value={minIncrement} onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup  >
           <Label for="createdBy">Created By</Label>
-          <Input type="text" name="createdBy" id="createdBy" />
+          <Input type="text" name="createdBy" id="createdBy" value={createdBy} onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup  >
           <Label for="endTime">End Date Time</Label>
-          <Input type="date" name="endTime" id="endTime" />
+          <Input type="date" name="endTime" id="endTime" value={endTime} onChange={e => onChange(e)} />
         </FormGroup>
         <FormGroup  >
           <Label for="slug">Active</Label>

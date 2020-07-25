@@ -46,6 +46,7 @@ const ProfilePage = ({
 		match.params.id,
 		clearReviews
 	]);
+
 	return (user.loading ||
 		user.data === null ||
 		auth.loading ||
@@ -107,43 +108,8 @@ const ProfilePage = ({
 											</div>
 										</div>
 										<div className="profile-right">
-											<h4 className="heading">{user.data.name}'s Awards</h4>
-											<div className="awards">
-												<div className="row">
-													<div className="col-md-3 col-sm-6">
-														<div className="award-item">
-															<div className="hexagon">
-																<span className="lnr lnr-sun award-icon"></span>
-															</div>
-															<span>Most Bright Idea</span>
-														</div>
-													</div>
-													<div className="col-md-3 col-sm-6">
-														<div className="award-item">
-															<div className="hexagon">
-																<span className="lnr lnr-clock award-icon"></span>
-															</div>
-															<span>Most On-Time</span>
-														</div>
-													</div>
-													<div className="col-md-3 col-sm-6">
-														<div className="award-item">
-															<div className="hexagon">
-																<span className="lnr lnr-magic-wand award-icon"></span>
-															</div>
-															<span>Problem Solver</span>
-														</div>
-													</div>
-													<div className="col-md-3 col-sm-6">
-														<div className="award-item">
-															<div className="hexagon">
-																<span className="lnr lnr-heart award-icon"></span>
-															</div>
-															<span>Most Loved</span>
-														</div>
-													</div>
-												</div>
-											</div>
+
+											{/* {listingForm} */}
 											<ListingForm />
 
 										</div>

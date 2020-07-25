@@ -39,10 +39,15 @@ export const createListing = (
   description,
   minIncrement,
   category,
-  endDate,
+  length,
   condition,
+  slug,
+  images,
+  createdAt,
+  currentPrice,
   startPrice,
-  image,
+  createdBy,
+  endTime,
   history
 ) => async dispatch => {
   const config = {
@@ -56,10 +61,15 @@ export const createListing = (
     description,
     minIncrement,
     category,
-    endDate,
+    length,
     condition,
+    slug,
+    images,
+    createdAt,
+    currentPrice,
     startPrice,
-    image
+    createdBy,
+    endTime,
   };
   try {
     const res = await axios.post('/api/listings', body, config);
@@ -85,9 +95,17 @@ export const deleteListing = id => async dispatch => {
 export const editListing = (
   title,
   description,
-  category,
-  condition,
   minIncrement,
+  category,
+  length,
+  condition,
+  slug,
+  images,
+  createdAt,
+  currentPrice,
+  startPrice,
+  createdBy,
+  endTime,
   id,
   history
 ) => async dispatch => {
@@ -100,9 +118,17 @@ export const editListing = (
   const body = {
     title,
     description,
-    category,
     minIncrement,
-    condition
+    category,
+    length,
+    condition,
+    slug,
+    images,
+    createdAt,
+    currentPrice,
+    startPrice,
+    createdBy,
+    endTime,
   };
 
   try {
