@@ -61,11 +61,11 @@ const ProfilePage = ({
 				<Fragment>
 					<section className='section-home container-fluid'>
 						<div className="main shadow p-3 mb-5 bg-white rounded">
-							<div className="main-content">
+							<div className="main-content mx-3">
 								<div className="panel panel-profile">
 									<div className="clearfix">
 										<div className="profile-left">
-											<div className="profile-header">
+											<div className="profile-header shadow">
 												<div className="overlay"></div>
 												<div className="profile-main">
 													<img src={user.data.avatar} className="img-circle" alt="Avatar" height='140' width='140' />
@@ -95,15 +95,18 @@ const ProfilePage = ({
 														<li className="list-group-item">Email <span>{user.data.email}</span></li>
 														<li className="list-group-item">Address <span>{user.data.address}, {user.data.city}, {user.data.state}-{user.data.zip}</span></li>
 													</ul>
+													<div className="card">
+														<h5 className="card-header">Bio</h5>
+														<div className="card-body">
+															<h5 className="card-title">About Me</h5>
+															<p className="card-text">{user.data.bio}</p>
+														</div>
+													</div>
+													<div className="mt-5">
+													<Link to={`/dashboard`}>
+														<button className="btn btn-block btn-outline-dark shadow" type="button">Back to Dashboard</button>
+													</Link>
 												</div>
-												<div className="profile-info">
-													<h4 className="heading">Social</h4>
-													<ul className="list-inline social-icons">
-														<li><a href="#" className="facebook-bg"><i className="fa fa-facebook"></i></a></li>
-														<li><a href="#" className="twitter-bg"><i className="fa fa-twitter"></i></a></li>
-														<li><a href="#" className="google-plus-bg"><i className="fa fa-google-plus"></i></a></li>
-														<li><a href="#" className="github-bg"><i className="fa fa-github"></i></a></li>
-													</ul>
 												</div>
 											</div>
 										</div>

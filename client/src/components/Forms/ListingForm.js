@@ -142,7 +142,7 @@ const ListingForm = ({
             <option value={false} >Inactive</option>
           </select>
         </FormGroup>
-        <Button className="btn btn-block btn-success mt-5">Post Item</Button>
+        <Button className="btn btn-block btn-success mt-5 shadow">Post Item</Button>
       </Form>
     </Fragment>
   );

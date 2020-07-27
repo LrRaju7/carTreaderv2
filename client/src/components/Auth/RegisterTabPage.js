@@ -5,7 +5,7 @@ import AuctioneerRegister from './AuctioneerRegisterPage';
 import BidderRegister from './BidderRegisterPage';
 import BuyerRegister from './BuyerRegisterPage';
 
-const LoginTab = (props) => {
+const RegisterTab = (props) => {
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {
@@ -14,6 +14,7 @@ const LoginTab = (props) => {
 
   return (
     <section className='section-home container-fluid'>
+    <div className='shadow p-3 mb-5 bg-white rounded'>
       <Nav tabs className="nav-justified">
         <NavItem>
           <NavLink
@@ -63,8 +64,9 @@ const LoginTab = (props) => {
           </Row>
         </TabPane>
       </TabContent>
+      </div>
     </section>
   );
 }
 
-export default LoginTab;
+export default RegisterTab;

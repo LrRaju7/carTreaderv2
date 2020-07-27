@@ -68,6 +68,9 @@ class Navbar extends Component {
                 {roleLinkElement}
               </DropdownItem>
               <DropdownItem>
+                <NavLink href={`/dashboard`} ><i className='fa fa-dashboard' /><span className="ml-3">Dashboard</span></NavLink>
+              </DropdownItem>
+              <DropdownItem>
                 <NavLink href='/logout'><i className='fa fa-sign-out'/><span className="ml-3">Log Out</span></NavLink>
               </DropdownItem>
             </DropdownMenu>

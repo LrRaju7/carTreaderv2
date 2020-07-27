@@ -114,7 +114,7 @@ const Register = ({ register, isAuthenticated }) => {
             Already have an account? <Link to='/login'>Log in</Link>
           </p>
         </FormGroup>
-        <Button className="btn-success">Register</Button>
+        <Button className="btn-success shadow">Register</Button>
       </Form>
     </section>
   );

@@ -42,7 +42,7 @@ const Login = ({ login, isAuthenticated }) => {
             Don't have an account? <Link to='/register'>Sign up</Link>
           </p>
         </FormGroup>
-        <Button className="btn-success">Log in</Button>
+        <Button className="btn-success shadow">Log in</Button>
       </Form>
     </section>
 

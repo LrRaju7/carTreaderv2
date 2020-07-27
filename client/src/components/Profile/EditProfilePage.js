@@ -77,14 +77,14 @@ const EditProfilePage = ({
             <div className="col">
               <div className="row">
                 <div className="col mb-3">
-                  <div className="card">
+                  <div className="">
                     <div className="card-body">
                       <div className="e-profile">
                         <div className="row">
                           <div className="col-12 col-sm-auto mb-3">
                             <div className="mx-auto" styles="width: 140px;">
-                              <div className="d-flex justify-content-center align-items-center rounded ml-3" styles="height: 140px; background-color: rgb(233, 236, 239);">
-                                <span styles="color: rgb(166, 168, 170); font: bold 8pt Arial;"><img src="//placehold.it/140" class="mx-auto img-fluid rounded img-circle d-block" alt="avatar" /></span>
+                              <div className="d-flex justify-content-center align-items-center ml-3" styles="height: 140px; background-color: rgb(233, 236, 239);">
+                                <span styles="color: rgb(166, 168, 170); font: bold 8pt Arial;"><img src="//placehold.it/140" class="mx-auto img-fluid rounded img-circle d-block shadow" alt="avatar" /></span>
                               </div>
                             </div>
                           </div>
@@ -94,26 +94,28 @@ const EditProfilePage = ({
                               <p className="mb-0">{email}</p>
                               <div className="text-muted"><small>Active</small></div>
                               <div className="mt-2">
-                                <button className="btn btn-primary" type="button">
+                                <button className="btn btn-primary shadow" type="button">
                                   <i className="fa fa-fw fa-camera"></i>
                                   <span>Change Photo</span>
                                 </button>
                               </div>
                             </div>
-                            <div className="text-center text-sm-right">
+                            <div className="text-center text-sm-right mr-3">
                               <span className="badge badge-secondary">{role}</span>
                               <div className="text-muted"><small>{date}</small></div>
                               <div className="mt-5">
                                 <Link to={`/dashboard`}>
-                                  <button className="btn btn-outline-dark" type="button">Back to Dashboard</button>
+                                  <button className="btn btn-outline-dark shadow" type="button">Back to Dashboard</button>
                                 </Link>
                               </div>
                             </div>
                           </div>
+                          
                         </div>
-                        <ul className="nav nav-tabs">
+                        {/* <ul className="nav nav-tabs">
                           <li className="nav-item"><a href="" className="active nav-link">Settings</a></li>
-                        </ul>
+                        </ul> */}
+                        <hr className="mt-3"/>
                         <div className="tab-content pt-3">
                           <div className="tab-pane active">
                             <form className="form" novalidate="" onSubmit={e => handleUpdateProfile(e)}>
@@ -145,7 +147,7 @@ const EditProfilePage = ({
                                   </div>
                                   <div className="row">
                                     <div className="col d-flex justify-content-center">
-                                      <button className="btn btn-primary btn-block" type="submit" value='Edit Profile'>Update Profile</button>
+                                      <button className="btn btn-primary btn-block shadow" type="submit" value='Edit Profile'>Update Profile</button>
                                     </div>
                                   </div>
                                 </div>
@@ -196,7 +198,7 @@ const EditProfilePage = ({
                               </div>
                               <div className="row">
                                 <div className="col d-flex justify-content-center">
-                                  <button className="btn btn-primary btn-block" type="submit" value='Update Password'>Update Password</button>
+                                  <button className="btn btn-primary btn-block shadow" type="submit" value='Update Password'>Update Password</button>
                                 </div>
                               </div>
                             </form>

@@ -21,7 +21,7 @@ class Contact extends Component {
                                 <Label for="description">Description</Label>
                                 <textarea className="form-control" type="text" name="description" id="description" rows="5" />
                             </FormGroup>
-                            <Button className="btn btn-block btn-success mt-5">Send</Button>
+                            <Button className="btn btn-block btn-success mt-5 shadow">Send</Button>
                         </Form>
                     </div>
                 </section>
