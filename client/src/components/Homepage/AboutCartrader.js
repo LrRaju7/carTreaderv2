@@ -4,41 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class AboutCartrader extends Component {
     render() {
         return (
-            <div className="page container-fluid static what-is">
-                <div className="row subbody">
-                    <div className="static-sidebar">
-                        <ul>
-                            <li>
-                                <a title="About Us" href="#section-about-us">About Us</a>
-                            </li>
-                            <li className="sub-nav">
-                                <span className="nav-sec">How it works</span>
-                                <ul>
-                                    <li>
-                                        <a title="Buying a Car" href="/what-is/?section=buying-a-car">Buying a Car</a>
-                                    </li>
-                                    <li>
-                                        <a title="Selling a Car" href="/what-is/?section=selling-a-car">Selling a Car</a>
-                                    </li>
-                                    <li>
-                                        <a title="Spectating" href="/what-is/?section=spectating">Spectating</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li className="sub-nav"><span className="nav-sec">FAQ</span>
-                                <ul>
-                                    <li>
-                                        <a title="Seller FAQ" href="/what-is/?section=sellers">Seller FAQ</a>
-                                    </li>
-                                    <li>
-                                        <a title="Buyer FAQ" href="/what-is/?section=buyers">Buyer FAQ</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col">
-                        <h1>What's Cars &amp; Bids</h1>
+            <section className='section-home container-fluid'>
+                <div className="page container-fluid static what-is shadow p-3 mb-5 bg-white rounded">
+                    <div className="row subbody">
+                        <h1>What's Cartrader</h1>
                         <div className="facts">
                             <div className="facts">
                                 <div className="fact">
@@ -49,12 +18,12 @@ class AboutCartrader extends Component {
                                 <div className="fact">
                                     <img src="" alt="Low Fees" />
                                     <h3>Low Fees</h3>
-                                    <p>Buyers pay a 4.5% commission, capped at $4,500. Seller listing fees start at $49.</p>
+                                    <p>Buyers pay a 4.5% commission, capped at ৳ 4,50,000. Seller listing fees start at ৳ 3,500.</p>
                                 </div>
                                 <div className="fact">
                                     <img src="" alt="More Information" />
                                     <h3>More Information</h3>
-                                    <p>We provide vehicle history reports for every vehicle listed on Cars &amp; Bids — for free.</p>
+                                    <p>We provide vehicle history reports for every vehicle listed on Cartrader — for free.</p>
                                 </div>
                                 <div className="fact">
                                     <img src="" alt="Easy to Use" />
@@ -65,8 +34,8 @@ class AboutCartrader extends Component {
                             <div className="doug-quote d-flex">
                                 <img src="/static/media/dougs-take@2x.b4598fc0.png" alt="Doug DeMuro" />
                                 <div>
-                                    <h3>Doug &amp; Bids</h3>
-                                    <p>Car reviewer Doug DeMuro brings a huge audience to Cars &amp; Bids<br />— along with his commentary.</p>
+                                    <h3>CarTrader</h3>
+                                    <p>Car reviewer Doug DeMuro brings a huge audience to Cartrader<br />— along with his commentary.</p>
                                 </div>
                             </div>
                             <div className="section" id="section-about-us">
@@ -77,63 +46,58 @@ class AboutCartrader extends Component {
                                         <strong>We’re focused on modern enthusiast cars:</strong> the 1980s to the 2020s. That means anyone interested in the next era of exciting cars will come here first to buy and sell.
                             </li>
                                     <li>
-                                        <strong>Our fees are low.</strong> The buyer’s fee is 4.5%, with a minimum of $225 and a maximum of $4,500 – far below other auction houses and enthusiast car auction websites. Our seller’s fee ranges from $49 for a no-reserve auction or a repeat seller to $89 for a first-time seller with a reserve auction.
+                                        <strong>Our fees are low.</strong> The buyer’s fee is 4.5%, with a minimum of ৳ 22,500 and a maximum of ৳ 4,50,000 – far below other auction houses and enthusiast car auction websites. Our seller’s fee ranges from ৳ 490 for a no-reserve auction or a repeat seller to ৳ 890 for a first-time seller with a reserve auction.
                             </li>
                                     <li>
                                         <strong>We believe that every vehicle should come with a vehicle history report</strong> – so we provide one, for free, instead of asking sellers to pay for their own.
                             </li>
                                     <li>
-                                        <strong>Doug DeMuro will bring extra eyes – and extra buyers – to your cars,</strong> periodically reviewing cars offered on Cars &amp; Bids. If your car is chosen, you’ll get far more eyes on your vehicle than any other auction platform on earth.
+                                        <strong>Doug DeMuro will bring extra eyes – and extra buyers – to your cars,</strong> periodically reviewing cars offered on Cartrader. If your car is chosen, you’ll get far more eyes on your vehicle than any other auction platform on earth.
                             </li>
                                     <li>While other car auctions take weeks or even months to get your car listed and available to buyers, <strong>we’ll get your car listed quickly</strong> – and we’ll even take your input on scheduling your car’s auction.
                             </li>
                                     <li>
-                                        <strong>Cars &amp; Bids makes it easy to submit your car for sale.</strong> We value your time by asking for only a few crucial details before letting you know whether or not we’re accepting your vehicle. That means you don’t have to waste your time providing initial information only to have your car rejected.
+                                        <strong>Cartrader makes it easy to submit your car for sale.</strong> We value your time by asking for only a few crucial details before letting you know whether or not we’re accepting your vehicle. That means you don’t have to waste your time providing initial information only to have your car rejected.
                             </li>
                                     <li>
-                                        <strong>Cars &amp; Bids is the most user-friendly online automotive marketplace,</strong> with easy sorting and searching – and simplified auctions that tell you exactly what you need to know about each vehicle.
+                                        <strong>Cartrader is the most user-friendly online automotive marketplace,</strong> with easy sorting and searching – and simplified auctions that tell you exactly what you need to know about each vehicle.
                             </li>
-                                    <li>If you sell a car with Cars &amp; Bids and the high bidder doesn’t follow through on buying it, we’ll do our best to make sure your time hasn’t been wasted. We’ll try to collect a commission from the buyer – and if we’re successful, we’ll give you half of what we collect. That way, you still earn a little money from the time you’ve devoted to your auction. Of course, we’ll also re-list your car for free so it can find another buyer.
+                                    <li>If you sell a car with Cartrader and the high bidder doesn’t follow through on buying it, we’ll do our best to make sure your time hasn’t been wasted. We’ll try to collect a commission from the buyer – and if we’re successful, we’ll give you half of what we collect. That way, you still earn a little money from the time you’ve devoted to your auction. Of course, we’ll also re-list your car for free so it can find another buyer.
                             </li>
                                 </ul>
                             </div>
                             <div className="section">
                                 <h2 id="section-how-it-works">How It Works</h2>
                                 <h3 id="section-buying-a-car">Buying a Car</h3>
-                                <p>Cars &amp; Bids is an auction site – so buying a car involves placing bids on the cars you want to buy. We’ve made bidding easy, and we’ve explained it in a short tutorial here:
+                                <p>Cartrader is an auction site – so buying a car involves placing bids on the cars you want to buy. We’ve made bidding easy, and we’ve explained it in a short tutorial here:
                         </p>
-                                <div className="video">
-                                    <iframe title="Buying a car" width="100%" height="100%" src="https://www.youtube.com/embed/KUBxgFkJj_M?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-                                    </iframe>
-                                </div>
+
                                 <p>When you bid on a car, you’re agreeing to buy it, should you end up as the high bidder – so you’ll want to do your due diligence before placing a bid. That means asking the seller questions, looking at photos, or even scheduling a trip to see the car in person. If you don’t plan to follow through on buying the car, don’t bid – because you might end up as the high bidder.
                         </p>
-                                <p>All winning bidders pay a 4.5% buyer’s fee to Cars &amp; Bids on top of the winning bid amount. The buyer’s fee has a minimum of $225, but it’s capped at $4,500 so fees don’t become prohibitive for buyers. To ensure the commission is paid, a hold is placed on your credit card when you place a bid – and when the auction ends, the holds are released for all bidders except the winner, who is charged the commission. That’s why we require valid credit card information before you can place a bid. Bids on Cars &amp; Bids are binding, and there are no refunds, should you wish to change your mind.
+                                <p>All winning bidders pay a 4.5% buyer’s fee to Cartrader on top of the winning bid amount. The buyer’s fee has a minimum of ৳ 22,500, but it’s capped at ৳ 4,50,000 so fees don’t become prohibitive for buyers. To ensure the commission is paid, a hold is placed on your credit card when you place a bid – and when the auction ends, the holds are released for all bidders except the winner, who is charged the commission. That’s why we require valid credit card information before you can place a bid. Bids on Cartrader are binding, and there are no refunds, should you wish to change your mind.
                         </p>
                                 <p>After an auction, you’re given the seller’s contact information and vice versa, in order to allow you and the seller to finalize the details and logistics of the transaction.
                         </p>
                                 <h3 id="section-selling-a-car">Selling a Car</h3>
-                                <p>Selling a car on Cars &amp; Bids is easy – and we’ve explained it all in a video tutorial here:</p>
-                                <div className="video">
-                                    <iframe title="Selling a car" width="100%" height="100%" src="https://www.youtube.com/embed/gDXW2Q0J-Yg?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-                                </div>
-                                <p>The basic gist is that we initially ask you to send us a few short details on the car you want to sell – including the VIN, some photos, and a brief description of the car. The fee to sell a car on Cars &amp; Bids is $89, but we’ll drop the fee to $49 if you’ve sold with us before or if your auction has no reserve. </p>
-                                <p>Not every car is right for Cars &amp; Bids, and we don’t select every car that’s submitted. But if we’re interested in listing your car, we’ll get in touch, and we’ll ask for more information from you – like detailed photos, service and ownership history, and various other important items prospective buyers will need to know before buying a car. </p>
+                                <p>Selling a car on Cartrader is easy – and we’ve explained it all in a video tutorial here:</p>
+
+                                <p>The basic gist is that we initially ask you to send us a few short details on the car you want to sell – including the VIN, some photos, and a brief description of the car. The fee to sell a car on Cartrader is ৳ 890, but we’ll drop the fee to ৳ 490 if you’ve sold with us before or if your auction has no reserve. </p>
+                                <p>Not every car is right for Cartrader, and we don’t select every car that’s submitted. But if we’re interested in listing your car, we’ll get in touch, and we’ll ask for more information from you – like detailed photos, service and ownership history, and various other important items prospective buyers will need to know before buying a car. </p>
                                 <p>You can also choose whether you want to set a reserve price, or if you want your vehicle to be sold with no reserve. If you choose a reserve auction, we’ll ask you to suggest a reserve price – but we may ask for a lower one. If we can’t agree on a reserve price, no hard feelings – of course, you’re free to sell the car elsewhere. We’re also happy to list a car with no reserve – and if you choose that route, we’ll drop the listing fee to $49.</p>
-                                <p>If you’re selling a car on Cars &amp; Bids, it must not be listed for sale elsewhere – meaning you’ll have to remove any other advertisement for your car on any other website or publication before we’ll list it for you. We want our auctions to conclude with the winning bidder buying the car, not with sellers removing their cars because they’ve sold somewhere else. </p>
+                                <p>If you’re selling a car on Cartrader, it must not be listed for sale elsewhere – meaning you’ll have to remove any other advertisement for your car on any other website or publication before we’ll list it for you. We want our auctions to conclude with the winning bidder buying the car, not with sellers removing their cars because they’ve sold somewhere else. </p>
                                 <p>During the auction, you may be asked questions by commenters and bidders. We’ve found that auctions where sellers participate actively tend to be more successful – both in terms of selling the car and the final sale price. Your auction will likely go more smoothly if you answer questions thoroughly, provide photos when asked, and do your best to be honest and up-front about your car and its condition.</p>
                                 <p>At the conclusion of an auction, you’ll be given the buyer’s contact information, and vice versa, in order to allow you and the buyer to finalize the logistics of the transaction.</p>
                                 <h3 id="section-spectating">Spectating</h3>
-                                <p>At Cars &amp; Bids, there’s a section for comments in every single auction. We encourage your participation, even if you don’t plan on bidding, buying, or selling a car. We believe comments are helpful to a full and fair auction, as they can provide additional information that even the seller may not be aware of – so we’re always supportive of the wealth of information (and the amusing anecdotes) our commenters bring.</p>
+                                <p>At Cartrader, there’s a section for comments in every single auction. We encourage your participation, even if you don’t plan on bidding, buying, or selling a car. We believe comments are helpful to a full and fair auction, as they can provide additional information that even the seller may not be aware of – so we’re always supportive of the wealth of information (and the amusing anecdotes) our commenters bring.</p>
                             </div>
                             <div className="section faqs">
                                 <h2>Frequently Asked Questions</h2>
                                 <h3 id="section-sellers">Seller Questions</h3>
                                 <ul>
                                     <li className="" id="faq-seller-cost">
-                                        <h4>How much does it cost to sell a car on Cars &amp; Bids?</h4>
+                                        <h4>How much does it cost to sell a car on Cartrader?</h4>
                                         <div className="faq">
-                                            <p>We charge sellers $89 to sell their first car on Cars &amp; Bids. If you’ve sold with us before, we drop that fee to $49. We’ll also drop our listing fee to $49 if you sell your car with no reserve.</p>
+                                            <p>We charge sellers ৳ 890 to sell their first car on Cartrader. If you’ve sold with us before, we drop that fee to ৳ 490. We’ll also drop our listing fee to ৳ 490 if you sell your car with no reserve.</p>
                                         </div>
                                     </li>
                                     <li className="" id="faq-seller-submit">
@@ -268,7 +232,7 @@ class AboutCartrader extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         )
     }
 }

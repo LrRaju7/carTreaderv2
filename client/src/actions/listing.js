@@ -46,7 +46,6 @@ export const createListing = (
   createdAt,
   currentPrice,
   startPrice,
-  createdBy,
   endTime,
   history
 ) => async dispatch => {
@@ -68,13 +67,12 @@ export const createListing = (
     createdAt,
     currentPrice,
     startPrice,
-    createdBy,
-    endTime,
+    endTime
   };
   try {
     const res = await axios.post('/api/listings', body, config);
 
-    history.push(`/listings/${res.data.listing.slug}`);
+    dispatch({ type: GET_LISTING, payload: res.data });
   } catch (err) {
     console.log(`Error: ${err}`);
     dispatch(addNotification(err.response.data.message, 'error'));

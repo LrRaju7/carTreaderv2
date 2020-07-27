@@ -12,7 +12,8 @@ const SubGrid = (props) => {
   return (
     <div>
       <Card style={{marginTop: 20, border:'none'}}>
-        <Link to={`/auctions/${props.car.id}`}>
+        {/* <Link to={`/auctions/${props.car.id}`}> */}
+        <Link to="/auctions/details">
           <CardImg top width="100%" src={props.car['Main Image']} alt="Card image cap" style={{width: '100%', height: 200, objectFit: 'cover'}}/>
         </Link>
         <CardBody style={{padding: 0}}>

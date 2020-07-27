@@ -10,7 +10,7 @@ class HomePage extends Component {
   render() {
     return (
       <section className='section-home container-fluid'>
-        <div className="main">
+        <div className="main shadow p-3 mb-5 bg-white rounded">
         <Tabs>
           <TabList>
 

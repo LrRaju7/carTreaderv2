@@ -70,7 +70,11 @@ export const register = (
     const res = await axios.post(
       '/api/users',
       {
-        name, email, password, phone, avatar,
+        name, 
+        email, 
+        password, 
+        phone, 
+        avatar,
         address,
         city,
         state,

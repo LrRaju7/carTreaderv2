@@ -12,7 +12,7 @@ const Dashboard = props => {
 		<Fragment>
 
 			<section className='section-home container-fluid'>
-				<div className="main">
+				<div className="main shadow p-3 mb-5 bg-white rounded">
 					<div className="main-content">
 						<div className="panel panel-headline">
 							<div className="panel-heading">

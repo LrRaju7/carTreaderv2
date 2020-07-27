@@ -9,7 +9,7 @@ const LoginTab = (props) => {
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {
-    if(activeTab !== tab) setActiveTab(tab);
+    if (activeTab !== tab) setActiveTab(tab);
   }
 
   return (
@@ -44,21 +44,21 @@ const LoginTab = (props) => {
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-              <BuyerRegister/>
+              <BuyerRegister />
             </Col>
           </Row>
         </TabPane>
         <TabPane tabId="2">
           <Row>
             <Col sm="12">
-            <BidderRegister/>
+              <BidderRegister />
             </Col>
           </Row>
         </TabPane>
         <TabPane tabId="3">
           <Row>
             <Col sm="12">
-            <AuctioneerRegister/>
+              <AuctioneerRegister />
             </Col>
           </Row>
         </TabPane>

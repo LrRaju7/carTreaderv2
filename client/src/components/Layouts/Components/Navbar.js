@@ -18,9 +18,6 @@ class Navbar extends Component {
       modalOpen: false
     }
   }
-  logoutHandler = (e) => {
-    logout();
-  }
 
   compomentDidUpdate() {
     this.setState({ navBarOpen: false })
@@ -71,7 +68,7 @@ class Navbar extends Component {
                 {roleLinkElement}
               </DropdownItem>
               <DropdownItem>
-                <NavLink href='/logout'><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
+                <NavLink href='/logout'><i className='fa fa-sign-out'/><span className="ml-3">Log Out</span></NavLink>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

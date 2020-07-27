@@ -28,9 +28,8 @@ const ListingForm = ({
     slug: '',
     images: '',
     createdAt: '',
-    cPrice: '',
-    price: '',
-    createdBy: '',
+    currentPrice: '',
+    startPrice: '',
     endTime: '',
   });
 
@@ -46,7 +45,6 @@ const ListingForm = ({
     createdAt,
     currentPrice,
     startPrice,
-    createdBy,
     endTime,
   } = formData;
 
@@ -63,7 +61,6 @@ const ListingForm = ({
       createdAt: loading || type == 'create' ? '' : listing.createdAt,
       currentPrice: loading || type == 'create' ? '' : listing.currentPrice,
       startPrice: loading || type == 'create' ? '' : listing.startPrice,
-      createdBy: loading || type == 'create' ? '' : listing.createdBy,
       endTime: loading || type == 'create' ? '' : listing.endTime
     });
   }, [loading, listing]);
@@ -85,7 +82,6 @@ const ListingForm = ({
       createdAt,
       currentPrice,
       startPrice,
-      createdBy,
       endTime,
       token
     );
@@ -135,11 +131,7 @@ const ListingForm = ({
           <Label for="minIncrement">Min Increment</Label>
           <Input type="number" name="minIncrement" id="minIncrement" value={minIncrement} onChange={e => onChange(e)} />
         </FormGroup>
-        <FormGroup  >
-          <Label for="createdBy">Created By</Label>
-          <Input type="text" name="createdBy" id="createdBy" value={createdBy} onChange={e => onChange(e)} />
-        </FormGroup>
-        <FormGroup  >
+        <FormGroup>
           <Label for="endTime">End Date Time</Label>
           <Input type="date" name="endTime" id="endTime" value={endTime} onChange={e => onChange(e)} />
         </FormGroup>

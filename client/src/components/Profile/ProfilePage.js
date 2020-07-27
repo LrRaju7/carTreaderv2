@@ -60,7 +60,7 @@ const ProfilePage = ({
 		) : (
 				<Fragment>
 					<section className='section-home container-fluid'>
-						<div className="main">
+						<div className="main shadow p-3 mb-5 bg-white rounded">
 							<div className="main-content">
 								<div className="panel panel-profile">
 									<div className="clearfix">
@@ -108,8 +108,6 @@ const ProfilePage = ({
 											</div>
 										</div>
 										<div className="profile-right">
-
-											{/* {listingForm} */}
 											<ListingForm />
 
 										</div>
