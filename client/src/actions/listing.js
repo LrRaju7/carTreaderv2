@@ -39,14 +39,10 @@ export const createListing = (
   description,
   minIncrement,
   category,
-  length,
+  endDate,
   condition,
-  slug,
-  images,
-  createdAt,
-  currentPrice,
   startPrice,
-  endTime,
+  image,
   history
 ) => async dispatch => {
   const config = {
@@ -60,19 +56,15 @@ export const createListing = (
     description,
     minIncrement,
     category,
-    length,
+    endDate,
     condition,
-    slug,
-    images,
-    createdAt,
-    currentPrice,
     startPrice,
-    endTime
+    image
   };
   try {
     const res = await axios.post('/api/listings', body, config);
 
-    dispatch({ type: GET_LISTING, payload: res.data });
+    history.push(`/listings/${res.data.listing.slug}`);
   } catch (err) {
     console.log(`Error: ${err}`);
     dispatch(addNotification(err.response.data.message, 'error'));
@@ -93,17 +85,9 @@ export const deleteListing = id => async dispatch => {
 export const editListing = (
   title,
   description,
-  minIncrement,
   category,
-  length,
   condition,
-  slug,
-  images,
-  createdAt,
-  currentPrice,
-  startPrice,
-  createdBy,
-  endTime,
+  minIncrement,
   id,
   history
 ) => async dispatch => {
@@ -116,17 +100,9 @@ export const editListing = (
   const body = {
     title,
     description,
-    minIncrement,
     category,
-    length,
-    condition,
-    slug,
-    images,
-    createdAt,
-    currentPrice,
-    startPrice,
-    createdBy,
-    endTime,
+    minIncrement,
+    condition
   };
 
   try {

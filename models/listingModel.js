@@ -7,7 +7,7 @@ const ListingSchema = new mongoose.Schema({
     type: String,
     required: [true, 'An item must have a title!'],
     trim: true,
-    maxlength: [50, 'A title must be less than 50 characters!']
+    maxlength: [30, 'A title must be less than 30 characters!']
   },
   slug: {
     unique: true,
@@ -28,20 +28,18 @@ const ListingSchema = new mongoose.Schema({
     default: Date.now()
   },
 
-  images: {
+  image: {
     type: String
   },
-  currentPrice: {
-    type: Number
-  },
+  currentPrice: { type: Number },
   startPrice: {
     type: Number,
-    // required: true,
+    required: true,
     default: 0
   },
   minIncrement: {
     type: Number,
-    // required: true,
+    required: true,
     default: 0
   },
   createdBy: {
@@ -51,7 +49,7 @@ const ListingSchema = new mongoose.Schema({
   category: {
     type: String
   },
-  endTime: {
+  endDate: {
     type: Date,
     required: true
   },
@@ -65,13 +63,11 @@ const ListingSchema = new mongoose.Schema({
       user: {
         type: mongoose.Schema.ObjectId,
         ref: 'user',
-        // required: true,
-        default: '',
+        required: true
       },
       bid: {
         type: Number,
-        // required: true,
-        default: 0,
+        required: true
       },
       createdAt: {
         type: Date,
@@ -82,14 +78,11 @@ const ListingSchema = new mongoose.Schema({
   shipped: {
     type: Date
   },
-  active: {
-    type: Boolean,
-    default: true
-  }
+  active: { type: Boolean, default: true }
 });
 
 //sets the current price to the starting price
-ListingSchema.pre('save', function (next) {
+ListingSchema.pre('save', function(next) {
   if (!this.currentPrice) {
     this.currentPrice = this.startPrice;
   }

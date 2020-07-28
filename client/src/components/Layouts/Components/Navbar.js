@@ -15,7 +15,7 @@ class Navbar extends Component {
     super(props)
     this.state = {
       navBarOpen: false,
-      modalOpen: false
+      modalOpen: true
     }
   }
 

@@ -16,6 +16,7 @@ import ListingCard from '../Listing/ListingCard';
 import Spinner from '../Layouts/Components/Spinner';
 import '../../styles/components/_dashboard.scss';
 import ListingForm from '../Forms/ListingForm';
+import CreateListing from '../Listing/CreateListingPage';
 
 const ProfilePage = ({
 	match,
@@ -111,8 +112,8 @@ const ProfilePage = ({
 											</div>
 										</div>
 										<div className="profile-right">
-											<ListingForm />
-
+											{/* <ListingForm /> */}
+											<CreateListing/>
 										</div>
 									</div>
 								</div>
