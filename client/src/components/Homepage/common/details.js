@@ -233,6 +233,13 @@ const Details = ({ car, user, isAuthenticated, role }) => {
             <Col className='nopad toppad20' md={12}>
               <Table responsive striped bordered hover>
                 <tbody>
+                <tr>
+                <td style={{ fontWeight: 500 }}>Seller</td>
+                    <td>Seller</td>
+                    {/* <td>{car["VIN"]}</td> */}
+                    <td style={{ fontWeight: 500 }}>Drivetrain</td>
+                    <td>*Drivetrain</td>
+                </tr>
                   <tr>
                     <td style={{ fontWeight: 500 }}>VIN</td>
                     <td>car VIN</td>
@@ -263,11 +270,6 @@ const Details = ({ car, user, isAuthenticated, role }) => {
                     <td style={{ fontWeight: 500 }}>Interior Color</td>
                     <td>car Interior Color</td>
                     {/* <td>{car["Interior Color"]}</td> */}
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 500 }}>Seller Status</td>
-                    <td>car Title</td>
-                    {/* <td>{car["Title"]}</td> */}
                   </tr>
                 </tbody>
               </Table>
