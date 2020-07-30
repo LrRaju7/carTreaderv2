@@ -64,11 +64,11 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
         endDate,
         condition,
         startPrice,
-        img,
-        history
+        img
       );
+      console.log("success")
     } else {
-      alert('Do the CAPTCHA');
+      alert('Something Wrong');
     }
     setUploading(false);
   };
@@ -83,11 +83,13 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
         Tell us about your car
       </h2>
 
-      <p className="h6">Give us the following info and we’ll quickly review your car to decide if it’s a fit for Cartrader. If your car is accepted, we’ll ask for more details and photos, collect the listing fee, and work with you to get the auction live.</p>
-      <Form style={{ width: '100%' }} className="mt-5" >
+      <p className="h6 lead mt-3">Give us the following info and we’ll quickly review your car to decide if it’s a fit for Cartrader. If your car is accepted, we’ll ask for more details and photos, collect the listing fee, and work with you to get the auction live.</p>
+      <Form style={{ width: '100%' }} className="mt-5" encType='multipart/form-data' onSubmit={e => onSubmit(e)}>
         <FormGroup >
           <Label for="title">Title</Label>
-          <Input type="text" name="title" id="title" />
+          <Input type="text" name="title" id="title" value={title}
+              onChange={e => onChange(e)}
+              required/>
         </FormGroup>
         <FormGroup >
           <Label for="slug">Slug</Label>
@@ -95,35 +97,77 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
         </FormGroup>
         <FormGroup  >
           <Label for="description">Description</Label>
-          <textarea className="form-control" type="text" name="description" id="description" rows="5" />
+          <textarea className="form-control" type="text" name="description" id="description" rows="5" value={description}
+              onChange={e => onChange(e)}
+              required/>
         </FormGroup>
         <FormGroup  >
-          <Label for="createdAt">Created At</Label>
-          <Input type="date" name="createdAt" id="createdAt" />
+          <Label for="category">Item Category</Label>
+          <Input type="text" name="category" id="category" value={category} onChange={e => onChange(e)} required/>
         </FormGroup>
         <FormGroup>
-          <Label for="images">Images</Label>
-          <Input type="file" name="images" id="images" />
+          <Label for="images">Item image</Label>
+          <ImageUploader
+              withIcon={true}
+              buttonText='Choose images'
+              withPreview={true}
+              onChange={onDrop}
+              imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
+              maxFileSize={5242880}
+            />
         </FormGroup>
         <FormGroup >
-          <Label for="condition">Condition</Label>
-          <Input type="text" name="condition" id="condition" />
+          <Label for="condition">Item condition</Label>
+          <select className='form-control'
+              onChange={e => onChange(e)}
+              name='condition'
+              value={condition}
+            >
+              <option value='used'>Used</option>
+              <option value='new'>New</option>
+            </select>
         </FormGroup>
         <FormGroup  >
           <Label for="cPrcurrentPriceice">Current Price</Label>
           <Input type="number" name="currentPrice" id="currentPrice" />
         </FormGroup>
         <FormGroup  >
-          <Label for="startPrice">Start Price</Label>
-          <Input type="number" name="startPrice" id="startPrice" />
+          <Label for="startPrice">Item starting price</Label>
+          <Input type="number" name="startPrice" id="startPrice" value={startPrice} step='0.01' onChange={e => {
+                if (
+                  /^(\d+(\.\d{0,2})?|\.?\d{1,2})$/.test(e.target.value) ||
+                  e.target.value == ''
+                ) {
+                  setFormData({ ...formData, startPrice: e.target.value });
+                }
+              }}/>
         </FormGroup>
         <FormGroup  >
-          <Label for="minIncrement">Min Increment</Label>
-          <Input type="number" name="minIncrement" id="minIncrement"  />
+          <Label for="minIncrement">Minimum bid increment</Label>
+          <Input type='number'
+              name='minIncrement'
+              value={minIncrement}
+              step='0.01'
+              onChange={e => {
+                if (
+                  /^(\d+(\.\d{0,2})?|\.?\d{1,2})$/.test(e.target.value) ||
+                  e.target.value == ''
+                ) {
+                  setFormData({ ...formData, minIncrement: e.target.value });
+                }
+              }}/>
         </FormGroup>
         <FormGroup>
-          <Label for="endTime">End Date Time</Label>
-          <Input type="date" name="endTime" id="endTime" />
+          <Label for="endTime">Auction end date</Label>
+          <Input
+              type='date'
+              className='form-control'
+              selected={endDate}
+              onChange={date => setEndDate(date)}
+              minDate={new Date()}
+              dateFormat='MMMM d, yyyy'
+              required
+            />
         </FormGroup>
         <FormGroup  >
           <Label for="slug">Active</Label>
@@ -132,7 +176,16 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
             <option value={false} >Inactive</option>
           </select>
         </FormGroup>
-        <Button className="btn btn-block btn-success mt-5 shadow">Post Item</Button>
+        <div className='form-group'>
+            <h4 className='medium-heading'>Captcha</h4>
+            <div className='recaptcha-container'>
+              <ReCAPTCHA
+                sitekey='6Lcck9cUAAAAAIuHfUVETNVzklfJ6QkJ69V5tor0'
+                onChange={verifyCallback}
+              />
+            </div>
+          </div>
+        <Input type='submit' className="btn btn-block btn-success mt-5 shadow" value={uploading ? 'Creating..' : 'Create listing'}/>
       </Form>
     </Fragment>
   );

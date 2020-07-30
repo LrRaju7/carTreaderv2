@@ -26,7 +26,7 @@ const orderSelector = (list_order, newlist) => {
 }
 class Grid extends React.Component {   
   static propTypes = {
-    perPage: 8,
+    perPage: 12,
   };  
 
   constructor(props) {
@@ -44,10 +44,10 @@ class Grid extends React.Component {
     console.log('mounting',this.props.list_order)
     let newlist = carData
     newlist = orderSelector(this.props.list_order, newlist)
-    newlist = newlist.slice(0,(8+0))    
+    newlist = newlist.slice(0,(12+0))    
     this.setState({
       data: newlist,
-      pageCount: Math.ceil(carData.length / 8),
+      pageCount: Math.ceil(carData.length / 12),
     });
   }
   shouldComponentUpdate(nextProps, nextState){
@@ -61,12 +61,12 @@ class Grid extends React.Component {
     let that = this
     let newlist = carData
     newlist = orderSelector(this.props.list_order, newlist)
-    let newstart = 8*selected
-    newlist = newlist.slice(newstart,(8+newstart))
+    let newstart = 12*selected
+    newlist = newlist.slice(newstart,(12+newstart))
     this.setState({ offset: offset }, () => {
      that.setState({
       data: newlist,
-      pageCount: Math.ceil(carData.length / 8),
+      pageCount: Math.ceil(carData.length / 12),
     });
     });
   };

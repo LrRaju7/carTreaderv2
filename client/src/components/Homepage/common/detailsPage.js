@@ -9,7 +9,7 @@ import Details from './details'
 
 class DetailsPage extends React.Component {   
   static propTypes = {
-    perPage: 8,
+    perPage: 12,
   };  
 
   constructor(props) {
