@@ -19,7 +19,7 @@ import AdminDashboard from '../Dashboard/AdminDashboard';
 import EditProfilePage from '../Profile/EditProfilePage';
 import HomePage from '../Homepage/HomePage';
 import AboutCartrader from '../Homepage/AboutCartrader';
-import Details from '../Homepage/common/details';
+import Details from '../Homepage/common/detailsPage';
 import Contact from '../Homepage/Contact';
 import YourListingsPage from '../Dashboard/YourListingsPage';
 import BiddingHistoryPage from '../Dashboard/BiddingHistoryPage';
@@ -42,7 +42,7 @@ const Routes = ({ loadUser, dispatch }) => {
     <div>
       <Switch>
         <AppRoute exact path='/' layout={BuyBidAuctionLayout} component={HomePage} />
-        <PrivateRoute exact path='/auctions/details' layout={BuyBidAuctionLayout} component={Details} />
+        <PrivateRoute exact path='/auctions/:id/details' layout={BuyBidAuctionLayout} component={Details} />
         <AppRoute exact path='/ct-panel' layout={BuyBidAuctionLayout} component={AdminLogin} />
         <AppRoute exact path='/ct-panel/admin-reg' layout={BuyBidAuctionLayout} component={AdminSignup} />
         <AppRoute exact path='/login' layout={BuyBidAuctionLayout} component={LoginTab} />
