@@ -294,8 +294,8 @@ const Details = ({ car, user, authenticated, role }) => {
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Service History</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>{car["Service History"]}</p>
                 <p style={{ fontSize: 16 }}>car Service History</p>
+                <p style={{ fontSize: 16 }}>{car["Service History"]}</p>
               </div>
               <div className='nopad toppad20'>
                 <hr />

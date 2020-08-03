@@ -323,11 +323,15 @@ exports.getUsersWonListings = catchAsync(async (req, res, next) => {
 });
 
 exports.uploadImage = catchAsync(async (req, res, next) => {
+  console.log("HIT HERE")
+  console.log(req.file)
   cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
     if (err) {
+      console.log('err')
       console.log('err', err);
       req.json(err.message);
     }
+    console.log("HIT HERE TOO")
     const pic = { url: result.secure_url, imageId: result.public_id };
     return res.status(200).json(pic);
   });
