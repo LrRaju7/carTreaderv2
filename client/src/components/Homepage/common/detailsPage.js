@@ -16,20 +16,36 @@ class DetailsPage extends React.Component {
     super(props);
     this.state = {
 		car: null,
-		loading: true
+    loading: true
     };
   }  
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let id = nextProps.match.params.id;
+    console.log('id is', id)
+    let car = find(carData, car => car.id == id)
+    return {
+      car
+    };
+   
+  }
 
-
+  shouldComponentUpdate(nextProps, nextState){
+    console.log("UPDATIns")
+    console.log(nextProps)
+    console.log(nextState)
+    return true
+  }
   componentDidMount() {
     let id = this.props.match.params.id;
+    console.log('id is', id)
     let car = find(carData, car => car.id == id)
     setTimeout(() => this.setState({car, loading: false }), 500);
   }
 
   render() {
-  	let loader = this.state.loading ? <PageSpinner loading={this.state.loading}/> : <Details car={this.state.car}/>
+  	let loader = this.state.loading ? <PageSpinner loading={this.state.loading}/> : <Details car={this.state.car} user={this.state.user}/>
     console.log(this.state.car)
+    console.log(this.state.user)
       return (
         <div>
           {loader}

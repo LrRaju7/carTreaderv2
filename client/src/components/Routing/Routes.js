@@ -25,6 +25,7 @@ import YourListingsPage from '../Dashboard/YourListingsPage';
 import BiddingHistoryPage from '../Dashboard/BiddingHistoryPage';
 import YourReviewsPage from '../Dashboard/YourReviewsPage';
 import PageNotFound from '../Layouts/Components/PageNotFound';
+import EntryFee from '../Forms/EntryFeeForm';
 
 const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
   <Route {...rest} render={props => (
@@ -51,6 +52,7 @@ const Routes = ({ loadUser, dispatch }) => {
         <AppRoute exact path='/register' layout={BuyBidAuctionLayout} component={RegisterTab} />
         <AppRoute exact path='/listings' layout={BuyBidAuctionLayout} component={ListingsPage} />
         <AppRoute exact path='/listings/:slug' layout={BuyBidAuctionLayout} component={ListingPage} />
+        <AppRoute exact path='/entryfee' layout={BuyBidAuctionLayout} component={EntryFee} />
         <PrivateRoute exact path='/create' layout={BuyBidAuctionLayout} component={CreateListingPage} />
         <PrivateRoute
           exact

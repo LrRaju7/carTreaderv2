@@ -6,105 +6,25 @@ import moment from "moment";
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Grid from "./grid.js";
+import { daysCalculator } from "../../../helpers/functions.js";
+import images from "../../../data/images.js";
+import EntryFee from "../../Modal/EntryFeeModal"
+import { Link } from "react-router-dom";
 
 const Details = ({ car, user, authenticated, role }) => {
-  console.log(car)
-  // let enddate = moment(car["Ending"], "DD/MM/YYYY");
-  // let endtime = enddate.valueOf();
-  // let curdate = new Date();
-  // let curtime = curdate.getTime();
- 
-  const IMAGES =
-    [{
-      src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-      thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 174,
-    },
-    {
-      src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-      thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 212,
-    },
-
-    {
-      src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-      thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 212
-    },
-    {
-      src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-      thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 174,
-    },
-    {
-      src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-      thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 212,
-    },
-
-    {
-      src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-      thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 212
-    },
-    {
-      src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-      thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 174,
-    },
-    {
-      src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-      thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 212,
-    },
-
-    {
-      src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-      thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 212
-    },
-    {
-      src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-      thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 174,
-    },
-    {
-      src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-      thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 212,
-    },
-
-    {
-      src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-      thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-      thumbnailWidth: 300,
-      thumbnailHeight: 212
-    }
-    ]
   let enddate = moment(car["Ending"], "DD/MM/YYYY");
   let endtime = enddate.valueOf();
   let curdate = new Date();
   let curtime = curdate.getTime();
   let diff = endtime - curtime;
   let comp = diff < 0 ? (<span style={{ fontWeight: 600, marginLeft: 10 }}>Ended</span>) : (<Countdown date={Date.now() + diff} />);
-  let button = authenticated ? <Button color='primary' style={{ fontSize: 18 }} block>Place Bid</Button> : <Button color='secondary' style={{ fontSize: 18 }} block>Login to Bid</Button>
-  return(
+  let button = authenticated ? <Link to='/entryfee'><Button color='primary' style={{ fontSize: 18 }} block>Place Bid</Button></Link> : <Link to='/entryfee'><Button color='secondary' style={{ fontSize: 18 }} block>Login to Bid</Button></Link>
+  return (
     <Container fluid style={{ height: "80vh" }}>
       <Row>
         <Col>
           <div class='auction-title'>
-            <h3 className='text-uppercase'>
+            <h3>
               {car["Year"]} {car["Make"]} {car["Model"]}
             </h3>
           </div>
@@ -113,7 +33,7 @@ const Details = ({ car, user, authenticated, role }) => {
               {car["Exterior Color"]} {car["Make"]} {car["Model"]}
             </p>
             <a
-              href=''
+              href='https://media.carsandbids.com/77de68daecd823babbb58edb1c8e14d7106e83bb/documents/s4s4.YWwFoy-RP.pdf'
               rel='noopener noreferrer'
               class='view-report'
               target='_blank'>
@@ -135,12 +55,11 @@ const Details = ({ car, user, authenticated, role }) => {
               objectFit: "cover",
             }}
             src={car["Main Image"]}
-            // src="https://images.unsplash.com/photo-1576086686350-2f5dba3ffeb3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
           />
         </Col>
         <Col className='nopadl' xs={4}>
           <Gallery
-            images={IMAGES}
+            images={images}
             tagStyle={{
               color: "white",
               backgroundColor: "rgba(0,0,0,0.5)",
@@ -220,7 +139,8 @@ const Details = ({ car, user, authenticated, role }) => {
               </Badge>
             </Col>
             <Col className='toppad20' md={3}>
-              {button}
+              {/* {button} */}
+              <EntryFee />
             </Col>
           </Row>
           <Row>
@@ -251,6 +171,10 @@ const Details = ({ car, user, authenticated, role }) => {
                     <td style={{ fontWeight: 500 }}>Interior Color</td>
                     <td>{car["Interior Color"]}</td>
                   </tr>
+                  <tr>
+                    <td style={{ fontWeight: 500 }}>Seller Status</td>
+                    <td>{car["Title"]}</td>
+                  </tr>
                 </tbody>
               </Table>
               <div className='nopad toppad20'>
@@ -258,27 +182,20 @@ const Details = ({ car, user, authenticated, role }) => {
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Highlights</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>Car Highlights</p>
-                <p style={{ fontSize: 16 }}>
-                {car["Highlights"]}
-                </p>
+                <p style={{ fontSize: 16 }}>{car["Highlights"]}</p>
               </div>
               <div className='nopad toppad20'>
                 <hr />
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Equipment</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>car Equipment</p>
-                <p style={{ fontSize: 16 }}>
-                {car["Equipment"]}
-                </p>
+                <p style={{ fontSize: 16 }}>{car["Equipment"]}</p>
               </div>
               <div className='nopad toppad20'>
                 <hr />
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Modifications</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>car Modifications</p>
                 <p style={{ fontSize: 16 }}>{car["Modifications"]}</p>
               </div>
               <div className='nopad toppad20'>
@@ -286,7 +203,6 @@ const Details = ({ car, user, authenticated, role }) => {
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Issues</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>car Issues</p>
                 <p style={{ fontSize: 16 }}>{car["Issues"]}</p>
               </div>
               <div className='nopad toppad20'>
@@ -294,7 +210,6 @@ const Details = ({ car, user, authenticated, role }) => {
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Service History</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>car Service History</p>
                 <p style={{ fontSize: 16 }}>{car["Service History"]}</p>
               </div>
               <div className='nopad toppad20'>
@@ -302,7 +217,6 @@ const Details = ({ car, user, authenticated, role }) => {
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Ownership History</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>car Ownership History</p>
                 <p style={{ fontSize: 16 }}>{car["Ownership History"]}</p>
                 <br />
                 <hr />
@@ -311,7 +225,7 @@ const Details = ({ car, user, authenticated, role }) => {
           </Row>
         </Col>
         <Col>
-          <Grid sm={6} md={6} lg={6} list_order='ending soon' paginate={false} />
+          <Grid sm={6} md={6} lg={6} list_order='ending soon'/>
         </Col>
       </Row>
     </Container>
