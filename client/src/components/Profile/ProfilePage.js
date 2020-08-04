@@ -94,7 +94,7 @@ const ProfilePage = ({
 														<li className="list-group-item">Role <span>{user.data.role}</span></li>
 														<li className="list-group-item">Mobile <span>+880{user.data.phone}</span></li>
 														<li className="list-group-item">Email <span>{user.data.email}</span></li>
-														<li className="list-group-item">Address <span>{user.data.address}, {user.data.city}, {user.data.state}-{user.data.zip}</span></li>
+														<li className="list-group-item">Address <span>{user.data.location}</span></li>
 													</ul>
 													<div className="card">
 														<h5 className="card-header">Bio</h5>

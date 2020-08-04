@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../../actions/auth';
 import { Container, NavLink, Collapse, Navbar as BootstrapNavbar, NavbarToggler, NavbarBrand, Nav, NavItem, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap';
 import { setAuthToken } from '../../../utils/setAuthToken';
-
+import ItemWiseSearchModal from '../../Modal/ItemWiseSearchModal';
 
 
 class Navbar extends Component {
@@ -71,7 +71,7 @@ class Navbar extends Component {
                 <NavLink href={`/dashboard`} ><i className='fa fa-dashboard' /><span className="ml-3">Dashboard</span></NavLink>
               </DropdownItem>
               <DropdownItem>
-                <NavLink href='/logout'><i className='fa fa-sign-out'/><span className="ml-3">Log Out</span></NavLink>
+                <NavLink href='/logout'><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -109,7 +109,7 @@ class Navbar extends Component {
 
             <Collapse isOpen={this.state.navBarOpen} navbar>
               <Nav navbar style={{ width: '100%' }}>
-              {/* , '/auctions/:id/details' */}
+                {/* , '/auctions/:id/details' */}
                 <NavItem className={this.tabClass('/')} >
                   <NavLink href='/'> Auctions
                   </NavLink>
@@ -122,10 +122,13 @@ class Navbar extends Component {
                   <NavLink href='/contact'> Contact
                   </NavLink>
                 </NavItem>
+                <NavItem >
+                  <NavLink>
+                  <ItemWiseSearchModal/>
+                  </NavLink>
+                </NavItem>
               </Nav>
-              <div style={{paddingRight:'60px'}}>
-              <SearchBar/>
-              </div>
+                <SearchBar />
               {roleElement}
               {signupElement}
             </Collapse>

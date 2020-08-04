@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
-import { Col, Row, Button, Form, FormGroup, Label, Input,FormText, Container } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
