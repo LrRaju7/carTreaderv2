@@ -11,7 +11,7 @@ const generateAdmin = (db) => {
 		},
 	  branding: {
 	  	softwareBrothers: false,
-		  companyName: 'CarTrader',
+		  companyName: '',
 		  logo: '/media/logo.svg'
 		},
 	  resources: [UserAdminOptions, UnverifiedListingAdminOptions],
