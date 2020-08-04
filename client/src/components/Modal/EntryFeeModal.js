@@ -3,10 +3,12 @@ import { Button } from 'reactstrap';
 import Modal from 'react-modal'
 const customStyles = {
     content: {
-    width: '60%',
-    transform: 'translate(30%, 15%)',
+    width: '95%',
+    transform: 'translate(0%, 5%)',
     backgroundColor: 'white',
+    zIndex: 100000,
     },
+    overlay: {zIndex: 1000}
   };
 
 function EntryFeeModal({user, authenticated,}) {

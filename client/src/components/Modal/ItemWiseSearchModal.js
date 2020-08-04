@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getListings, clearListings } from '../../actions/listing';
-import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
+import { Button, Form, Label} from 'reactstrap';
 import Modal from 'react-modal'
 const customStyles = {
     content: {
     width: '60%',
     transform: 'translate(30%, 15%)',
     backgroundColor: 'white',
+    border: 'none',
+    zIndex: 100000,
     },
+    overlay: {zIndex: 1000}
   };
 
 const ItemWiseSearch = ({ getListings, clearListings }) => {
