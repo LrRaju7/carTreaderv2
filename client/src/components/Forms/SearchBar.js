@@ -36,11 +36,11 @@ const SearchBar = ({ getListings, clearListings }) => {
   };
 
   return (
-    <form>
+    <form onSubmit={e => onSubmit(e)}>
       <div className="input-group">
-        <input type="text" className="form-control" placeholder="Search" />
-        <div className="input-group-btn">
-          <button className="btn btn-default mr-3" type="submit">
+        <input type="text" className="form-control" placeholder="Search" name='query' value={query} onChange={e => onChange(e)}/>
+        <div className="input-group-btn ml-2">
+          <button className="btn btn-default " type="submit">
             <i class="fa fa-search"></i>
           </button>
         </div>
