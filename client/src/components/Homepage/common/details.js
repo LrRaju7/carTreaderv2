@@ -32,13 +32,13 @@ const Details = ({ car, user, authenticated, role }) => {
             <p style={{ marginBottom: 0 }}>
               {car["Exterior Color"]} {car["Make"]} {car["Model"]}
             </p>
-            <a
+            {/* <a
               href='https://media.carsandbids.com/77de68daecd823babbb58edb1c8e14d7106e83bb/documents/s4s4.YWwFoy-RP.pdf'
               rel='noopener noreferrer'
               class='view-report'
               target='_blank'>
               View Vehicle History Report
-            </a>
+            </a> */}
           </div>
         </Col>
         <br />

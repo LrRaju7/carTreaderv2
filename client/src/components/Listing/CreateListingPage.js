@@ -3,7 +3,6 @@ import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, Container } 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createListing } from '../../actions/listing';
-import { Helmet } from 'react-helmet';
 import ReCAPTCHA from 'react-google-recaptcha';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';

@@ -36,20 +36,15 @@ const SearchBar = ({ getListings, clearListings }) => {
   };
 
   return (
-    <form onSubmit={e => onSubmit(e)}>
-      <select onChange={e => onChange(e)} name='category' value={category}>
-        <option value='All Categories'>All Categories</option>
-        <option value='Dog'>Dog</option>
-        <option value='Cat'>Cat</option>
-      </select>
-      <input
-        type='text'
-        placeholder='Enter a search'
-        name='query'
-        value={query}
-        onChange={e => onChange(e)}
-      />
-      <input type='submit' className='btn btn-primary' value='Search' />
+    <form>
+      <div className="input-group">
+        <input type="text" className="form-control" placeholder="Search" />
+        <div className="input-group-btn">
+          <button className="btn btn-default mr-3" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
     </form>
   );
 };

@@ -109,6 +109,7 @@ class Navbar extends Component {
 
             <Collapse isOpen={this.state.navBarOpen} navbar>
               <Nav navbar style={{ width: '100%' }}>
+              {/* , '/auctions/:id/details' */}
                 <NavItem className={this.tabClass('/')} >
                   <NavLink href='/'> Auctions
                   </NavLink>
@@ -122,7 +123,9 @@ class Navbar extends Component {
                   </NavLink>
                 </NavItem>
               </Nav>
-
+              <div style={{paddingRight:'60px'}}>
+              <SearchBar/>
+              </div>
               {roleElement}
               {signupElement}
             </Collapse>
