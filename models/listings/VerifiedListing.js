@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const slug = require('mongoose-slug-updater');
 mongoose.plugin(slug);
 
-const UnverifiedListingSchema = new mongoose.Schema({
+const VerifiedListingSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, 'An item must have a title!'],
@@ -27,9 +27,8 @@ const UnverifiedListingSchema = new mongoose.Schema({
     type: Date,
     default: Date.now()
   },
-
-  image: {
-    type: String
+  images: {
+    type: [String]
   },
   currentPrice: { type: Number },
   startPrice: {
@@ -75,17 +74,21 @@ const UnverifiedListingSchema = new mongoose.Schema({
       }
     }
   ],
+  verified_by: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'admin'
+  },
   active: { type: Boolean, default: true }
 });
 
 //sets the current price to the starting price
-UnverifiedListingSchema.pre('save', function(next) {
+VerifiedListingSchema.pre('save', function(next) {
   if (!this.currentPrice) {
     this.currentPrice = this.startPrice;
   }
   next();
 });
 
-const UnverifiedListing = mongoose.model('UnverifiedListing', UnverifiedListingSchema);
+const VerifiedListing = mongoose.model('VerifiedListing', VerifiedListingSchema);
 
-module.exports = UnverifiedListing;
+module.exports = VerifiedListing;

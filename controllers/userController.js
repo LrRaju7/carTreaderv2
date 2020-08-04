@@ -5,8 +5,9 @@ const config = require('config');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const dotenv = require('dotenv').config();
+const userHelpers = require('./helpers/userHelpers.js')
 
-const User = require('../models/userModel');
+const User = require('../models/User');
 const Listing = require('../models/listingModel');
 
 exports.createUser = catchAsync(async (req, res, next) => {
@@ -16,12 +17,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
   if (!(name && email && password)) {
     return next(new AppError('Missing required fields', 400));
   }
-
-  let user = await User.findOne({ email });
-
-  if (user) {
-    return next(new AppError('Email is already in use', 400));
-  }
+  if (userHelpers.checkUserExists(email)) return next(new AppError('Email is already in use', 400));
 
   const avatar = gravatar.url(email, {
     s: '200',

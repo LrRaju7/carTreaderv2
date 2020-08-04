@@ -2,7 +2,7 @@ const app = require('../../server');
 const supertest = require('supertest');
 const Report = require('../../models/reportModel');
 const Listing = require('../../models/listingModel');
-const User = require('../../models/userModel');
+const User = require('../../models/User');
 const request = supertest(app);
 
 let token;

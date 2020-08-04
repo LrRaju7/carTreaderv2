@@ -1,9 +1,9 @@
-const User = require('../../../models/User.js');
+const UnverifiedListing = require('../../../../models/models/listings/UnverifiedListing.js');
 const bcrypt = require('bcryptjs');
 
-const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Administrator'
-const UserAdminOptions = {
-	resource: User,
+const canModifyUnverifiedListings = ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'Administrator'
+const UnverifiedListingAdminOptions = {
+	resource: UnverifiedListing,
 	options: {
 		listProperties: ['_id','email', 'name', 'role'],
 		properties: {
@@ -32,10 +32,10 @@ const UserAdminOptions = {
 					return request
 				}
 			},
-			// edit: { isAccessible: canModifyUsers },
-			// delete: { isAccessible: canModifyUsers }
+			// edit: { isAccessible: canModifyUnverifiedListings },
+			// delete: { isAccessible: canModifyUnverifiedListings }
 		},
 	},
 };
 
-module.exports = UserAdminOptions;
+module.exports = UnverifiedListingAdminOptions;

@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
-const User = require('../models/userModel');
+const User = require('../models/User');
 const dotenv = require('dotenv').config({ path: './../config.env' });
 exports.loginUser = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
