@@ -5,9 +5,11 @@ import Countdown from "react-countdown";
 import moment from "moment";
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import images from "../../data/images.js";
 import Grid from "./grid.js";
-import { daysCalculator } from "../../helpers/functions.js";
+import { daysCalculator } from "../../../helpers/functions.js";
+import images from "../../../data/images.js";
+import EntryFee from "../../Modal/EntryFeeModal"
+import { Link } from "react-router-dom";
 
 const Details = ({ car, user, authenticated, role }) => {
   let enddate = moment(car["Ending"], "DD/MM/YYYY");
@@ -16,7 +18,7 @@ const Details = ({ car, user, authenticated, role }) => {
   let curtime = curdate.getTime();
   let diff = endtime - curtime;
   let comp = diff < 0 ? (<span style={{ fontWeight: 600, marginLeft: 10 }}>Ended</span>) : (<Countdown date={Date.now() + diff} />);
-  let button = authenticated ? <Button color='primary' style={{ fontSize: 18 }} block>Place Bid</Button> : <Button color='secondary' style={{ fontSize: 18 }} block>Login to Bid</Button>
+  let button = authenticated ? <Link to='/entryfee'><Button color='primary' style={{ fontSize: 18 }} block>Place Bid</Button></Link> : <Link to='/entryfee'><Button color='secondary' style={{ fontSize: 18 }} block>Login to Bid</Button></Link>
   return (
     <Container fluid style={{ height: "80vh" }}>
       <Row>
@@ -30,13 +32,13 @@ const Details = ({ car, user, authenticated, role }) => {
             <p style={{ marginBottom: 0 }}>
               {car["Exterior Color"]} {car["Make"]} {car["Model"]}
             </p>
-            <a
+            {/* <a
               href='https://media.carsandbids.com/77de68daecd823babbb58edb1c8e14d7106e83bb/documents/s4s4.YWwFoy-RP.pdf'
               rel='noopener noreferrer'
               class='view-report'
               target='_blank'>
               View Vehicle History Report
-            </a>
+            </a> */}
           </div>
         </Col>
         <br />
@@ -76,7 +78,7 @@ const Details = ({ car, user, authenticated, role }) => {
       <Row className=''>
         <Col md={8} className='nopad'>
           <Row>
-            <Col className='nopad toppad20' md={8}>
+            <Col className='nopad toppad20' md={9}>
               <Badge
                 color='dark'
                 style={{
@@ -129,15 +131,16 @@ const Details = ({ car, user, authenticated, role }) => {
                           fontWeight: 600,
                           marginLeft: 10,
                         }}>
-                        {car["Year"]}
+                        {car["Bids"]}
                       </span>
                     </span>
                   </Col>
                 </Row>
               </Badge>
             </Col>
-            <Col className='toppad20' md={4}>
-              {button}
+            <Col className='toppad20' md={3}>
+              {/* {button} */}
+              <EntryFee />
             </Col>
           </Row>
           <Row>
@@ -222,7 +225,7 @@ const Details = ({ car, user, authenticated, role }) => {
           </Row>
         </Col>
         <Col>
-          <Grid sm={6} md={6} lg={6} list_order='ending soon' paginate={false} />
+          <Grid sm={6} md={6} lg={6} list_order='ending soon'/>
         </Col>
       </Row>
     </Container>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createListing } from '../../actions/listing';
-import { Helmet } from 'react-helmet';
 import ReCAPTCHA from 'react-google-recaptcha';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
@@ -63,11 +63,11 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
         endDate,
         condition,
         startPrice,
-        img,
-        history
+        img
       );
+      console.log("success")
     } else {
-      alert('Do the CAPTCHA');
+      alert('Something Wrong');
     }
     setUploading(false);
   };
@@ -78,54 +78,72 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <Helmet>
-        <title>Create Listing | Auction</title>
-      </Helmet>
-      <div className='row'>
-        <form
-          className='form'
-          encType='multipart/form-data'
-          onSubmit={e => onSubmit(e)}
-        >
-          <h2 className='large-heading'>Create Listing</h2>
-          <p className='small-text'>Put an item up for auction</p>
-          <div className='form-group'>
-            <h4 className='medium-heading'>Item name*</h4>
-            <input
-              type='text'
-              placeholder='Required'
-              name='title'
-              value={title}
+      <h2 className="text-center">
+        Tell us about your car
+      </h2>
+
+      <p className="h6 lead mt-3">Give us the following info and we’ll quickly review your car to decide if it’s a fit for Cartrader. If your car is accepted, we’ll ask for more details and photos, collect the listing fee, and work with you to get the auction live.</p>
+      <Form style={{ width: '100%' }} className="mt-5" encType='multipart/form-data' onSubmit={e => onSubmit(e)}>
+        <FormGroup >
+          <Label for="title">Title</Label>
+          <Input type="text" name="title" id="title" value={title}
               onChange={e => onChange(e)}
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <h4 className='medium-heading'>Item description*</h4>
-            <textarea
-              placeholder='Description'
-              name='description'
-              value={description}
+              required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="slug">Slug</Label>
+          <Input type="text" name="slug" id="slug"  />
+        </FormGroup>
+        <FormGroup  >
+          <Label for="description">Description</Label>
+          <textarea className="form-control" type="text" name="description" id="description" rows="5" value={description}
               onChange={e => onChange(e)}
-              required
+              required/>
+        </FormGroup>
+        <FormGroup  >
+          <Label for="category">Item Category</Label>
+          <Input type="text" name="category" id="category" value={category} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup>
+          <Label for="images">Item image</Label>
+          <ImageUploader
+              withIcon={true}
+              buttonText='Choose images'
+              withPreview={true}
+              onChange={onDrop}
+              imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
+              maxFileSize={5242880}
             />
-          </div>
-          <div className='form-group'>
-            <h4 className='medium-heading'>Item category*</h4>
-            <input
-              type='text'
-              placeholder='Required'
-              name='category'
-              value={category}
+        </FormGroup>
+        <FormGroup >
+          <Label for="condition">Item condition</Label>
+          <select className='form-control'
               onChange={e => onChange(e)}
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <h4 className='medium-heading'>Minimum bid increment</h4>
-            <input
-              type='number'
-              placeholder='Minimum Increment'
+              name='condition'
+              value={condition}
+            >
+              <option value='used'>Used</option>
+              <option value='new'>New</option>
+            </select>
+        </FormGroup>
+        <FormGroup  >
+          <Label for="cPrcurrentPriceice">Current Price</Label>
+          <Input type="number" name="currentPrice" id="currentPrice" />
+        </FormGroup>
+        <FormGroup  >
+          <Label for="startPrice">Item starting price</Label>
+          <Input type="number" name="startPrice" id="startPrice" value={startPrice} step='0.01' onChange={e => {
+                if (
+                  /^(\d+(\.\d{0,2})?|\.?\d{1,2})$/.test(e.target.value) ||
+                  e.target.value == ''
+                ) {
+                  setFormData({ ...formData, startPrice: e.target.value });
+                }
+              }}/>
+        </FormGroup>
+        <FormGroup  >
+          <Label for="minIncrement">Minimum bid increment</Label>
+          <Input type='number'
               name='minIncrement'
               value={minIncrement}
               step='0.01'
@@ -136,60 +154,28 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
                 ) {
                   setFormData({ ...formData, minIncrement: e.target.value });
                 }
-              }}
-            />
-          </div>
-          <div className='form-group'>
-            <h4 className='medium-heading'>Item starting price</h4>
-            <input
-              type='number'
-              placeholder='Starting price'
-              name='startPrice'
-              value={startPrice}
-              step='0.01'
-              onChange={e => {
-                if (
-                  /^(\d+(\.\d{0,2})?|\.?\d{1,2})$/.test(e.target.value) ||
-                  e.target.value == ''
-                ) {
-                  setFormData({ ...formData, startPrice: e.target.value });
-                }
-              }}
-            />
-          </div>
-          <div className='form-group'>
-            <h4 className='medium-heading'>Item image</h4>
-            <ImageUploader
-              withIcon={true}
-              buttonText='Choose images'
-              withPreview={true}
-              onChange={onDrop}
-              imgExtension={['.jpg', '.gif', '.png', '.gif']}
-              maxFileSize={5242880}
-            />
-          </div>
-          <div className='form-group'>
-            <h4 className='medium-heading'>Item condition</h4>
-            <select
-              onChange={e => onChange(e)}
-              name='condition'
-              value={condition}
-            >
-              <option value='used'>Used</option>
-              <option value='new'>New</option>
-            </select>
-          </div>
-          <div className='form-group'>
-            <h4 className='medium-heading'>Auction end date*</h4>
-            <DatePicker
+              }}/>
+        </FormGroup>
+        <FormGroup>
+          <Label for="endTime">Auction end date</Label>
+          <Input
+              type='date'
+              className='form-control'
               selected={endDate}
               onChange={date => setEndDate(date)}
               minDate={new Date()}
               dateFormat='MMMM d, yyyy'
               required
             />
-          </div>
-          <div className='form-group'>
+        </FormGroup>
+        <FormGroup  >
+          <Label for="slug">Active</Label>
+          <select class="custom-select">
+            <option selected value={true}>Active</option>
+            <option value={false} >Inactive</option>
+          </select>
+        </FormGroup>
+        <div className='form-group'>
             <h4 className='medium-heading'>Captcha</h4>
             <div className='recaptcha-container'>
               <ReCAPTCHA
@@ -198,14 +184,10 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
               />
             </div>
           </div>
-          <input
-            type='submit'
-            className='btn-gray large full'
-            value={uploading ? 'Creating..' : 'Create listing'}
-            disabled={uploading}
-          />
-        </form>
-      </div>
+          <div className='text-center'>
+        <Input style={{width: '50%'}} type='submit' className="btn btn-success mt-5 shadow" value={uploading ? 'Creating..' : 'Create listing'}/>
+        </div>
+      </Form>
     </Fragment>
   );
 };

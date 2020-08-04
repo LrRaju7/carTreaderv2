@@ -5,15 +5,16 @@ import AuctioneerRegister from './AuctioneerRegisterPage';
 import BidderRegister from './BidderRegisterPage';
 import BuyerRegister from './BuyerRegisterPage';
 
-const LoginTab = (props) => {
+const RegisterTab = (props) => {
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {
-    if(activeTab !== tab) setActiveTab(tab);
+    if (activeTab !== tab) setActiveTab(tab);
   }
 
   return (
-    <Container>
+    <section className='section-home container-fluid'>
+    <div className='shadow p-3 mb-5 bg-white rounded'>
       <Nav tabs className="nav-justified">
         <NavItem>
           <NavLink
@@ -44,27 +45,28 @@ const LoginTab = (props) => {
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-              <BuyerRegister/>
+              <BuyerRegister />
             </Col>
           </Row>
         </TabPane>
         <TabPane tabId="2">
           <Row>
             <Col sm="12">
-            <BidderRegister/>
+              <BidderRegister />
             </Col>
           </Row>
         </TabPane>
         <TabPane tabId="3">
           <Row>
             <Col sm="12">
-            <AuctioneerRegister/>
+              <AuctioneerRegister />
             </Col>
           </Row>
         </TabPane>
       </TabContent>
-    </Container>
+      </div>
+    </section>
   );
 }
 
-export default LoginTab;
+export default RegisterTab;

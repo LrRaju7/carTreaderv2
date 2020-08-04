@@ -11,11 +11,12 @@ const LoginTab = (props) => {
   }
 
   return (
-    <Container>
+    <section className='section-home container-fluid'>
+    <div className='shadow p-3 mb-5 bg-white rounded'>
       <Nav tabs className="nav-justified">
         <NavItem>
           <NavLink
-            className={classnames({ active: activeTab === '1' })}
+            className={classnames({ active: activeTab === '1'} )}
             onClick={() => { toggle('1'); }}
           >
             Buyer Login
@@ -61,7 +62,8 @@ const LoginTab = (props) => {
           </Row>
         </TabPane>
       </TabContent>
-    </Container>
+      </div>
+    </section>
   );
 }
 

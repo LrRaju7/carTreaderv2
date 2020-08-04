@@ -11,7 +11,7 @@ import store from './store';
 library.add(fal);
 const App = () => {
   return (
-    <Provider store={store}>
+      <Provider store={store}>
       <Router>
         <Fragment>
           <Switch>

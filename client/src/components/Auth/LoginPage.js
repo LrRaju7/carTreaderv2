@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
-import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -27,24 +27,26 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
 
-      <Container className='mt-5'>
-        <Form style={{width: '100%'}}>
+    <section className='section-home container-fluid mt-5'>
+      <Form style={{ width: '100%' }} onSubmit={e => onSubmit(e)}>
         <FormGroup >
           <Label for="exampleEmail">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" />
+          <Input type="email" name="email" value={email} id="exampleEmail" onChange={e => onChange(e)} required/>
         </FormGroup>
         <FormGroup  >
-          <Label for="examplepassword">Password</Label>
-          <Input type="password" name="password" id="examplepass"/>
+          <Label for="examplePassword">Password</Label>
+          <Input type="password" name="password" value={password} id="examplePassword" onChange={e => onChange(e)}/>
         </FormGroup>
         <FormGroup>
           <p className='small-text'>
             Don't have an account? <Link to='/register'>Sign up</Link>
           </p>
         </FormGroup>
-        <Button className="btn-success">Log in</Button>
-        </Form>
-      </Container>
+        <div className='text-center'>
+        <Button style={{width: '50%'}} className="btn-success shadow">Log In</Button>
+        </div>
+      </Form>
+    </section>
 
   );
 };

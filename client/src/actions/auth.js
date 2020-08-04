@@ -43,11 +43,20 @@ export const loadUser = () => async dispatch => {
   }
 };
 
+
+
 export const register = (
   name,
   email,
   password,
-  passwordConfirm
+  passwordConfirm,
+  phone,
+  avatar,
+  address,
+  city,
+  state,
+  zip,
+  role
 ) => async dispatch => {
   const config = {
     headers: {
@@ -62,7 +71,18 @@ export const register = (
   try {
     const res = await axios.post(
       '/api/users',
-      { name, email, password },
+      {
+        name, 
+        email, 
+        password, 
+        phone, 
+        avatar,
+        address,
+        city,
+        state,
+        zip,
+        role
+      },
       config
     );
 

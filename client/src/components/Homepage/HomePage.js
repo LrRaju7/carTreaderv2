@@ -7,30 +7,33 @@ import Grid from './common/grid.js'
 import '../../styles/components/_grid.scss';
 import '../../styles/components/_auction.scss';
 class HomePage extends Component {
-  render () {
+  render() {
     return (
       <section className='section-home container-fluid'>
-          <Tabs>
-    <TabList>
-      <Tab>Ending Soon</Tab>
-      <Tab>Newly Listed</Tab>
-      <Tab>Newest Cars</Tab>
-      <Tab>Oldest Cars</Tab>
-    </TabList>
+        <div className="main shadow p-3 mb-5 bg-white rounded">
+        <Tabs>
+          <TabList>
 
-    <TabPanel>
-      <Grid list_order='ending soon'/>
-    </TabPanel>
-    <TabPanel>
-      <Grid list_order='newly listed'/>
-    </TabPanel>
-    <TabPanel>
-      <Grid list_order='newest cars'/>
-    </TabPanel>
-    <TabPanel>
-      <Grid list_order='oldest cars'/>
-    </TabPanel>    
-  </Tabs>
+            <Tab>Ending Soon</Tab>
+            <Tab>Newly Listed</Tab>
+            <Tab>Newest Cars</Tab>
+            <Tab>Oldest Cars</Tab>
+          </TabList>
+
+          <TabPanel>
+            <Grid paginate list_order='ending soon' />
+          </TabPanel>
+          <TabPanel>
+            <Grid paginate list_order='newly listed' />
+          </TabPanel>
+          <TabPanel>
+            <Grid paginate list_order='newest cars' />
+          </TabPanel>
+          <TabPanel>
+            <Grid paginate list_order='oldest cars' />
+          </TabPanel>
+        </Tabs>
+        </div>
       </section>
     )
   }

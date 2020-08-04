@@ -1,36 +1,64 @@
-import React, { Fragment } from 'react';
+import React, { Fragment,useState } from 'react';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import '../../styles/components/_dashboard.scss';
 
-const Dashboard = props => {
-  return (
-    <Fragment>
-      <Helmet>
-        <title>Dashboard | Auction</title>
-      </Helmet>
-      <div className='row'>
-        <h2 className='large-heading'>Dashboard</h2>
-        <p className='small-text'>Welcome to your dashboard, user</p>
-        <div className='button-row'>
-          <Link className='btn-gray btn-spaced large' to='/dashboard/edit'>
-            Edit Profile
-          </Link>
-          <Link className='btn-gray btn-spaced large' to='/dashboard/listings'>
-            View your listings
-          </Link>
-          <Link className='btn-gray btn-spaced large' to='/dashboard/bids'>
-            View your bid history
-          </Link>
-          <Link className='btn-gray btn-spaced large' to='/dashboard/reviews'>
-            View your reviews
-          </Link>
-        </div>
+const DashboardTab = (props) => {
+	const [activeTab, setActiveTab] = useState('1');
+  
+	const toggle = tab => {
+	  if (activeTab !== tab) setActiveTab(tab);
+	}
+
+	return (
+		<Fragment>
+
+			<section className='section-home container-fluid'>
+			<div className='shadow p-3 mb-5 bg-white rounded'>
+      <Nav tabs className="nav-justified">
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '1' })}
+            onClick={() => { toggle('1'); }}
+          >
+            Bids
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '2' })}
+            onClick={() => { toggle('2'); }}
+          >
+            Auctions
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <TabContent activeTab={activeTab}>
+        <TabPane tabId="1">
+          <Row>
+            <Col sm="12">
+
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane tabId="2">
+          <Row>
+            <Col sm="12">
+
+            </Col>
+          </Row>
+        </TabPane>
+      </TabContent>
       </div>
-    </Fragment>
-  );
+			</section>
+		</Fragment>
+	);
 };
 
-Dashboard.propTypes = {};
+DashboardTab.propTypes = {};
 
-export default Dashboard;
+export default DashboardTab;

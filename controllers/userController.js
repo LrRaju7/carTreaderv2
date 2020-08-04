@@ -6,30 +6,36 @@ const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const dotenv = require('dotenv').config();
 const userHelpers = require('./helpers/userHelpers.js')
-
 const User = require('../models/User');
+const FileUpload = require('./fileUpload');
 const Listing = require('../models/listingModel');
 
 exports.createUser = catchAsync(async (req, res, next) => {
   console.log('Received')
-  const { name, email, password } = req.body;
+  const { name, email, password, avatar, phone, address, city, state, zip, role } = req.body;
 
   if (!(name && email && password)) {
     return next(new AppError('Missing required fields', 400));
   }
   if (userHelpers.checkUserExists(email)) return next(new AppError('Email is already in use', 400));
 
-  const avatar = gravatar.url(email, {
-    s: '200',
-    r: 'pg',
-    d: 'mm'
-  });
+  
+  //   s: '200',
+  //   r: 'pg',
+  //   d: 'mm'
+  // });
 
   user = new User({
     name,
     email,
     avatar,
-    password
+    password,
+    phone,
+    address,
+    city,
+    state,
+    zip,
+    role
   });
 
   const salt = await bcrypt.genSalt(10);
