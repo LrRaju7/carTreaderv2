@@ -103,17 +103,17 @@ const ProfilePage = ({
 															<p className="card-text">{user.data.bio}</p>
 														</div>
 													</div>
-													<div className="mt-5">
-													<Link to={`/dashboard`}>
-														<button className="btn btn-block btn-outline-dark shadow" type="button">Back to Dashboard</button>
-													</Link>
-												</div>
+													<div className="mt-5 text-center">
+														<Link to={`/dashboard`}>
+															<button style={{ width: '50%' }} className="btn btn-outline-dark shadow" type="button">Back to Dashboard</button>
+														</Link>
+													</div>
 												</div>
 											</div>
 										</div>
 										<div className="profile-right">
 											{/* <ListingForm /> */}
-											<CreateListing/>
+											<CreateListing />
 										</div>
 									</div>
 								</div>

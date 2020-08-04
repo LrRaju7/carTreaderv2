@@ -147,7 +147,7 @@ const EditProfilePage = ({
                                   </div>
                                   <div className="row">
                                     <div className="col d-flex justify-content-center">
-                                      <button className="btn btn-primary btn-block shadow" type="submit" value='Edit Profile'>Update Profile</button>
+                                      <button style={{width: '50%'}} className="btn btn-primary shadow" type="submit" value='Edit Profile'>Update Profile</button>
                                     </div>
                                   </div>
                                 </div>
@@ -198,7 +198,7 @@ const EditProfilePage = ({
                               </div>
                               <div className="row">
                                 <div className="col d-flex justify-content-center">
-                                  <button className="btn btn-primary btn-block shadow" type="submit" value='Update Password'>Update Password</button>
+                                  <button style={{width: '50%'}} className="btn btn-primary shadow" type="submit" value='Update Password'>Update Password</button>
                                 </div>
                               </div>
                             </form>

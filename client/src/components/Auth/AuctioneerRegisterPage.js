@@ -114,7 +114,9 @@ const Register = ({ register, isAuthenticated }) => {
             Already have an account? <Link to='/login'>Log in</Link>
           </p>
         </FormGroup>
-        <Button className="btn-success shadow">Register</Button>
+        <div className='text-center'>
+        <Button style={{width: '50%'}} className="btn-success shadow">Register</Button>
+        </div>
       </Form>
     </section>
   );

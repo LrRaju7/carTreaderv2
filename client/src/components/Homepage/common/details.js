@@ -131,7 +131,7 @@ const Details = ({ car, user, authenticated, role }) => {
                           fontWeight: 600,
                           marginLeft: 10,
                         }}>
-                        {car["Year"]}
+                        {car["Bids"]}
                       </span>
                     </span>
                   </Col>

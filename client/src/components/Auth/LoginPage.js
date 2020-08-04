@@ -42,7 +42,9 @@ const Login = ({ login, isAuthenticated }) => {
             Don't have an account? <Link to='/register'>Sign up</Link>
           </p>
         </FormGroup>
-        <Button className="btn-success shadow">Log in</Button>
+        <div className='text-center'>
+        <Button style={{width: '50%'}} className="btn-success shadow">Log In</Button>
+        </div>
       </Form>
     </section>
 

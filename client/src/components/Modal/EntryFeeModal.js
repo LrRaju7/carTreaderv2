@@ -3,8 +3,8 @@ import { Button } from 'reactstrap';
 import Modal from 'react-modal'
 const customStyles = {
     content: {
-    width: '80%',
-    transform: 'translate(10%, 15%)',
+    width: '60%',
+    transform: 'translate(30%, 15%)',
     backgroundColor: 'white',
     },
   };
@@ -14,7 +14,7 @@ function EntryFeeModal({user, authenticated,}) {
     
   return (
     <section>
-        <Button className='btn btn-secondary btn-block' onClick={()=>setModalIsOpen(true)}>Place Bid</Button>
+        <Button className='btn btn-secondary btn-block shadow' onClick={()=>setModalIsOpen(true)}>Place Bid</Button>
         <Modal className="m-5" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} style={customStyles}>
         <div className="container">
                 <div className="row mt-5">
@@ -78,7 +78,9 @@ function EntryFeeModal({user, authenticated,}) {
                                 </div>
                             </div>
                             <hr className="mb-4" />
-                            <button className="btn btn-primary btn-lg btn-block mb-3" type="submit">Pay Entry Fee</button>
+                            <div className='text-center'>
+                            <button style={{width: '50%'}} className="btn btn-primary mb-3 shadow" type="submit">Pay Entry Fee</button>
+                            </div>
                         </form>
                     </div>
                 </div>

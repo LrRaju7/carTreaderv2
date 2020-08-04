@@ -185,7 +185,9 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
               />
             </div>
           </div>
-        <Input type='submit' className="btn btn-block btn-success mt-5 shadow" value={uploading ? 'Creating..' : 'Create listing'}/>
+          <div className='text-center'>
+        <Input style={{width: '50%'}} type='submit' className="btn btn-success mt-5 shadow" value={uploading ? 'Creating..' : 'Create listing'}/>
+        </div>
       </Form>
     </Fragment>
   );
