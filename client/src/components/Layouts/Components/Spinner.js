@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import SpinnerGif from './Spinner.gif';
+import SpinnerGif from './Loading_icon.gif';
 import { Helmet } from 'react-helmet';
 
 const Spinner = () => {
@@ -8,7 +8,7 @@ const Spinner = () => {
       <Helmet>
         <title>Loading.. | Auction</title>
       </Helmet>
-      <div className='spinner-container'>
+      <div className='spinner-container d-flex flex-row justify-content-center align-items-center' style={{height:'100%'}}>
         <img src={SpinnerGif} className='spinner-img' alt='Loading' />
       </div>
     </Fragment>
