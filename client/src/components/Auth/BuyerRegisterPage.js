@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
@@ -22,7 +22,7 @@ const Register = ({ register, isAuthenticated }) => {
 
   const { email, name, password, passwordConfirm, phone, avatar, address, city, state, zip, role, termsAndConditions} = formData;
   const [verified, setVerified] = useState(false);
-
+  console.log(verified)
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 

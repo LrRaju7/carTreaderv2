@@ -8,7 +8,7 @@ const Spinner = () => {
       <Helmet>
         <title>Loading.. | Auction</title>
       </Helmet>
-      <div className='spinner-container d-flex flex-row justify-content-center align-items-center' style={{height:'100%'}}>
+      <div className='spinner-container d-flex flex-row justify-content-center align-items-center' style={{minHeight:'100%'}}>
         <img src={SpinnerGif} className='spinner-img' alt='Loading' />
       </div>
     </Fragment>

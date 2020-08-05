@@ -67,7 +67,7 @@ const Details = ({ car, user, authenticated, role }) => {
               paddingRight: 5,
               borderRadius: 2,
               fontFamily:
-                "'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif",
+                "'Open Sans','Helvetica Neue','Helvetica','Arial','sans-serif'",
               fontSize: 14,
             }}
             enableImageSelection={false}

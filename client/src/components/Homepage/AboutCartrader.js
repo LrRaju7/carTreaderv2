@@ -105,7 +105,7 @@ class AboutCartrader extends Component {
                         <h4>Buying a Car</h4>
                         <p className='card-text lead pb-3'>Cartrader is an auction site – so buying a car involves placing bids on the cars you want to buy. We’ve made bidding easy, and we’ve explained it in a short tutorial here:</p>
                         <div className='text-center embed-responsive embed-responsive-16by9'>
-                        <iframe className='embed-responsive-item' src="https://www.youtube.com/embed/fIcNowz1ELk" allowfullscreen> Tutorial Here</iframe>
+                        <iframe title='video1' className='embed-responsive-item' src="https://www.youtube.com/embed/fIcNowz1ELk" allowfullscreen> Tutorial Here</iframe>
                         </div>
                         <p className='card-text lead pt-3'>When you bid on a car, you’re agreeing to buy it, should you end up as the high bidder – so you’ll want to do your due diligence before placing a bid. That means asking the seller questions, looking at photos, or even scheduling a trip to see the car in person. If you don’t plan to follow through on buying the car, don’t bid – because you might end up as the high bidder.
                         All winning bidders pay a 4.5% buyer’s fee to Cartrader on top of the winning bid amount. The buyer’s fee has a minimum of $225, but it’s capped at $4,500 so fees don’t become prohibitive for buyers. To ensure the commission is paid, a hold is placed on your credit card when you place a bid – and when the auction ends, the holds are released for all bidders except the winner, who is charged the commission. That’s why we require valid credit card information before you can place a bid. Bids on Cartrader are binding, and there are no refunds, should you wish to change your mind.
@@ -114,7 +114,7 @@ class AboutCartrader extends Component {
                         <h4>Selling a Car</h4>
                         <p className='card-text lead pb-3'>Selling a car on Cartrader is easy – and we’ve explained it all in a video tutorial here:</p>
                         <div className='text-center embed-responsive embed-responsive-16by9'>
-                        <iframe className='embed-responsive-item' src="https://www.youtube.com/embed/ifoFOXRBiHM" allowfullscreen> Tutorial Here</iframe>
+                        <iframe title='video2' className='embed-responsive-item' src="https://www.youtube.com/embed/ifoFOXRBiHM" allowfullscreen> Tutorial Here</iframe>
                         </div>
                         <p className='card-text lead pt-3'>The basic gist is that we initially ask you to send us a few short details on the car you want to sell – including the VIN, some photos, and a brief description of the car. The fee to sell a car on Cars & Bids is $89, but we’ll drop the fee to $49 if you’ve sold with us before or if your auction has no reserve.</p>
                         <p className='card-text lead'>Not every car is right for Cars & Bids, and we don’t select every car that’s submitted. But if we’re interested in listing your car, we’ll get in touch, and we’ll ask for more information from you – like detailed photos, service and ownership history, and various other important items prospective buyers will need to know before buying a car.</p>

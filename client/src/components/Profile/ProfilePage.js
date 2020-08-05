@@ -76,7 +76,7 @@ const ProfilePage = ({
 												<div className="profile-stat">
 													<div className="row">
 														<div className="col-md-4 stat-item">
-															{user.data.ratingsAverage} <span>Rating</span>
+															{user.data.ratingsAverage} * <span>Rating</span>
 														</div>
 														<div className="col-md-4 stat-item">
 															* <span>Uploads</span>
@@ -91,18 +91,12 @@ const ProfilePage = ({
 												<div className="profile-info">
 													<h4 className="heading">Basic Info</h4>
 													<ul className="list-unstylesd list-justify">
-														<li className="list-group-item">Role <span>{user.data.role}</span></li>
-														<li className="list-group-item">Mobile <span>+880{user.data.phone}</span></li>
-														<li className="list-group-item">Email <span>{user.data.email}</span></li>
-														<li className="list-group-item">Address <span>{user.data.location}</span></li>
+														<li className="list-group-item"><strong>Role:</strong> {user.data.role}</li>
+														<li className="list-group-item"><strong>Mobile:</strong> {user.data.phone}</li>
+														<li className="list-group-item"><strong>Email:</strong> {user.data.email}</li>
+														<li className="list-group-item"><strong>Address:</strong> {user.data.location}</li>
+														<li className="list-group-item"><strong>Bio:</strong> {user.data.bio}</li>
 													</ul>
-													<div className="card">
-														<h5 className="card-header">Bio</h5>
-														<div className="card-body">
-															<h5 className="card-title">About Me</h5>
-															<p className="card-text">{user.data.bio}</p>
-														</div>
-													</div>
 													<div className="mt-5 text-center">
 														<Link to={`/dashboard`}>
 															<button style={{ width: '50%' }} className="btn btn-outline-dark shadow" type="button">Back to Dashboard</button>

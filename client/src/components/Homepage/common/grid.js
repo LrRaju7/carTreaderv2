@@ -26,7 +26,7 @@ const orderSelector = (list_order, newlist) => {
 }
 class Grid extends React.Component {   
   static propTypes = {
-    perPage: 12,
+    perPage: 8,
   };  
 
   constructor(props) {
@@ -44,10 +44,10 @@ class Grid extends React.Component {
     console.log('mounting',this.props.list_order)
     let newlist = carData
     newlist = orderSelector(this.props.list_order, newlist)
-    newlist = newlist.slice(0,(12+0))    
+    newlist = newlist.slice(0,(8+0))    
     this.setState({
       data: newlist,
-      pageCount: Math.ceil(carData.length / 12),
+      pageCount: Math.ceil(carData.length / 8),
     });
   }
   shouldComponentUpdate(nextProps, nextState){
@@ -61,12 +61,12 @@ class Grid extends React.Component {
     let that = this
     let newlist = carData
     newlist = orderSelector(this.props.list_order, newlist)
-    let newstart = 12*selected
-    newlist = newlist.slice(newstart,(12+newstart))
+    let newstart = 8*selected
+    newlist = newlist.slice(newstart,(8+newstart))
     this.setState({ offset: offset }, () => {
      that.setState({
       data: newlist,
-      pageCount: Math.ceil(carData.length / 12),
+      pageCount: Math.ceil(carData.length / 8),
     });
     });
   };
@@ -76,7 +76,7 @@ class Grid extends React.Component {
     let md = props.md ? props.md : 4
     let lg = props.lg ? props.lg : 3
     let sm = props.sm ? props.sm : 6
-    let paginate = !props.paginate ? null : <ReactPaginate previousLabel={'previous'} nextLabel={'next'} breakLabel={'...'} breakClassName={'break-me'} pageCount={this.state.pageCount} marginPagesDisplayed={2} pageRangeDisplayed={5} onPageChange={this.handlePageClick} containerClassName={'pagination'} subContainerClassName={'pages pagination'} activeClassName={'active'} />              
+    let paginate = !props.paginate ? null : <ReactPaginate previousLabel={'prev'} nextLabel={'next'} breakLabel={'...'} breakClassName={'break-me'} pageCount={this.state.pageCount} marginPagesDisplayed={1} pageRangeDisplayed={1} onPageChange={this.handlePageClick} containerClassName={'pagination'} subContainerClassName={'pages pagination'} activeClassName={'active'} size="sm"/>              
       return (
         <div>
           <Row> 

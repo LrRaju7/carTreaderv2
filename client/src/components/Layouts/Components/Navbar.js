@@ -56,7 +56,7 @@ class Navbar extends Component {
       roleElement = <Nav navbar style={{ justifyContent: 'flex-end' }}>
         <NavItem className={this.tabClass('/dashboard')}>
 
-          <UncontrolledDropdown nav inNavbar>
+          <UncontrolledDropdown nav inNavbar >
             <DropdownToggle nav caret>
               {this.props.user}
             </DropdownToggle>
@@ -78,17 +78,14 @@ class Navbar extends Component {
         </NavItem>
       </Nav>
     } else {
-      signupElement = <Nav navbar style={{ justifyContent: 'flex-end' }}>
-        <NavItem className={this.tabClass('/register')}>
-          <NavLink href='/register'>SignUp
-        </NavLink>
-        </NavItem>
-      </Nav>
-
       roleElement = <Nav navbar style={{ justifyContent: 'flex-end' }}>
         <NavItem className={this.tabClass('/login')}>
           <NavLink href='/login'>Login
           </NavLink>
+        </NavItem>
+        <NavItem className={this.tabClass('/register')}>
+          <NavLink href='/register'>SignUp
+        </NavLink>
         </NavItem>
       </Nav>
     }
@@ -99,7 +96,7 @@ class Navbar extends Component {
 
     return (
       <Container fluid>
-        <BootstrapNavbar color="white" fixed="top" expand="lg" className='pad80lr marg15lr' style={{zIndex:'10'}} className="navbar navbar-inverse bg-inverse navbar-toggleable-sm fixed-top">
+        <BootstrapNavbar color="white" fixed="top" expand="lg" className='pad80lr marg15lr' style={{zIndex:'10'}}>
           <Container fluid>
 
             <NavbarBrand className='navbar-brand' href='/'>
@@ -129,7 +126,6 @@ class Navbar extends Component {
               </Nav>
                 <SearchBar />
               {roleElement}
-              {signupElement}
             </Collapse>
 
           </Container>
