@@ -99,13 +99,13 @@ class Navbar extends Component {
 
     return (
       <Container fluid>
-        <BootstrapNavbar color="white" fixed="top" expand="lg" className='pad80lr marg15lr' style={{zIndex:'10'}}>
+        <BootstrapNavbar color="white" fixed="top" expand="lg" className='pad80lr marg15lr' style={{zIndex:'10'}} className="navbar navbar-inverse bg-inverse navbar-toggleable-sm fixed-top">
           <Container fluid>
 
             <NavbarBrand className='navbar-brand' href='/'>
               <img className='navbar-logo' src='/media/autotrade_logo.png' alt='' />
             </NavbarBrand>
-            <NavbarToggler onClick={this.toggleMenu.bind(this)} className="mr-2" />
+            <NavbarToggler  onClick={this.toggleMenu.bind(this)} className="mr-2"><span className="fa fa-bars"></span></NavbarToggler>
 
             <Collapse isOpen={this.state.navBarOpen} navbar>
               <Nav navbar style={{ width: '100%' }}>

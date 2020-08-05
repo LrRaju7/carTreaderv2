@@ -6,13 +6,31 @@ import { Button, Form, Label} from 'reactstrap';
 import Modal from 'react-modal'
 const customStyles = {
     content: {
-    width: '60%',
-    transform: 'translate(30%, 15%)',
-    backgroundColor: 'white',
-    border: 'none',
-    zIndex: 100000,
+        width: 'auto',
+        height: '100vh',
+        backgroundColor: 'white',
+        zIndex: 100000,
+        overlfow: 'scroll',
+        overflowY: 'scroll',
+        position: 'absolute',
+        border: '1px solid #ccc',
+        WebkitOverflowScrolling: 'touch',
+        borderRadius: '4px',
+        outline: 'none',
+        padding: '20px'
     },
-    overlay: {zIndex: 1000}
+    overlay: {
+        zIndex: 1000,
+        overlfow: 'scroll',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(255, 255, 255, 0.5)'
+    }
   };
 
 const ItemWiseSearch = ({ getListings, clearListings }) => {
@@ -35,8 +53,8 @@ const ItemWiseSearch = ({ getListings, clearListings }) => {
     return (
         <section>
             <a style={{ cursor: 'pointer' }} onClick={() => setModalIsOpen(true)}>Advanced Search</a>
-            <Modal className="m-5" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} style={customStyles}>
-                <div className="main justify-content-center p-3 mb-5 bg-white rounded">
+            <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} style={customStyles}>
+                <div className="main justify-content-center p-3 bg-white rounded">
                     <h1 className="text-center">Advanced Search</h1>
                     <Form onSubmit={e => onSubmit(e)}>
                         <div className="form-group">
@@ -122,7 +140,7 @@ const ItemWiseSearch = ({ getListings, clearListings }) => {
                                 <option>Salvage</option>
                             </select>
                         </div>
-                        <div className='text-center'>
+                        <div className='text-center mb-5'>
                             <Button style={{ width: '50%' }} className="btn btn-success mt-5 shadow">Search Item</Button>
                         </div>
                     </Form>
