@@ -371,7 +371,6 @@ ul.notifications > li {
       -ms-transition: all 0.2s ease-out;
       -o-transition: all 0.2s ease-out;
       transition: all 0.2s ease-out;
-      float: right;
       position: relative;
       top: 5px;
       font-size: 12px;
@@ -388,8 +387,6 @@ ul.notifications > li {
     .sidebar .nav > li > a .badge {
       font-weight: 400;
       background-color: #F9354C; }
-  .sidebar .nav {
-    /* submenu */ }
     .sidebar .nav i {
       margin-right: 10px;
       font-size: 18px; }
@@ -1761,10 +1758,6 @@ ul.activity-timeline > li {
       display: -ms-flexbox;
       display: -webkit-flex;
       display: flex; }
-    
-    .ct-chart-pie .ct-label,
-    .ct-chart-donut .ct-label {
-      dominant-baseline: central; }
     
     .ct-label.ct-horizontal.ct-start {
       -webkit-box-align: flex-end;
