@@ -83,15 +83,19 @@ const DashboardTab = (_props) => {
               </div>
               <div className="row clearfix row-deck mt-3">
                 <div className="col-xl-8 col-lg-12">
-                  <div className='table-responsive '>
+                <div className="card bg-light">
+                    <div className="card-header">
+                      <h3 className="card-title">Bidding Details</h3>
+                    </div>
+                    <div className='table-responsive'>
                     <table className="table table-bordered table-striped table-light table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
-                          <th scope="col">Bids</th>
+                          <th scope="col">SL</th>
+                          <th scope="col">Title</th>
+                          <th scope="col">Higest Bid</th>
+                          <th scope="col">Your Bid</th>
+                          <th scope="col">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -160,6 +164,7 @@ const DashboardTab = (_props) => {
                         </tr>
                       </tbody>
                     </table>
+                  </div>
                   </div>
                 </div>
                 <div className="col-xl-4 col-lg-12">
