@@ -11,16 +11,11 @@ const Register = ({ register, isAuthenticated }) => {
     password: '',
     passwordConfirm: '',
     avatar:'',
-    phone: '',
-    address: '',
-    city: '',
-    state: '',
-    zip: '',
-    role: '',
+    location: '',
+    role:'',
     termsAndConditions: '',
   });
-
-  const { email, name, password, passwordConfirm, phone, avatar, address, city, state, zip, role, termsAndConditions} = formData;
+  const { email, name, password, passwordConfirm, avatar, location, role,termsAndConditions} = formData;
   const [verified, setVerified] = useState(false);
   console.log(verified)
   const onChange = e =>
@@ -29,7 +24,7 @@ const Register = ({ register, isAuthenticated }) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (verifyCallback) {
-      register(name, email, password, passwordConfirm, phone, avatar, address, city, state, zip, role, termsAndConditions);
+      register(name, email, password, passwordConfirm, avatar, location, role, termsAndConditions);
     } else {
       alert('Do the CAPTCHA');
     }
@@ -69,40 +64,16 @@ const Register = ({ register, isAuthenticated }) => {
           </Col>
         </Row>
         <FormGroup>
-          <Label for="examplePhone">Buyer Phone</Label>
-          <Input type="number" name="phone" value={phone} id="examplephone" onChange={e => onChange(e)}/>
-        </FormGroup>
-        <FormGroup>
         <Label for="exampleAvatar">Avatar</Label>
         <Input type="file" name="avatar" value={avatar} id="exampleAvatar" onChange={e => onChange(e)}/>
       </FormGroup>
         <FormGroup>
           <Label for="exampleAddress">Buyer Address</Label>
-          <Input type="text" name="address" value={address} id="exampleAddress" onChange={e => onChange(e)}/>
+          <Input type="text" name="location" value={location} id="exampleAddress" onChange={e => onChange(e)}/>
         </FormGroup>
-        <Row form>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="exampleCity">City</Label>
-              <Input type="text" name="city" value={city} id="exampleCity" onChange={e => onChange(e)}/>
-            </FormGroup>
-          </Col>
-          <Col md={4}>
-            <FormGroup>
-              <Label for="exampleState">State</Label>
-              <Input type="text" name="state" value={state} id="exampleState" onChange={e => onChange(e)}/>
-            </FormGroup>
-          </Col>
-          <Col md={2}>
-            <FormGroup>
-              <Label for="exampleZip">Zip</Label>
-              <Input type="number" name="zip" value={zip} id="exampleZip" onChange={e => onChange(e)}/>
-            </FormGroup>  
-          </Col>
-        </Row>
         <FormGroup>
           <Label for="exampleRole">Role</Label>
-          <Input type="text" name="role" defaultValue="Buyer" id="exampleRole" onChange={e => onChange(e)}/>
+          <Input type="text" name="role" Value="Buyer" id="exampleRole" readonly='true'/>
         </FormGroup>
         <FormGroup check>
           <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms" onChange={e => onChange(e)}/>

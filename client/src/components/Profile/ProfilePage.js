@@ -69,7 +69,7 @@ const ProfilePage = ({
 									<div className="profile-header shadow">
 										<div className="overlay"></div>
 										<div className="profile-main">
-											<img src="https://lh3.googleusercontent.com/proxy/6CYXFGlZwSJYzZnV5g87UWHfo55NUe7shy1BLeC9LOzJ7T97S63xj8cjSumUiiKeD8ht44MgeVJNqTAdHbm4uITIRMJSDNJu4MVCbZo8dLRqUJ4PKmratLlRyseE3NJMPnZIzsA6lyjQm-RwwEe5kaoU0e7SqF4jsrFD8mls" className="rounded-circle image-size shadow" alt="100x100" />
+											<img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="100x100" />
 											<h2 className="name mt-5">{user.data.name}</h2>
 											<span className="online-status status-available">Available</span>
 										</div>
@@ -126,7 +126,7 @@ const ProfilePage = ({
 												<div className="card bg-light">
 													<div className="card-header text-center">
 														<div className="profile-main">
-															<img src="https://lh3.googleusercontent.com/proxy/6CYXFGlZwSJYzZnV5g87UWHfo55NUe7shy1BLeC9LOzJ7T97S63xj8cjSumUiiKeD8ht44MgeVJNqTAdHbm4uITIRMJSDNJu4MVCbZo8dLRqUJ4PKmratLlRyseE3NJMPnZIzsA6lyjQm-RwwEe5kaoU0e7SqF4jsrFD8mls" className="rounded-circle image-size shadow" alt="100x100" />
+															<img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="100x100" />
 															<h3 className="name">{user.data.name}</h3>
 															<span className="online-status status-available">Available</span>
 														</div>
@@ -191,7 +191,7 @@ const ProfilePage = ({
 														</table>
 														<div className="mt-5 text-center">
 															<Link to={`/dashboard`}>
-																<button style={{ width: '50%' }} className="btn btn-outline-dark shadow" type="button">Back to Dashboard</button>
+																<button style={{ width: '50%' }} className="btn btn-outline-dark shadow mb-5" type="button">Back to Dashboard</button>
 															</Link>
 														</div>
 													</div>

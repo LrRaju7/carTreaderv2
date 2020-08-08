@@ -175,17 +175,8 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
             <option value={false} >Inactive</option>
           </select>
         </FormGroup>
-        <div className='form-group'>
-            <h4 className='medium-heading'>Captcha</h4>
-            <div className='recaptcha-container'>
-              <ReCAPTCHA
-                sitekey='6Lcck9cUAAAAAIuHfUVETNVzklfJ6QkJ69V5tor0'
-                onChange={verifyCallback}
-              />
-            </div>
-          </div>
           <div className='text-center'>
-        <Input style={{width: '50%'}} type='submit' className="btn btn-success mt-5 shadow" value={uploading ? 'Creating..' : 'Create listing'}/>
+        <Input style={{width: 'auto'}} type='submit' className="btn btn-success mt-5 shadow" value={uploading ? 'Creating..' : 'Create listing'}/>
         </div>
       </Form>
     </Fragment>
