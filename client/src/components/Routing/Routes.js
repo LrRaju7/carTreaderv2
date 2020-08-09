@@ -43,10 +43,10 @@ const Routes = ({ loadUser, dispatch }) => {
     <div>
       <Switch>
         <AppRoute exact path='/' layout={BuyBidAuctionLayout} component={HomePage} />
-        <PrivateRoute exact path='/auctions/:id/details' layout={BuyBidAuctionLayout} component={Details} />
+        <AppRoute exact path='/auctions/:id/details' layout={BuyBidAuctionLayout} component={Details} />
         <AppRoute exact path='/ct-panel' layout={BuyBidAuctionLayout} component={AdminLogin} />
         <AppRoute exact path='/ct-panel/admin-reg' layout={BuyBidAuctionLayout} component={AdminSignup} />
-        <AppRoute exact path='/login' layout={BuyBidAuctionLayout} component={LoginTab} />
+        <AppRoute exact path='/login' layout={BuyBidAuctionLayout} component={Login} />
         <AppRoute exact path='/about' layout={BuyBidAuctionLayout} component={AboutCartrader} />
         <AppRoute exact path='/contact' layout={BuyBidAuctionLayout} component={Contact} />
         <AppRoute exact path='/register' layout={BuyBidAuctionLayout} component={RegisterTab} />

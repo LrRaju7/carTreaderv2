@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 import Modal from 'react-modal'
 const customStyles = {
     content: {
-        width: 'auto',
+        width: '60vw',
         height: '100vh',
         backgroundColor: 'white',
         zIndex: 100000,
@@ -14,7 +14,11 @@ const customStyles = {
         WebkitOverflowScrolling: 'touch',
         borderRadius: '4px',
         outline: 'none',
-        padding: '20px'
+        padding: 'auto',
+        margin: 'auto',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: "center"
     },
     overlay: {
         zIndex: 1000,
@@ -34,8 +38,8 @@ function EntryFeeModal({ user, authenticated, }) {
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
     return (
-        <section>
-            <Button className='btn btn-secondary btn-block shadow' onClick={() => setModalIsOpen(true)}>Place Bid</Button>
+        <div>
+            <button className='btn btn-outline-dark shadow' onClick={() => setModalIsOpen(true)} style={{width:'100%', height:'100%'}}>Pay Entry Fee</button>
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} style={customStyles}>
                 <div className="container">
                     <div className="row">
@@ -100,14 +104,14 @@ function EntryFeeModal({ user, authenticated, }) {
                                 </div>
                                 <hr className="mb-4" />
                                 <div className='text-center mb-4'>
-                                    <button style={{ width: '50%' }} className="btn btn-primary mb-3 shadow" type="submit">Pay Entry Fee</button>
+                                    <button style={{ width: 'auto' }} className="btn btn-primary mb-3 shadow" type="submit">Pay Entry Fee</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </Modal>
-        </section>
+        </div>
     );
 }
 

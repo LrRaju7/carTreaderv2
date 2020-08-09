@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getListings, clearListings } from '../../actions/listing';
-import { Button, Form, Label} from 'reactstrap';
+import { Button, Form, Label } from 'reactstrap';
 import Modal from 'react-modal'
 const customStyles = {
     content: {
-        width: 'auto',
+        width: '60vw',
         height: '100vh',
         backgroundColor: 'white',
         zIndex: 100000,
@@ -17,7 +17,11 @@ const customStyles = {
         WebkitOverflowScrolling: 'touch',
         borderRadius: '4px',
         outline: 'none',
-        padding: '20px'
+        padding: 'auto',
+        margin: 'auto',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: "center"
     },
     overlay: {
         zIndex: 1000,
@@ -31,9 +35,13 @@ const customStyles = {
         bottom: 0,
         backgroundColor: 'rgba(255, 255, 255, 0.5)'
     }
-  };
+};
 
 const ItemWiseSearch = ({ getListings, clearListings }) => {
+
+
+
+
     const [formData, setFormData] = useState({
         query: '',
         category: 'All Categories'
@@ -141,7 +149,7 @@ const ItemWiseSearch = ({ getListings, clearListings }) => {
                             </select>
                         </div>
                         <div className='text-center mb-5'>
-                            <Button style={{ width: '50%' }} className="btn btn-success mt-5 shadow">Search Item</Button>
+                            <Button style={{ width: 'auto' }} className="btn btn-success mt-5 shadow">Search Item</Button>
                         </div>
                     </Form>
                 </div>

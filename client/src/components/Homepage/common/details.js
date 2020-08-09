@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Container, Row, Col, Badge, Button, Table } from "reactstrap";
 import Gallery from "react-grid-gallery";
 import Countdown from "react-countdown";
 import moment from "moment";
+import { getUserByToken} from '../../../actions/user';
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Grid from "./grid.js";
@@ -11,14 +12,40 @@ import images from "../../../data/images.js";
 import EntryFee from "../../Modal/EntryFeeModal"
 import { Link } from "react-router-dom";
 
-const Details = ({ car, user, authenticated, role }) => {
+const Details = ({ 
+  car,
+  getUserByToken,
+  isAuthenticated,
+  user: { data, loading }
+}) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    location: '',
+    bio: '',
+  });
+  useEffect(() => {
+    getUserByToken();
+  }, [getUserByToken, isAuthenticated]);
+
+  useEffect(() => {
+    setFormData({
+      name: loading || !data.name ? '' : data.name,
+      email: loading || !data.email ? '' : data.email,
+      location: loading || !data.location ? '' : data.location,
+      avatar: loading || !data.avatar ? '' : data.avatar,
+      role: loading || !data.role ? '' : data.role,
+    });
+  }, [loading, data]);
+
   let enddate = moment(car["Ending"], "DD/MM/YYYY");
   let endtime = enddate.valueOf();
   let curdate = new Date();
   let curtime = curdate.getTime();
   let diff = endtime - curtime;
   let comp = diff < 0 ? (<span style={{ fontWeight: 600, marginLeft: 10 }}>Ended</span>) : (<Countdown date={Date.now() + diff} />);
-  let button = authenticated ? <Link to='/entryfee'><Button color='primary' style={{ fontSize: 18 }} block>Place Bid</Button></Link> : <Link to='/entryfee'><Button color='secondary' style={{ fontSize: 18 }} block>Login to Bid</Button></Link>
+  // let button = isAuthenticated ? <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link> : <EntryFee /> 
+  let button = isAuthenticated ? <EntryFee /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link> 
   return (
     <Container fluid style={{ height: "80vh" }}>
       <Row>
@@ -32,13 +59,6 @@ const Details = ({ car, user, authenticated, role }) => {
             <p style={{ marginBottom: 0 }}>
               {car["Exterior Color"]} {car["Make"]} {car["Model"]}
             </p>
-            {/* <a
-              href='https://media.carsandbids.com/77de68daecd823babbb58edb1c8e14d7106e83bb/documents/s4s4.YWwFoy-RP.pdf'
-              rel='noopener noreferrer'
-              class='view-report'
-              target='_blank'>
-              View Vehicle History Report
-            </a> */}
           </div>
         </Col>
         <br />
@@ -139,8 +159,7 @@ const Details = ({ car, user, authenticated, role }) => {
               </Badge>
             </Col>
             <Col className='toppad20' md={3}>
-              {/* {button} */}
-              <EntryFee />
+              {button}
             </Col>
           </Row>
           <Row>
@@ -225,7 +244,7 @@ const Details = ({ car, user, authenticated, role }) => {
           </Row>
         </Col>
         <Col>
-          <Grid sm={6} md={6} lg={6} list_order='ending soon'/>
+          <Grid sm={6} md={6} lg={6} list_order='newest cars'/>
         </Col>
       </Row>
     </Container>
@@ -233,9 +252,9 @@ const Details = ({ car, user, authenticated, role }) => {
 };
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
-  authenticated: state.auth.authenticated,
+  user: state.user,
+  isAuthenticated: state.auth.isAuthenticated,
   role: state.auth.role
 })
 
-export default connect(mapStateToProps, null)(Details)
+export default connect(mapStateToProps, {getUserByToken})(Details)

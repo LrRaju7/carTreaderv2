@@ -99,7 +99,7 @@ const ProfilePage = ({
 											</ul>
 											<div className="mt-5 text-center">
 												<Link to={`/dashboard`}>
-													<button style={{ width: '50%' }} className="btn btn-outline-dark shadow" type="button">Back to Dashboard</button>
+													<button style={{ width: 'auto' }} className="btn btn-outline-dark shadow" type="button">Back to Dashboard</button>
 												</Link>
 											</div>
 										</div>
