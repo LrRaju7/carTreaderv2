@@ -15,6 +15,7 @@ const Register = ({ register, isAuthenticated }) => {
     role:'',
     termsAndConditions: '',
   });
+  const [uploading, setUploading] = useState(false);
   const { email, name, password, passwordConfirm, avatar, location, role,termsAndConditions} = formData;
   const [verified, setVerified] = useState(false);
   console.log(verified)
@@ -85,7 +86,8 @@ const Register = ({ register, isAuthenticated }) => {
           </p>
         </FormGroup>
         <div className='text-center'>
-        <Button style={{width: '50%'}} className="btn-success shadow">Register</Button>
+        <Button style={{width: '50%'}} className="btn-success shadow"
+            disabled={uploading}>{uploading ? 'Registering':'Register'}</Button>
         </div>
       </Form>
     </section>
