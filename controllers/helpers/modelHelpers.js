@@ -2,6 +2,7 @@ const {
 	uploadFileToCloudinary,
 } = require("./fileHelpers.js");
 exports.fieldSanitizer = async (payload, Model) => {
+	console.log("HIHI")
 	let sanitizedPayload = {}, imageArr = [], images = [];
 	let hasImages = false, errors = {}, result = { isError: false };
 	const keylist = Object.keys(payload);

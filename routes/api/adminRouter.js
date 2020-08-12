@@ -2,6 +2,7 @@ const AdminBro = require('admin-bro')
 const AdminBroExpress = require('admin-bro-expressjs')
 const UserAdminOptions = require('./admin/userOptions.js')
 const UnverifiedListingAdminOptions = require('./admin/listings/unverifiedListingOptions.js')
+const VerifiedListingAdminOptions = require('./admin/listings/verifiedListingOptions.js')
 const User = require('../../models/User');
 
 const generateAdmin = (db) => {
@@ -14,7 +15,7 @@ const generateAdmin = (db) => {
 		  companyName: '',
 		  logo: '/media/logo.svg'
 		},
-	  resources: [UserAdminOptions, UnverifiedListingAdminOptions],
+	  resources: [UserAdminOptions, VerifiedListingAdminOptions, UnverifiedListingAdminOptions],
 	  rootPath: '/admin',
 	  database: db
 	}

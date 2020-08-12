@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
   },
   privileges: {
     type: [String],
-    enum: ['hello','world','aaa'],
+    enum: ['editor','superadmin','approver'],
     required: function () {
         return this.role === 'Administrator'
       }
