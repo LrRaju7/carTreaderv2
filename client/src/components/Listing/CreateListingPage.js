@@ -16,7 +16,7 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
     minIncrement: '',
     category: '',
     length: '',
-    condition: 'used',
+    condition: '',
     startPrice: ''
   });
 
@@ -167,13 +167,6 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
               dateFormat='MMMM d, yyyy'
               required
             />
-        </FormGroup>
-        <FormGroup  >
-          <Label for="slug">Active</Label>
-          <select class="custom-select">
-            <option selected value={true}>Active</option>
-            <option value={false} >Inactive</option>
-          </select>
         </FormGroup>
           <div className='text-center'>
         <Input style={{width: 'auto'}} type='submit' className="btn btn-success mt-5 shadow" value={uploading ? 'Creating..' : 'Create listing'}/>

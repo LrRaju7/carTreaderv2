@@ -57,8 +57,7 @@ exports.authenticate = catchAsync(async (req, res, next) => {
       return next(new AppError('Token is not valid', 401));
     } else {
       console.log("======================================<>")
-      console.log(req)
-      console.log(decoded)
+      console.log("USER AUTHENTICATED")
       console.log(decoded.user)
       console.log("======================================<>")
       req.user = decoded.user;

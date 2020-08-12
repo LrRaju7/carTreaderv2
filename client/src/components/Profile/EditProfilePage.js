@@ -53,6 +53,7 @@ const EditProfilePage = ({
       avatar: loading || !data.avatar ? '' : data.avatar,
       date: loading || !data.date ? '' : data.date,
       role: loading || !data.role ? '' : data.role,
+      verified: loading || !data.verified.status ? '' : data.verified.status,
     });
   }, [loading, data]);
 
@@ -71,7 +72,7 @@ const EditProfilePage = ({
 
   return loading || data === null ? (
     <Spinner />
-  ) : (
+  ) :(data.role === 'Buyer' || (data.role === 'Bidder' && data.verified.status === true) || (data.role === 'Auctioneer' && data.verified.status === true)) ? (
       <Fragment>
         <section className='section-home container-fluid' >
           <div className="shadow p-3 mb-5 bg-white rounded">
@@ -208,6 +209,22 @@ const EditProfilePage = ({
           </div>
         </section>
       </Fragment>
+    ) : (
+      <Fragment>
+						<section className='section-home container-fluid' >
+							<div className='align-items-center justify-content-center' style={{marginTop:'20%'}}>
+							<p className='h1 text-center text-muted'>
+							your account is not verified yet. please be patient. After the verification is completed, you will be able to access your account.
+							</p>
+							<p className='h1 text-center text-muted'>
+							Verification process can take upto 72 hours.
+							</p>
+							<p className='h1 text-center'>
+								Thank you!!! <span><i className='fa fa-smile'></i></span>
+							</p>
+							</div>
+						</section>
+					</Fragment>
     );
 };
 

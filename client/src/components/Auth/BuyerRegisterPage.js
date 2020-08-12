@@ -10,22 +10,24 @@ const Register = ({ register, isAuthenticated }) => {
     email: '',
     password: '',
     passwordConfirm: '',
-    avatar:'',
     location: '',
-    role:'',
-    termsAndConditions: '',
+    phone:'',
+    role:'Buyer',
   });
   const [uploading, setUploading] = useState(false);
-  const { email, name, password, passwordConfirm, avatar, location, role,termsAndConditions} = formData;
+  const role = 'Buyer'
+  const { email, name, password, passwordConfirm, location, phone} = formData;
   const [verified, setVerified] = useState(false);
   console.log(verified)
-  const onChange = e =>
+  const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
+  }
+    
   const onSubmit = async e => {
     e.preventDefault();
+    console.log("----------------------------->ROLE IS ", role)
     if (verifyCallback) {
-      register(name, email, password, passwordConfirm, avatar, location, role, termsAndConditions);
+      register(name, email, password, passwordConfirm , location, phone, role);
     } else {
       alert('Do the CAPTCHA');
     }
@@ -65,19 +67,26 @@ const Register = ({ register, isAuthenticated }) => {
           </Col>
         </Row>
         <FormGroup>
+          <Label for="examplePhone">Buyer Phone</Label>
+          <Input type="number" name="phone" value={phone} id="examplephone" onChange={e => onChange(e)}/>
+        </FormGroup>
+        {/* <FormGroup>
         <Label for="exampleAvatar">Avatar</Label>
         <Input type="file" name="avatar" value={avatar} id="exampleAvatar" onChange={e => onChange(e)}/>
-      </FormGroup>
+      </FormGroup> */}
         <FormGroup>
           <Label for="exampleAddress">Buyer Address</Label>
           <Input type="text" name="location" value={location} id="exampleAddress" onChange={e => onChange(e)}/>
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="exampleRole">Role</Label>
-          <Input type="text" name="role" Value="Buyer" id="exampleRole" readonly='true'/>
-        </FormGroup>
+          <select className="form-control" name="role" onChange={e => onChange(e)} value>
+                                        <option selected></option>
+                                        <option value='Buyer'>Buyer</option>
+                                    </select>
+        </FormGroup> */}
         <FormGroup check>
-          <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms" onChange={e => onChange(e)}/>
+          <Input type="checkbox" name="termsAndConditions" id="exampleTerms"/>
           <Label for="exampleTerms" check>I agree with terms and conditions.</Label>
         </FormGroup>
         <FormGroup>

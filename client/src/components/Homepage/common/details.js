@@ -35,6 +35,7 @@ const Details = ({
       location: loading || !data.location ? '' : data.location,
       avatar: loading || !data.avatar ? '' : data.avatar,
       role: loading || !data.role ? '' : data.role,
+      verified: loading || !data.verified.status ? '' : data.verified.status,
     });
   }, [loading, data]);
 
@@ -45,7 +46,7 @@ const Details = ({
   let diff = endtime - curtime;
   let comp = diff < 0 ? (<span style={{ fontWeight: 600, marginLeft: 10 }}>Ended</span>) : (<Countdown date={Date.now() + diff} />);
   // let button = isAuthenticated ? <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link> : <EntryFee /> 
-  let button = isAuthenticated ? <EntryFee /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link> 
+  let button = (isAuthenticated) ? <EntryFee /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link> 
   return (
     <Container fluid style={{ height: "80vh" }}>
       <Row>

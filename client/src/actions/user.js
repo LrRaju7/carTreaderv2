@@ -14,6 +14,7 @@ export const getUserById = id => async dispatch => {
 export const getUserByToken = () => async dispatch => {
   const res = await axios.get(`/api/users/me`);
   dispatch({ type: GET_USER, payload: res.data });
+  console.log(res.data.role)
 };
 
 export const updateUserProfile = (

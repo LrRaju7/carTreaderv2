@@ -20,9 +20,13 @@ const UserSchema = new mongoose.Schema({
   location: {
     type: String
   },
+  phone: {
+    type: Number
+  },
   role: {
     type: String,
     enum: ['Bidder', 'Buyer', 'Auctioneer', 'Administrator'],
+    default: 'Buyer', 
   },
   privileges: {
     type: [String],

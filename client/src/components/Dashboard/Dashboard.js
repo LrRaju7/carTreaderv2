@@ -31,15 +31,33 @@ const DashboardTab = ({
       location: loading || !data.location ? '' : data.location,
       avatar: loading || !data.avatar ? '' : data.avatar,
       role: loading || !data.role ? '' : data.role,
+      verified: loading || !data.verified.status ? '' : data.verified.status,
     });
+    
   }, [loading, data]);
 
   return loading || data === null ? (
     <Spinner />
-  ) : (data.role === 'Buyer' || data.role === 'Bidder') ? (
+  ) : (data.role === 'Buyer' || (data.role === 'Bidder' && data.verified.status === true)) ? (
     <BidsPage />
-  ) : (
+  ) : ((data.role === 'Auctioneer' && data.verified.status === true)) ? (
         <AuctionsPage />
+      ) : (
+        <Fragment>
+						<section className='section-home container-fluid' >
+							<div className='align-items-center justify-content-center' style={{marginTop:'20%'}}>
+							<p className='h1 text-center text-muted'>
+							your account is not verified yet. please be patient. After the verification is completed, you will be able to access your account.
+							</p>
+							<p className='h1 text-center text-muted'>
+							Verification process can take upto 72 hours.
+							</p>
+							<p className='h1 text-center'>
+								Thank you!!! <span><i className='fa fa-smile'></i></span>
+							</p>
+							</div>
+						</section>
+					</Fragment>
       );
 };
 

@@ -50,42 +50,48 @@ export const register = (
   email,
   password,
   passwordConfirm,
+  location,
   phone,
-  avatar,
-  address,
-  city,
-  state,
-  zip,
-  role
+  role,
+  nid, 
+  tradeLicense
 ) => async dispatch => {
+  console.log("----------------------------------------------->USER ROLE<-------------------------------------------")
+      console.log(role)
+      console.log("----------------------------------------------->USER PHONE<-------------------------------------------")
+      console.log(phone)
+      console.log("----------------------------------------------->USER LOCATION<-------------------------------------------")
+      console.log(location)
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
-
+  
   if (password !== passwordConfirm) {
     return dispatch(addNotification("Passwords don't match", 'error'));
   }
-
+  const documents = [nid, tradeLicense]
   try {
     const res = await axios.post(
       '/api/users',
       {
-        name, 
-        email, 
-        password, 
-        phone, 
-        avatar,
-        address,
-        city,
-        state,
-        zip,
-        role
+        name,
+        email,
+        password,
+        location,
+        phone,
+        role,
+        documents
       },
       config
     );
-
+    console.log("----------------------------------------------->ALL DATA<-------------------------------------------")
+      console.log(res.data)
+      console.log("----------------------------------------------->USER ROLE<-------------------------------------------")
+      console.log(res.data.role)
+      console.log("----------------------------------------------->USER PHONE<-------------------------------------------")
+      console.log(res.data.phone)
     dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     dispatch(loadUser());
   } catch (err) {

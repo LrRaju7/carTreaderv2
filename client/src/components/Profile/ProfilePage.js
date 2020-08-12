@@ -58,7 +58,7 @@ const ProfilePage = ({
 			<Spinner />
 		) : user.errors ? (
 			<div>No user found</div>
-		) : (user.data.role === 'Buyer' || user.data.role === 'Bidder') ? (
+		) : (user.data.role === 'Buyer' || (user.data.role === 'Bidder' && user.data.verified.status === true)) ? (
 			<Fragment>
 				<section className='section-home container-fluid'>
 					<div className="main shadow p-3 mb-5 bg-white rounded">
@@ -115,7 +115,7 @@ const ProfilePage = ({
 					</div>
 				</section>
 			</Fragment>
-		) : (
+		) : ((user.data.role === 'Auctioneer' && user.data.verified.status === true)) ? (
 					<Fragment>
 						<section className='section-home container-fluid'>
 							<div className="main shadow p-3 mb-5 bg-white rounded">
@@ -207,7 +207,24 @@ const ProfilePage = ({
 							</div>
 						</section>
 					</Fragment>
-				);
+				)
+				: (
+					<Fragment>
+						<section className='section-home container-fluid' >
+							<div className='align-items-center justify-content-center' style={{marginTop:'20%'}}>
+							<p className='h1 text-center text-muted'>
+							your account is not verified yet. please be patient. After the verification is completed, you will be able to access your account.
+							</p>
+							<p className='h1 text-center text-muted'>
+							Verification process can take upto 72 hours.
+							</p>
+							<p className='h1 text-center'>
+								Thank you!!! <span><i className='fa fa-smile'></i></span>
+							</p>
+							</div>
+						</section>
+					</Fragment>
+				  );
 };
 
 
