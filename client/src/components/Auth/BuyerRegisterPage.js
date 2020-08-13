@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
-import { Col, Row, Button, Form, FormGroup, Label, Input,FormText, Container } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -10,26 +10,24 @@ const Register = ({ register, isAuthenticated }) => {
     email: '',
     password: '',
     passwordConfirm: '',
-    avatar:'',
-    phone: '',
-    address: '',
-    city: '',
-    state: '',
-    zip: '',
-    role: '',
-    termsAndConditions: '',
+    location: '',
+    phone:'',
+    role:'Buyer',
   });
-
-  const { email, name, password, passwordConfirm, phone, avatar, address, city, state, zip, role, termsAndConditions} = formData;
+  const [uploading, setUploading] = useState(false);
+  const role = 'Buyer'
+  const { email, name, password, passwordConfirm, location, phone} = formData;
   const [verified, setVerified] = useState(false);
-
-  const onChange = e =>
+  console.log(verified)
+  const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
+  }
+    
   const onSubmit = async e => {
     e.preventDefault();
+    console.log("----------------------------->ROLE IS ", role)
     if (verifyCallback) {
-      register(name, email, password, passwordConfirm, phone, avatar, address, city, state, zip, role, termsAndConditions);
+      register(name, email, password, passwordConfirm , location, phone, role);
     } else {
       alert('Do the CAPTCHA');
     }
@@ -72,40 +70,23 @@ const Register = ({ register, isAuthenticated }) => {
           <Label for="examplePhone">Buyer Phone</Label>
           <Input type="number" name="phone" value={phone} id="examplephone" onChange={e => onChange(e)}/>
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
         <Label for="exampleAvatar">Avatar</Label>
         <Input type="file" name="avatar" value={avatar} id="exampleAvatar" onChange={e => onChange(e)}/>
-      </FormGroup>
+      </FormGroup> */}
         <FormGroup>
           <Label for="exampleAddress">Buyer Address</Label>
-          <Input type="text" name="address" value={address} id="exampleAddress" onChange={e => onChange(e)}/>
+          <Input type="text" name="location" value={location} id="exampleAddress" onChange={e => onChange(e)}/>
         </FormGroup>
-        <Row form>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="exampleCity">City</Label>
-              <Input type="text" name="city" value={city} id="exampleCity" onChange={e => onChange(e)}/>
-            </FormGroup>
-          </Col>
-          <Col md={4}>
-            <FormGroup>
-              <Label for="exampleState">State</Label>
-              <Input type="text" name="state" value={state} id="exampleState" onChange={e => onChange(e)}/>
-            </FormGroup>
-          </Col>
-          <Col md={2}>
-            <FormGroup>
-              <Label for="exampleZip">Zip</Label>
-              <Input type="number" name="zip" value={zip} id="exampleZip" onChange={e => onChange(e)}/>
-            </FormGroup>  
-          </Col>
-        </Row>
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="exampleRole">Role</Label>
-          <Input type="text" name="role" defaultValue="Buyer" id="exampleRole" onChange={e => onChange(e)}/>
-        </FormGroup>
+          <select className="form-control" name="role" onChange={e => onChange(e)} value>
+                                        <option selected></option>
+                                        <option value='Buyer'>Buyer</option>
+                                    </select>
+        </FormGroup> */}
         <FormGroup check>
-          <Input type="checkbox" name="termsAndConditions" value={termsAndConditions} id="exampleTerms" onChange={e => onChange(e)}/>
+          <Input type="checkbox" name="termsAndConditions" id="exampleTerms"/>
           <Label for="exampleTerms" check>I agree with terms and conditions.</Label>
         </FormGroup>
         <FormGroup>
@@ -114,7 +95,8 @@ const Register = ({ register, isAuthenticated }) => {
           </p>
         </FormGroup>
         <div className='text-center'>
-        <Button style={{width: '50%'}} className="btn-success shadow">Register</Button>
+        <Button style={{width: '50%'}} className="btn-success shadow"
+            disabled={uploading}>{uploading ? 'Registering':'Register'}</Button>
         </div>
       </Form>
     </section>

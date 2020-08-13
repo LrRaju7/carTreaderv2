@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../../actions/auth';
 import { Container, NavLink, Collapse, Navbar as BootstrapNavbar, NavbarToggler, NavbarBrand, Nav, NavItem, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap';
 import { setAuthToken } from '../../../utils/setAuthToken';
-
+import ItemWiseSearchModal from '../../Modal/ItemWiseSearchModal';
 
 
 class Navbar extends Component {
@@ -56,7 +56,7 @@ class Navbar extends Component {
       roleElement = <Nav navbar style={{ justifyContent: 'flex-end' }}>
         <NavItem className={this.tabClass('/dashboard')}>
 
-          <UncontrolledDropdown nav inNavbar>
+          <UncontrolledDropdown nav inNavbar >
             <DropdownToggle nav caret>
               {this.props.user}
             </DropdownToggle>
@@ -71,24 +71,21 @@ class Navbar extends Component {
                 <NavLink href={`/dashboard`} ><i className='fa fa-dashboard' /><span className="ml-3">Dashboard</span></NavLink>
               </DropdownItem>
               <DropdownItem>
-                <NavLink href='/logout'><i className='fa fa-sign-out'/><span className="ml-3">Log Out</span></NavLink>
+                <NavLink href='/logout'><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </NavItem>
       </Nav>
     } else {
-      signupElement = <Nav navbar style={{ justifyContent: 'flex-end' }}>
-        <NavItem className={this.tabClass('/register')}>
-          <NavLink href='/register'>SignUp
-        </NavLink>
-        </NavItem>
-      </Nav>
-
       roleElement = <Nav navbar style={{ justifyContent: 'flex-end' }}>
         <NavItem className={this.tabClass('/login')}>
           <NavLink href='/login'>Login
           </NavLink>
+        </NavItem>
+        <NavItem className={this.tabClass('/register')}>
+          <NavLink href='/register'>SignUp
+        </NavLink>
         </NavItem>
       </Nav>
     }
@@ -99,17 +96,16 @@ class Navbar extends Component {
 
     return (
       <Container fluid>
-        <BootstrapNavbar color="white" fixed="top" expand="lg" className='pad80lr marg15lr'>
+        <BootstrapNavbar color="white" fixed="top" expand="lg" className='pad80lr marg15lr' style={{zIndex:'10'}}>
           <Container fluid>
 
             <NavbarBrand className='navbar-brand' href='/'>
               <img className='navbar-logo' src='/media/autotrade_logo.png' alt='' />
             </NavbarBrand>
-            <NavbarToggler onClick={this.toggleMenu.bind(this)} className="mr-2" />
+            <NavbarToggler  onClick={this.toggleMenu.bind(this)} className="mr-2"><span className="fa fa-bars"></span></NavbarToggler>
 
             <Collapse isOpen={this.state.navBarOpen} navbar>
               <Nav navbar style={{ width: '100%' }}>
-              {/* , '/auctions/:id/details' */}
                 <NavItem className={this.tabClass('/')} >
                   <NavLink href='/'> Auctions
                   </NavLink>
@@ -122,12 +118,14 @@ class Navbar extends Component {
                   <NavLink href='/contact'> Contact
                   </NavLink>
                 </NavItem>
+                <NavItem >
+                  <NavLink>
+                  <ItemWiseSearchModal/>
+                  </NavLink>
+                </NavItem>
               </Nav>
-              <div style={{paddingRight:'60px'}}>
-              <SearchBar/>
-              </div>
+                <SearchBar />
               {roleElement}
-              {signupElement}
             </Collapse>
 
           </Container>

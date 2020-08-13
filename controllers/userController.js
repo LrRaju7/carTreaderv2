@@ -11,13 +11,17 @@ const FileUpload = require('./fileUpload');
 const Listing = require('../models/listingModel');
 
 exports.createUser = catchAsync(async (req, res, next) => {
-  console.log('Received')
-  const { name, email, password, avatar, phone, address, city, state, zip, role } = req.body;
+  console.log(req.role)
+  const { name, email, password, avatar, location, role } = req.body;
 
   if (!(name && email && password)) {
     return next(new AppError('Missing required fields', 400));
   }
-  if (userHelpers.checkUserExists(email)) return next(new AppError('Email is already in use', 400));
+  let user = await User.findOne({ email });
+
+  if (user) {
+    return next(new AppError('Email is already in use', 400));
+  }
 
   
   //   s: '200',
@@ -30,11 +34,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
     email,
     avatar,
     password,
-    phone,
-    address,
-    city,
-    state,
-    zip,
+    location,
     role
   });
 
@@ -117,6 +117,7 @@ exports.getUserById = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id).select('-password');
   if (!user) {
     return next(new AppError('No user found', 404));
+    
   }
   res.status(200).json(user);
 });

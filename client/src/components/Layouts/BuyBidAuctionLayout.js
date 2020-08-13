@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container } from "reactstrap";
 import Navbar from "./Components/Navbar";
 import Notification from "./Components/Notification";

@@ -58,70 +58,173 @@ const ProfilePage = ({
 			<Spinner />
 		) : user.errors ? (
 			<div>No user found</div>
-		) : (
-				<Fragment>
-					<section className='section-home container-fluid'>
-						<div className="main shadow p-3 mb-5 bg-white rounded">
-							<div className="main-content mx-3">
-								<div className="panel panel-profile">
-									<div className="clearfix">
-										<div className="profile-left">
-											<div className="profile-header shadow">
-												<div className="overlay"></div>
-												<div className="profile-main">
-													<img src={user.data.avatar} className="img-circle" alt="Avatar" height='140' width='140' />
-													<h3 className="name">{user.data.name}</h3>
-													<span className="online-status status-available">Available</span>
+		) : (user.data.role === 'Buyer' || (user.data.role === 'Bidder' && user.data.verified.status === true)) ? (
+			<Fragment>
+				<section className='section-home container-fluid'>
+					<div className="main shadow p-3 mb-5 bg-white rounded">
+						<div className="main-content mx-3">
+							<div className="panel panel-profile">
+								<div className="clearfix">
+									{/* <div className="profile-left"> */}
+									<div className="profile-header shadow">
+										<div className="overlay"></div>
+										<div className="profile-main">
+											<img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="100x100" />
+											<h2 className="name mt-5">{user.data.name}</h2>
+											<span className="online-status status-available">Available</span>
+										</div>
+										<div className="profile-stat">
+											<div className="row">
+												<div className="col-md-4 stat-item">
+													{user.data.ratingsAverage} * <span>Rating</span>
 												</div>
-												<div className="profile-stat">
-													<div className="row">
-														<div className="col-md-4 stat-item">
-															{user.data.ratingsAverage} <span>Rating</span>
-														</div>
-														<div className="col-md-4 stat-item">
-															* <span>Uploads</span>
-														</div>
-														<div className="col-md-4 stat-item">
-															* <span>Sold</span>
-														</div>
-													</div>
+												<div className="col-md-4 stat-item">
+													* <span>Uploads</span>
 												</div>
-											</div>
-											<div className="profile-detail">
-												<div className="profile-info">
-													<h4 className="heading">Basic Info</h4>
-													<ul className="list-unstylesd list-justify">
-														<li className="list-group-item">Role <span>{user.data.role}</span></li>
-														<li className="list-group-item">Mobile <span>+880{user.data.phone}</span></li>
-														<li className="list-group-item">Email <span>{user.data.email}</span></li>
-														<li className="list-group-item">Address <span>{user.data.address}, {user.data.city}, {user.data.state}-{user.data.zip}</span></li>
-													</ul>
-													<div className="card">
-														<h5 className="card-header">Bio</h5>
-														<div className="card-body">
-															<h5 className="card-title">About Me</h5>
-															<p className="card-text">{user.data.bio}</p>
-														</div>
-													</div>
-													<div className="mt-5 text-center">
-														<Link to={`/dashboard`}>
-															<button style={{ width: '50%' }} className="btn btn-outline-dark shadow" type="button">Back to Dashboard</button>
-														</Link>
-													</div>
+												<div className="col-md-4 stat-item">
+													* <span>Sold</span>
 												</div>
 											</div>
 										</div>
-										<div className="profile-right">
-											{/* <ListingForm /> */}
+									</div>
+									<div className="profile-detail">
+										<div className="profile-info">
+											<h4 className="heading">Basic Info</h4>
+											<ul className="list-unstylesd list-justify">
+												<li className="list-group-item"><strong>Role:</strong> <span>{user.data.role}</span></li>
+												<li className="list-group-item"><strong>Mobile:</strong> <span>{user.data.phone}</span></li>
+												<li className="list-group-item"><strong>Email:</strong> <span>{user.data.email}</span></li>
+												<li className="list-group-item"><strong>Address:</strong> <span>{user.data.location}</span></li>
+												<li className="list-group-item"><strong>Bio:</strong> <span>{user.data.bio}</span></li>
+											</ul>
+											<div className="mt-5 text-center">
+												<Link to={`/dashboard`}>
+													<button style={{ width: 'auto' }} className="btn btn-outline-dark shadow" type="button">Back to Dashboard</button>
+												</Link>
+											</div>
+										</div>
+									</div>
+									{/* </div> */}
+									{/* <div className="profile-right">
+											<ListingForm />
 											<CreateListing />
+										</div> */}
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</Fragment>
+		) : ((user.data.role === 'Auctioneer' && user.data.verified.status === true)) ? (
+					<Fragment>
+						<section className='section-home container-fluid'>
+							<div className="main shadow p-3 mb-5 bg-white rounded">
+								<div className="main-content mx-3">
+									<div className="panel panel-profile">
+										<div className="clearfix">
+											<div className="profile-left">
+												<div className="card bg-light">
+													<div className="card-header text-center">
+														<div className="profile-main">
+															<img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="100x100" />
+															<h3 className="name">{user.data.name}</h3>
+															<span className="online-status status-available">Available</span>
+														</div>
+													</div>
+													<div className="card-body">
+														<div className="row text-center">
+															<div className="col-md-4 stat-item">
+																{user.data.ratingsAverage} * <span>Rating</span>
+															</div>
+															<div className="col-md-4 stat-item">
+																* <span>Uploads</span>
+															</div>
+															<div className="col-md-4 stat-item">
+																* <span>Sold</span>
+															</div>
+														</div>
+													</div>
+													<div className="table-responsive text-white">
+														<table className="table table-striped table-vcenter mb-0">
+															<tbody>
+																<tr>
+																	<td>
+																		<div className="clearfix">
+																			<div className="float-left"><strong >Role:</strong></div>
+																			<div className="float-right">{user.data.role}</div>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<div className="clearfix">
+																			<div className="float-left"><strong >Mobile:</strong></div>
+																			<div className="float-right">{user.data.phone}</div>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<div className="clearfix">
+																			<div className="float-left"><strong >Email:</strong></div>
+																			<div className="float-right">{user.data.email}</div>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<div className="clearfix">
+																			<div className="float-left"><strong >Address:</strong></div>
+																			<div className="float-right">{user.data.location}</div>
+																		</div>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<div className="clearfix">
+																			<div className="float-left"><strong >Bio:</strong></div>
+																			<div className="float-right">{user.data.bio}</div>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+														<div className="mt-5 text-center">
+															<Link to={`/dashboard`}>
+																<button style={{ width: '50%' }} className="btn btn-outline-dark shadow mb-5" type="button">Back to Dashboard</button>
+															</Link>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div className="profile-right">
+												{/* <ListingForm /> */}
+												<CreateListing />
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</section>
-				</Fragment>
-			);
+						</section>
+					</Fragment>
+				)
+				: (
+					<Fragment>
+						<section className='section-home container-fluid' >
+							<div className='align-items-center justify-content-center' style={{marginTop:'20%'}}>
+							<p className='h1 text-center text-muted'>
+							your account is not verified yet. please be patient. After the verification is completed, you will be able to access your account.
+							</p>
+							<p className='h1 text-center text-muted'>
+							Verification process can take upto 72 hours.
+							</p>
+							<p className='h1 text-center'>
+								Thank you!!! <span><i className='fa fa-smile'></i></span>
+							</p>
+							</div>
+						</section>
+					</Fragment>
+				  );
 };
 
 

@@ -1,4 +1,4 @@
-const Listing = require('../models/listingModel');
+const Listing = require('../models/listings/UnverifiedListing');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const cloudinary = require('cloudinary');

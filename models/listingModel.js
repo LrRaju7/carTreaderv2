@@ -31,7 +31,9 @@ const ListingSchema = new mongoose.Schema({
   image: {
     type: String
   },
-  currentPrice: { type: Number },
+  currentPrice: { 
+    type: Number 
+  },
   startPrice: {
     type: Number,
     required: true,

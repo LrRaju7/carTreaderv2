@@ -5,7 +5,8 @@ import { getUserByToken, updateUserProfile } from '../../actions/user';
 import { updatePassword } from '../../actions/auth';
 import { Link } from 'react-router-dom';
 import Spinner from '../Layouts/Components/Spinner';
-import { Container, Button } from 'reactstrap';
+import { Container, Button, Row, Col } from 'reactstrap';
+import '../../styles/components/_dashboard.scss';
 
 const EditProfilePage = ({
   getUserByToken,
@@ -52,6 +53,7 @@ const EditProfilePage = ({
       avatar: loading || !data.avatar ? '' : data.avatar,
       date: loading || !data.date ? '' : data.date,
       role: loading || !data.role ? '' : data.role,
+      verified: loading || !data.verified.status ? '' : data.verified.status,
     });
   }, [loading, data]);
 
@@ -70,7 +72,7 @@ const EditProfilePage = ({
 
   return loading || data === null ? (
     <Spinner />
-  ) : (
+  ) :(data.role === 'Buyer' || (data.role === 'Bidder' && data.verified.status === true) || (data.role === 'Auctioneer' && data.verified.status === true)) ? (
       <Fragment>
         <section className='section-home container-fluid' >
           <div className="shadow p-3 mb-5 bg-white rounded">
@@ -80,27 +82,25 @@ const EditProfilePage = ({
                   <div className="">
                     <div className="card-body">
                       <div className="e-profile">
-                        <div className="row">
-                          <div className="col-12 col-sm-auto mb-3">
-                            <div className="mx-auto" styles="width: 140px;">
-                              <div className="d-flex justify-content-center align-items-center ml-3" styles="height: 140px; background-color: rgb(233, 236, 239);">
-                                <span styles="color: rgb(166, 168, 170); font: bold 8pt Arial;"><img src="//placehold.it/140" class="mx-auto img-fluid rounded img-circle d-block shadow" alt="avatar" /></span>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col d-flex flex-column flex-sm-row justify-content-between mb-3 ml-5">
-                            <div className="text-center text-sm-left mb-2 mb-sm-0">
+                        <Row>
+                          <Col lg={4} className='text-center'>
+                            <span>
+                              <img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="avatar" />
+                            </span>
+                          </Col>
+                          <Col lg={4} className='text-center'>
+                            <span>
                               <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">{name}</h4>
                               <p className="mb-0">{email}</p>
-                              <div className="text-muted"><small>Active</small></div>
-                              <div className="mt-2">
-                                <button className="btn btn-primary shadow" type="button">
-                                  <i className="fa fa-fw fa-camera"></i>
-                                  <span>Change Photo</span>
-                                </button>
-                              </div>
-                            </div>
-                            <div className="text-center text-sm-right mr-3">
+                              <p className="text-muted"><small>Active</small></p>
+                              <button className="btn btn-primary shadow" type="button">
+                                <i className="fa fa-fw fa-camera"></i>
+                                <span>Change Photo</span>
+                              </button>
+                            </span>
+                          </Col>
+                          <Col lg={4} className='text-center'>
+                            <span>
                               <span className="badge badge-secondary">{role}</span>
                               <div className="text-muted"><small>{date}</small></div>
                               <div className="mt-5">
@@ -108,17 +108,13 @@ const EditProfilePage = ({
                                   <button className="btn btn-outline-dark shadow" type="button">Back to Dashboard</button>
                                 </Link>
                               </div>
-                            </div>
-                          </div>
-                          
-                        </div>
-                        {/* <ul className="nav nav-tabs">
-                          <li className="nav-item"><a href="" className="active nav-link">Settings</a></li>
-                        </ul> */}
-                        <hr className="mt-3"/>
+                            </span>
+                          </Col>
+                        </Row>
+                        <hr className="mt-3" />
                         <div className="tab-content pt-3">
                           <div className="tab-pane active">
-                            <form className="form" novalidate="" onSubmit={e => handleUpdateProfile(e)}>
+                            <form style={{ width: '100%' }} className="form" novalidate="" onSubmit={e => handleUpdateProfile(e)}>
                               <div className="row">
                                 <div className="col">
                                   <div className="row">
@@ -147,14 +143,14 @@ const EditProfilePage = ({
                                   </div>
                                   <div className="row">
                                     <div className="col d-flex justify-content-center">
-                                      <button style={{width: '50%'}} className="btn btn-primary shadow" type="submit" value='Edit Profile'>Update Profile</button>
+                                      <button style={{ width: 'auto' }} className="btn btn-primary shadow" type="submit" value='Edit Profile'>Update Profile</button>
                                     </div>
                                   </div>
                                 </div>
 
                               </div>
                             </form>
-                            <form className='form mt-5' onSubmit={e => handleUpdatePassword(e)}>
+                            <form style={{ width: '100%' }} className='form mt-5' onSubmit={e => handleUpdatePassword(e)}>
                               <div className="row">
                                 <div className="col-12 mb-3">
                                   <div className="mb-2"><b>Change Password</b></div>
@@ -198,7 +194,7 @@ const EditProfilePage = ({
                               </div>
                               <div className="row">
                                 <div className="col d-flex justify-content-center">
-                                  <button style={{width: '50%'}} className="btn btn-primary shadow" type="submit" value='Update Password'>Update Password</button>
+                                  <button style={{ width: 'auto' }} className="btn btn-primary shadow" type="submit" value='Update Password'>Update Password</button>
                                 </div>
                               </div>
                             </form>
@@ -213,6 +209,22 @@ const EditProfilePage = ({
           </div>
         </section>
       </Fragment>
+    ) : (
+      <Fragment>
+						<section className='section-home container-fluid' >
+							<div className='align-items-center justify-content-center' style={{marginTop:'20%'}}>
+							<p className='h1 text-center text-muted'>
+							your account is not verified yet. please be patient. After the verification is completed, you will be able to access your account.
+							</p>
+							<p className='h1 text-center text-muted'>
+							Verification process can take upto 72 hours.
+							</p>
+							<p className='h1 text-center'>
+								Thank you!!! <span><i className='fa fa-smile'></i></span>
+							</p>
+							</div>
+						</section>
+					</Fragment>
     );
 };
 

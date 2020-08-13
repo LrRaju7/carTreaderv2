@@ -15,10 +15,14 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   avatar: {
-    type: String
+    data: Buffer, 
+    contentType: String,
   },
   location: {
     type: String
+  },
+  phone: {
+    type: Number
   },
   role: {
     type: String,
@@ -54,9 +58,9 @@ const UserSchema = new mongoose.Schema({
       }
     },
     by: {
-      type: mongoose.Schema.ObjectId,      
+      type: mongoose.Schema.ObjectId,     
       required: function () {
-        return this.role === 'Auctioneer' || this.role === 'Bidder'
+        return (this.role === 'Auctioneer' && this.verified.status === true) || (this.role === 'Bidder' && this.verified.status === true)
       },      
       ref: 'user'
     }
