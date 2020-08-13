@@ -56,24 +56,11 @@ exports.authenticate = catchAsync(async (req, res, next) => {
     if (error) {
       return next(new AppError('Token is not valid', 401));
     } else {
-      console.log("======================================<>")
-      console.log("USER AUTHENTICATED")
-      console.log(decoded.user)
-      console.log("======================================<>")
       req.user = decoded.user;
       next();
     }
   });
 });
-
-
-exports.checkUser = catchAsync(async (req, res, next) => {
-  let user = await User.findById(req.user.id)
-  console.log("FOUND USER FOUND USER FOUND USER FOUND USER")
-  console.log(user)
-  console.log("FOUND USER FOUND USER FOUND USER FOUND USER")
-  next()
-})
 
 exports.getActiveListingsByUser = catchAsync(async (req, res, next) => {
   const listings = await Listing.find(

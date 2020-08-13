@@ -4,6 +4,7 @@ import { DropZone, Label, Box } from 'admin-bro';
 import ReactDOM from 'react-dom';
 
 const ImageList = (props) => {
+  console.log("IIIIIå")
   const { property, record, onChange } = props;
   let savedFiles = [];
   const fileObject = unflatten(record.params)[property.name];
@@ -55,7 +56,7 @@ const ImageList = (props) => {
 
     comp.push(
       <div className='card'>
-        <img src={image.image} key={index} />
+        <img src={image.image} key={index} className='cardimg'/>
       </div>,
     );
   });
