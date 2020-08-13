@@ -80,7 +80,7 @@ const VerifiedListingSchema = new mongoose.Schema({
   ],
   verified_by: {
     type: mongoose.Schema.ObjectId,
-    ref: 'admin'
+    ref: 'user'
   },    
 });
 
