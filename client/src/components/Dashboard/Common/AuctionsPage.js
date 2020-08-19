@@ -18,6 +18,7 @@ const AuctionsPage = ({
     email: '',
     location: '',
     bio: '',
+    id: '',
   });
 
   const {
@@ -26,6 +27,7 @@ const AuctionsPage = ({
     location,
     avatar,
     role,
+    id,
   } = formData;
 
   useEffect(() => {
@@ -39,6 +41,7 @@ const AuctionsPage = ({
       location: loading || !data.location ? '' : data.location,
       avatar: loading || !data.avatar ? '' : data.avatar,
       role: loading || !data.role ? '' : data.role,
+      id: loading || !data._id ? '' : data._id,
     });
   }, [loading, data]);
 
@@ -73,7 +76,7 @@ const AuctionsPage = ({
                             </span>
                             <p className='blockquote mt-3'>{email} </p>
                             <div className="text-center">
-                              <Link to={`#`}>
+                              <Link to={`/profile/${data._id}`}>
                                 <button style={{ width: '50%' }} className="btn btn-outline-dark shadow" type="button">View Profile</button>
                               </Link>
                             </div>

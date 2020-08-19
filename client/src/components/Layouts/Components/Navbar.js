@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { logout } from '../../../actions/auth';
 import { Container, NavLink, Collapse, Navbar as BootstrapNavbar, NavbarToggler, NavbarBrand, Nav, NavItem, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap';
 import { setAuthToken } from '../../../utils/setAuthToken';
-import ItemWiseSearchModal from '../../Modal/ItemWiseSearchModal';
 
 
 class Navbar extends Component {
@@ -116,11 +115,6 @@ class Navbar extends Component {
                 </NavItem>
                 <NavItem className={this.tabClass('/contact')}>
                   <NavLink href='/contact'> Contact
-                  </NavLink>
-                </NavItem>
-                <NavItem >
-                  <NavLink>
-                  <ItemWiseSearchModal/>
                   </NavLink>
                 </NavItem>
               </Nav>

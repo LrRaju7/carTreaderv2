@@ -10,6 +10,7 @@ import Grid from "./grid.js";
 import { daysCalculator } from "../../../helpers/functions.js";
 import images from "../../../data/images.js";
 import EntryFee from "../../Modal/EntryFeeModal"
+// import PlaceBid from "../../Listing/ListingPage"
 import { Link } from "react-router-dom";
 
 const Details = ({ 
@@ -161,6 +162,7 @@ const Details = ({
             </Col>
             <Col className='toppad20' md={3}>
               {button}
+              {/* <PlaceBid {... car}/> */}
             </Col>
           </Row>
           <Row>

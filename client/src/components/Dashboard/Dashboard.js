@@ -45,7 +45,10 @@ const DashboardTab = ({
       ) : (
         <Fragment>
 						<section className='section-home container-fluid' >
-							<div className='align-items-center justify-content-center' style={{marginTop:'20%'}}>
+							<div className='align-items-center justify-content-center' style={{marginTop:'15%'}}>
+              <p className="h1 text-center text-muted">
+                Hello <strong>{data.name}</strong>
+              </p>
 							<p className='h1 text-center text-muted'>
 							your account is not verified yet. please be patient. After the verification is completed, you will be able to access your account.
 							</p>

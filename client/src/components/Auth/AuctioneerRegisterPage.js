@@ -32,8 +32,14 @@ const Register = ({ register, isAuthenticated }) => {
     console.log("----------------------------->ROLE IS ", role)
     console.log("----------------------------->PHONE IS ", phone)
     console.log("----------------------------->LOCATION IS ", location)
+    const documents = {
+      nid: nid,
+      trade_license: tradeLicense,
+    };
+    console.log("----------------------------->documents.nid IS ", documents.nid)
+    console.log("----------------------------->documents.trade_license IS ", documents.trade_license)
     if (verifyCallback) {
-      register(email, name, password, passwordConfirm, location, phone, role, nid, tradeLicense);
+      register(name, email, password, passwordConfirm, location, phone, role, documents.nid, documents.trade_license);
     } else {
       alert('Do the CAPTCHA');
     }
