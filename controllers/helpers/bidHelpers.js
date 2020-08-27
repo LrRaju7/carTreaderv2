@@ -1,10 +1,10 @@
 const VerifiedListing = require('../../models/listings/VerifiedListing.js');
 
 
-exports.verifyBidAmountAndSave = (listing_id, bid, user) => {
+exports.verifyBidAmountAndSave = async (listing_id, bid, user) => {
     const listing = await VerifiedListing.findById(listing_id)
     const currDateTime = Date.now()
-    let errRes = {issError: true}
+    let errRes = {isError: true}
     if (!listing) errRes.errType = 'There is no listing by this ID'
     if (listing.endDateTime < currDateTime) errRes.errType = 'The listing has expired'
     if ((bid > listing.highest_bid.amount) && (bid >= (listing.minIncrement+listing.highest_bid).amount)){

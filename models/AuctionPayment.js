@@ -23,7 +23,7 @@ const AuctionPaymentSchema = new Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'VerifiedListing',
         required: true
-    }
+    },
     createdAt: {
         type: Date,
         default: Date.now()

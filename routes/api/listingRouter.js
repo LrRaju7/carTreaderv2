@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const listingController = require('../../controllers/listingController');
+const newListingController = require('../../controllers/newListingController');
 const authController = require('../../controllers/authController');
 const multer = require('multer');
 
@@ -22,8 +23,9 @@ router.post('/', authController.authenticate, listingController.createListing);
 // @route    GET api/listings
 // @desc     Query Listings
 // @access   Public
-router.post('/checkAuctionEntry', authController.authenticate, biddingController.checkAuctionEntry)
-router.post('/payAuctionEnty', authController.authenticate, biddingController.checkAuctionEntry, biddingController.createBid)
+router.post('/checkAuctionEntry', authController.authenticate, newListingController.checkAuctionEntry)
+
+router.post('/payAuctionEnty', authController.authenticate, newListingController.checkAuctionEntry, newListingController.createBid)
 
 router.get(
   '/',

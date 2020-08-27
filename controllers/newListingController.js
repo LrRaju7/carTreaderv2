@@ -1,10 +1,11 @@
 const UnverifiedListing = require('../models/listings/UnverifiedListing.js');
 const VerifiedListing = require('../models/listings/VerifiedListing.js');
 const ExpiredListing = require('../models/listings/VerifiedListing.js');
-const AuctionPayment = require('../models/AuctionPayment.js');
+const AuctionPayment = require('./../models/AuctionPayment.js');
+const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const md5 = require('md5');
-const {verifyBidAmount} = require('.helpers/bidHelpers.js')
+const {verifyBidAmount} = require('./helpers/bidHelpers.js')
 
 exports.createUnverifiedListing = catchAsync(async (req, res, next) => {
   const listingBody = {
@@ -140,10 +141,12 @@ exports.getExpiredListingByUser = catchAsync(async (req, res, next) => {
     }); 
 })
 
+
+
 exports.checkAuctionEntry = catchAsync(async (req, res, next) => {
     const {listing_id} = req.body
     const user = req.user
-    let newId = user.id + listing.id
+    let newId = user.id + listing_id
     let hash = md5(newId);    
     const auctionPayment = await AuctionPayment.findById(hash)
     if (next){
@@ -177,6 +180,6 @@ exports.createBid = catchAsync(async (req, res, next) => {
     const user = req.user
     const verified = await verifyBidAmount(listing_id, bid, user)
     if (verified.isError && verified.errType) return next(new AppError(verified.errType, 404));
-    return res.status(200).json({ verified.listing });
+    let {listing} = verified
+    return res.status(200).json({ listing });
 })
-
