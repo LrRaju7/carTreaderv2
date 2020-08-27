@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const slug = require("mongoose-slug-updater");
 const Car = require("../Car");
 const Image = require("../Image");
+const Bid = require("../Bid");
 
 
 const shortid = require("shortid");
@@ -74,23 +75,10 @@ const VerifiedListingSchema = new mongoose.Schema({
             required: true
         }        
     },
-    bids: [
-    {
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'user',
+    bids: {
+        type: [Bid],
         required: true
-      },
-      bid: {
-        type: Number,
-        required: true
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now()
-      }
-    }
-  ],
+    },
   verified_by: {
     type: mongoose.Schema.ObjectId,
     ref: 'user'

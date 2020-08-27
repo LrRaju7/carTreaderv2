@@ -7,7 +7,7 @@ exports.verifyBidAmountAndSave = (listing_id, bid, user) => {
     let errRes = {issError: true}
     if (!listing) errRes.errType = 'There is no listing by this ID'
     if (listing.endDateTime < currDateTime) errRes.errType = 'The listing has expired'
-    if ((bid > listing.highest_bid) && (bid > (listing.minIncrement+listing.highest_bid).amount)){
+    if ((bid > listing.highest_bid.amount) && (bid >= (listing.minIncrement+listing.highest_bid).amount)){
         try {
             listing.bids.push({user: user.id, bid: bid});
             listing.highest_bid = {amount: bid, user: user.id}
