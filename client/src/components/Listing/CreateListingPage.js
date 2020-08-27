@@ -11,27 +11,54 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    minIncrement: '',
-    category: '',
-    length: '',
-    condition: '',
-    startPrice: ''
+    title,
+    description,
+    make,
+    model,
+    year,
+    capacity,
+    type,
+    exterior,
+    interior,
+    highlights,
+    equipment,
+    modifications,
+    issues,
+    service_history,
+    ownership_history,
+    status,
+    images,
+    currentPrice,
+    startPrice,
+    minIncrement
   });
 
   let {
     title,
     description,
-    minIncrement,
-    category,
-    condition,
-    startPrice
+    make,
+    model,
+    year,
+    capacity,
+    type,
+    exterior,
+    interior,
+    highlights,
+    equipment,
+    modifications,
+    issues,
+    service_history,
+    ownership_history,
+    status,
+    images,
+    currentPrice,
+    startPrice,
+    minIncrement
   } = formData;
 
   const [pictures, setPictures] = useState([]);
 
-  const [endDate, setEndDate] = useState(new Date());
+  const [endDateTime, setEndDateTime] = useState(new Date());
 
   const [verified, setVerified] = useState(false);
 
@@ -44,26 +71,47 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const car = {
+    make: make,
+    model: model,
+    year: year,
+    engine: {
+      capacity: capacity,
+      type: type,
+    },
+    color: {
+      exterior: exterior,
+      interior: interior,		
+    },
+    highlights: highlights,
+    equipment: equipment,
+    modifications: modifications,
+    issues: issues,
+    service_history: service_history,		
+    ownership_history: ownership_history,
+    status: status,
+  }
+
   const onSubmit = async e => {
     e.preventDefault();
     setUploading(true);
     if (verified) {
-      let img;
+      let images;
       if (pictures[0]) {
         let formData = new FormData();
         formData.append('image', pictures[0][0]);
-        img = (await axios.post('/api/listings/upload/image', formData)).data
+        images = (await axios.post('/api/listings/upload/image', formData)).data
           .url;
       }
       createListing(
         title,
         description,
-        minIncrement,
-        category,
-        endDate,
-        condition,
+        car,
+        images,
+        currentPrice,
         startPrice,
-        img
+        minIncrement,
+        endDateTime
       );
       console.log("success")
     } else {
@@ -102,7 +150,7 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
         </FormGroup>
         <FormGroup  >
           <Label for="category">Item Category</Label>
-          <Input type="text" name="category" id="category" value={category} onChange={e => onChange(e)} required/>
+          <Input type="text" name="category" id="category"/>
         </FormGroup>
         <FormGroup>
           <Label for="images">Item image</Label>
@@ -118,9 +166,7 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
         <FormGroup >
           <Label for="condition">Item condition</Label>
           <select className='form-control'
-              onChange={e => onChange(e)}
-              name='condition'
-              value={condition}
+              
             >
               <option value='used'>Used</option>
               <option value='new'>New</option>
@@ -161,8 +207,8 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
           <Input
               type='date'
               className='form-control'
-              selected={endDate}
-              onChange={date => setEndDate(date)}
+              selected={endDateTime}
+              onChange={date => setEndDateTime(date)}
               minDate={new Date()}
               dateFormat='MMMM d, yyyy'
               required

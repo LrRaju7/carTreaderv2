@@ -37,12 +37,12 @@ export const getListing = slug => async dispatch => {
 export const createListing = (
   title,
   description,
-  minIncrement,
-  category,
-  endDate,
-  condition,
+  car,
+  images,
+  currentPrice,
   startPrice,
-  image,
+  minIncrement,
+  endDateTime,
   history
 ) => async dispatch => {
   const config = {
@@ -53,13 +53,13 @@ export const createListing = (
 
   const body = {
     title,
-    description,
-    minIncrement,
-    category,
-    endDate,
-    condition,
-    startPrice,
-    image
+  description,
+  car,
+  images,
+  currentPrice,
+  startPrice,
+  minIncrement,
+  endDateTime
   };
   try {
     const res = await axios.post('/api/listings', body, config);
