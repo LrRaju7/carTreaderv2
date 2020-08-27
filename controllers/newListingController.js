@@ -1,5 +1,6 @@
 const UnverifiedListing = require('../models/listings/UnverifiedListing.js');
 const VerifiedListing = require('../models/listings/VerifiedListing.js');
+const ExpiredListing = require('../models/listings/VerifiedListing.js');
 const AuctionPayment = require('../models/AuctionPayment.js');
 const AppError = require('./../utils/appError');
 const md5 = require('md5');
@@ -34,11 +35,27 @@ exports.createUnverifiedListing = catchAsync(async (req, res, next) => {
 
 
 exports.getAllUnverifiedListingsByUser = catchAsync(async (req, res, next) => {
-
+    const user = req.user
+    const listings = await UnverifiedListing.find({created_by: user.id});
+    res.status(200).json({
+        status: 'success',
+        listings: listings.length,
+        data: {
+            listings
+        }
+    });       
 })
 
 exports.getUnverifiedListingByUser = catchAsync(async (req, res, next) => {
-
+    const user = req.user
+    const {listing_id} = req.body
+    const listing = await UnverifiedListing.findOne({_id: listing_id, created_by: user.id});
+    res.status(200).json({
+        status: 'success',
+        data: {
+            listing
+        }
+    });  
 })
 
 exports.editUnverifiedListingByUser = catchAsync(async (req, res, next) => {
@@ -50,15 +67,38 @@ exports.deleteUnverifiedListingByUser = catchAsync(async (req, res, next) => {
 })
 
 exports.getAllVerifiedListings = catchAsync(async (req, res, next) => {
-    
+    const listings = VerifiedListing.find({});
+    res.status(200).json({
+        status: 'success',
+        listings: listings.length,
+        data: {
+            listings
+        }
+    });    
 })
 
 exports.getAllVerifiedListingsByUser = catchAsync(async (req, res, next) => {
-    
+    const user = req.user
+    const listings = await VerifiedListing.find({created_by: user.id});
+    res.status(200).json({
+        status: 'success',
+        listings: listings.length,
+        data: {
+            listings
+        }
+    }); 
 })
 
 exports.getVerifiedListingByUser = catchAsync(async (req, res, next) => {
-    
+    const user = req.user
+    const {listing_id} = req.body
+    const listing = await VerifiedListing.findOne({_id: listing_id, created_by: user.id});
+    res.status(200).json({
+        status: 'success',
+        data: {
+            listing
+        }
+    }); 
 })
 
 exports.endExpiredListing = catchAsync(async (req, res, next) => {
@@ -66,15 +106,38 @@ exports.endExpiredListing = catchAsync(async (req, res, next) => {
 })
 
 exports.getAllExpiredListings = catchAsync(async (req, res, next) => {
-    
+    const listings = await ExpiredListing.find({});
+    res.status(200).json({
+        status: 'success',
+        listings: listings.length,
+        data: {
+            listings
+        }
+    });  
 })
 
 exports.getAllExpiredListingsByUser = catchAsync(async (req, res, next) => {
-    
+    const user = req.user
+    const listings = await ExpiredListing.find({created_by: user.id});
+    res.status(200).json({
+        status: 'success',
+        listings: listings.length,
+        data: {
+            listings
+        }
+    }); 
 })
 
 exports.getExpiredListingByUser = catchAsync(async (req, res, next) => {
-    
+    const user = req.user
+    const {listing_id} = req.body
+    const listing = await ExpiredListing.findOne({_id: listing_id, created_by: user.id});
+    res.status(200).json({
+        status: 'success',
+        data: {
+            listing
+        }
+    }); 
 })
 
 exports.checkAuctionEntry = catchAsync(async (req, res, next) => {
