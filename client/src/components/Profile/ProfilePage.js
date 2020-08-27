@@ -61,7 +61,7 @@ const ProfilePage = ({
 		) : (user.data.role === 'Buyer' || (user.data.role === 'Bidder' && user.data.verified.status === true)) ? (
 			<Fragment>
 				<section className='section-home container-fluid'>
-					<div className="main shadow p-3 mb-5 bg-white rounded">
+					<div className="main p-3 mb-5 bg-white rounded">
 						<div className="main-content mx-3">
 							<div className="panel panel-profile">
 								<div className="clearfix">
@@ -118,7 +118,7 @@ const ProfilePage = ({
 		) : ((user.data.role === 'Auctioneer' && user.data.verified.status === true)) ? (
 			<Fragment>
 				<section className='section-home container-fluid'>
-					<div className="main shadow p-3 mb-5 bg-white rounded">
+					<div className="main p-3 mb-5 bg-white rounded">
 						<div className="main-content mx-3">
 							<div className="panel panel-profile">
 								<div className="clearfix">

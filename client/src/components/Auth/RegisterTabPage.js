@@ -14,7 +14,7 @@ const RegisterTab = (props) => {
 
   return (
     <section className='section-home container-fluid' style={{width:'100%'}}>
-    <div className='shadow p-3 mb-5 bg-white rounded'>
+    <div className='p-3 mb-5 bg-white rounded'>
       <Nav tabs className="nav-justified">
         <NavItem>
           <NavLink

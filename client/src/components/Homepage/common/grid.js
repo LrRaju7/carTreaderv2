@@ -7,7 +7,7 @@ import SubGrid from './subgrid'
 import moment from 'moment'
 import carData from '../../../data/dummy_cars.js'
 const list_order = ['newly listed', 'ending soon', 'newest cars', 'oldest cars']
-const orderSelector = (list_order, newlist) => {
+const orderSelector = (list_order, newlist , found) => {
     switch(list_order) {
       case "ending soon":
           newlist = sortBy(newlist, (o) => moment(o["Ending"], "DD/MM/YYYY").unix());
@@ -20,6 +20,9 @@ const orderSelector = (list_order, newlist) => {
           break;
       case "oldest cars":
           newlist = sortBy(newlist, (o) => o["Year"]);
+          break;
+      case "found":
+          newlist = found;
           break;
       }
       return newlist

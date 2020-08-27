@@ -6,7 +6,7 @@ class Contact extends Component {
         return (
             <Fragment>
                 <section className='section-home container-fluid'>
-                    <div className="main justify-content-center shadow p-3 mb-5 bg-white rounded">
+                    <div className="main justify-content-center p-3 mb-5 bg-white rounded">
                         <h1 className="text-center">Contact Us</h1>
                         <Form style={{ width: '100%' }} className="mt-5 ">
                             <FormGroup >

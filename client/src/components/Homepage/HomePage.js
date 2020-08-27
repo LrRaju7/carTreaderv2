@@ -14,9 +14,6 @@ class HomePage extends Component {
       <section className='section-home container-fluid'>
         <div className="main p-3 mb-5 bg-white rounded">
           <Row>
-            <Col lg={2}>
-              <AdvancedSearch />
-            </Col>
             <Col lg={10}>
               <Tabs>
                 <TabList>
@@ -38,7 +35,13 @@ class HomePage extends Component {
                 <TabPanel>
                   <Grid paginate list_order='oldest cars' />
                 </TabPanel>
+                <TabPanel>
+                  <Grid paginate list_order='found' />
+                </TabPanel>
               </Tabs>
+            </Col>
+            <Col lg={2}>
+              <AdvancedSearch />
             </Col>
           </Row>
         </div>

@@ -44,11 +44,7 @@ class Navbar extends Component {
   render() {
     let roleElement = []
     let roleLinkElement = <NavLink href='/dashboard/edit' ><span><i className='fa fa-pencil' /></span><span className="ml-3">Edit Account</span></NavLink>
-    let signupElement = []
-
-    if (this.props.role === 'admin') {
-      roleLinkElement = <NavLink href='/admin' ><span><i className='fa fa-user' /></span><spsn>Account</spsn></NavLink>
-    }
+    
 
     if (this.props.auth.isAuthenticated === true) {
       const id = this.props.auth.user._id

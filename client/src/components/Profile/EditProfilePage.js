@@ -75,7 +75,7 @@ const EditProfilePage = ({
   ) : (data.role === 'Buyer' || (data.role === 'Bidder' && data.verified.status === true) || (data.role === 'Auctioneer' && data.verified.status === true)) ? (
     <Fragment>
       <section className='section-home container-fluid' >
-        <div className="shadow p-3 mb-5 bg-white rounded">
+        <div className="p-3 mb-5 bg-white rounded">
           <div className="col">
             <div className="row">
               <div className="col mb-3">
