@@ -47,7 +47,8 @@ const VerifiedListingSchema = new mongoose.Schema({
     minIncrement: {
         type: Number,
         required: true,
-        default: 0,
+        min: [2000, "Cannot be less than BDT2000"],
+        default: 2000,
     },
     createdBy: {
         type: mongoose.Schema.ObjectId,
@@ -60,6 +61,18 @@ const VerifiedListingSchema = new mongoose.Schema({
     active: {
         type: Boolean,
         default: true
+    },
+    highest_bid: {
+        amount: {
+            type: Number,
+            required: true,
+            default: 0
+        },
+        user: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'user',
+            required: true
+        }        
     },
     bids: [
     {

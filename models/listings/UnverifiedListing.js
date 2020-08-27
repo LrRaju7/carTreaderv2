@@ -47,7 +47,8 @@ const UnverifiedListingSchema = new mongoose.Schema({
     minIncrement: {
         type: Number,
         required: true,
-        default: 0,
+        min: [2000, "Cannot be less than BDT2000"],
+        default: 2000,
     },
     createdBy: {
         type: mongoose.Schema.ObjectId,
