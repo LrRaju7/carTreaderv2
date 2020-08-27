@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Image = require("./Image");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -15,8 +16,8 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   avatar: {
-    data: Buffer, 
-    contentType: String,
+    type: Image,
+    // required: true
   },
   location: {
     type: String
@@ -30,10 +31,10 @@ const UserSchema = new mongoose.Schema({
   },
   privileges: {
     type: [String],
-    enum: ['editor','superadmin','approver'],
+    enum: ['editor', 'superadmin', 'approver'],
     required: function () {
-        return this.role === 'Administrator'
-      }
+      return this.role === 'Administrator'
+    }
   },
   documents: {
     nid: {
@@ -58,10 +59,10 @@ const UserSchema = new mongoose.Schema({
       }
     },
     by: {
-      type: mongoose.Schema.ObjectId,     
+      type: mongoose.Schema.ObjectId,
       required: function () {
         return (this.role === 'Auctioneer' && this.verified.status === true) || (this.role === 'Bidder' && this.verified.status === true)
-      },      
+      },
       ref: 'user'
     }
   }

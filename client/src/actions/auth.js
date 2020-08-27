@@ -53,8 +53,8 @@ export const register = (
   location,
   phone,
   role,
-  nid, 
-  tradeLicense
+  nid,
+  trade_license,
 ) => async dispatch => {
   console.log("----------------------------------------------->USER ROLE<-------------------------------------------")
       console.log(role)
@@ -62,16 +62,24 @@ export const register = (
       console.log(phone)
       console.log("----------------------------------------------->USER LOCATION<-------------------------------------------")
       console.log(location)
+      // console.log("----------------------------------------------->USER Documents<-------------------------------------------")
+      // console.log(nid)
+      // console.log(trade_license)
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
-  
+  const documents = {
+    nid: nid,
+    trade_license: trade_license,
+  };
+  console.log("----------------------------------------------->USER Documents<-------------------------------------------")
+      console.log(documents.nid)
+      console.log(documents.trade_license)
   if (password !== passwordConfirm) {
     return dispatch(addNotification("Passwords don't match", 'error'));
   }
-  const documents = [nid, tradeLicense]
   try {
     const res = await axios.post(
       '/api/users',

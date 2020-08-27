@@ -61,7 +61,7 @@ const ProfilePage = ({
 		) : (user.data.role === 'Buyer' || (user.data.role === 'Bidder' && user.data.verified.status === true)) ? (
 			<Fragment>
 				<section className='section-home container-fluid'>
-					<div className="main shadow p-3 mb-5 bg-white rounded">
+					<div className="main p-3 mb-5 bg-white rounded">
 						<div className="main-content mx-3">
 							<div className="panel panel-profile">
 								<div className="clearfix">
@@ -116,115 +116,118 @@ const ProfilePage = ({
 				</section>
 			</Fragment>
 		) : ((user.data.role === 'Auctioneer' && user.data.verified.status === true)) ? (
-					<Fragment>
-						<section className='section-home container-fluid'>
-							<div className="main shadow p-3 mb-5 bg-white rounded">
-								<div className="main-content mx-3">
-									<div className="panel panel-profile">
-										<div className="clearfix">
-											<div className="profile-left">
-												<div className="card bg-light">
-													<div className="card-header text-center">
-														<div className="profile-main">
-															<img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="100x100" />
-															<h3 className="name">{user.data.name}</h3>
-															<span className="online-status status-available">Available</span>
-														</div>
+			<Fragment>
+				<section className='section-home container-fluid'>
+					<div className="main p-3 mb-5 bg-white rounded">
+						<div className="main-content mx-3">
+							<div className="panel panel-profile">
+								<div className="clearfix">
+									<div className="profile-left">
+										<div className="card bg-light">
+											<div className="card-header text-center">
+												<div className="profile-main">
+													<img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="100x100" />
+													<h3 className="name">{user.data.name}</h3>
+													<span className="online-status status-available">Available</span>
+												</div>
+											</div>
+											<div className="card-body">
+												<div className="row text-center">
+													<div className="col-md-4 stat-item">
+														{user.data.ratingsAverage} * <span>Rating</span>
 													</div>
-													<div className="card-body">
-														<div className="row text-center">
-															<div className="col-md-4 stat-item">
-																{user.data.ratingsAverage} * <span>Rating</span>
-															</div>
-															<div className="col-md-4 stat-item">
-																* <span>Uploads</span>
-															</div>
-															<div className="col-md-4 stat-item">
-																* <span>Sold</span>
-															</div>
-														</div>
+													<div className="col-md-4 stat-item">
+														* <span>Uploads</span>
 													</div>
-													<div className="table-responsive text-white">
-														<table className="table table-striped table-vcenter mb-0">
-															<tbody>
-																<tr>
-																	<td>
-																		<div className="clearfix">
-																			<div className="float-left"><strong >Role:</strong></div>
-																			<div className="float-right">{user.data.role}</div>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<div className="clearfix">
-																			<div className="float-left"><strong >Mobile:</strong></div>
-																			<div className="float-right">{user.data.phone}</div>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<div className="clearfix">
-																			<div className="float-left"><strong >Email:</strong></div>
-																			<div className="float-right">{user.data.email}</div>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<div className="clearfix">
-																			<div className="float-left"><strong >Address:</strong></div>
-																			<div className="float-right">{user.data.location}</div>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<div className="clearfix">
-																			<div className="float-left"><strong >Bio:</strong></div>
-																			<div className="float-right">{user.data.bio}</div>
-																		</div>
-																	</td>
-																</tr>
-															</tbody>
-														</table>
-														<div className="mt-5 text-center">
-															<Link to={`/dashboard`}>
-																<button style={{ width: '50%' }} className="btn btn-outline-dark shadow mb-5" type="button">Back to Dashboard</button>
-															</Link>
-														</div>
+													<div className="col-md-4 stat-item">
+														* <span>Sold</span>
 													</div>
 												</div>
 											</div>
-											<div className="profile-right">
-												{/* <ListingForm /> */}
-												<CreateListing />
+											<div className="table-responsive text-white">
+												<table className="table table-striped table-vcenter mb-0">
+													<tbody>
+														<tr>
+															<td>
+																<div className="clearfix">
+																	<div className="float-left"><strong >Role:</strong></div>
+																	<div className="float-right">{user.data.role}</div>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div className="clearfix">
+																	<div className="float-left"><strong >Mobile:</strong></div>
+																	<div className="float-right">{user.data.phone}</div>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div className="clearfix">
+																	<div className="float-left"><strong >Email:</strong></div>
+																	<div className="float-right">{user.data.email}</div>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div className="clearfix">
+																	<div className="float-left"><strong >Address:</strong></div>
+																	<div className="float-right">{user.data.location}</div>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div className="clearfix">
+																	<div className="float-left"><strong >Bio:</strong></div>
+																	<div className="float-right">{user.data.bio}</div>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<div className="mt-5 text-center">
+													<Link to={`/dashboard`}>
+														<button style={{ width: '50%' }} className="btn btn-outline-dark shadow mb-5" type="button">Back to Dashboard</button>
+													</Link>
+												</div>
 											</div>
 										</div>
 									</div>
+									<div className="profile-right">
+										{/* <ListingForm /> */}
+										<CreateListing />
+									</div>
 								</div>
 							</div>
-						</section>
-					</Fragment>
-				)
-				: (
-					<Fragment>
-						<section className='section-home container-fluid' >
-							<div className='align-items-center justify-content-center' style={{marginTop:'20%'}}>
-							<p className='h1 text-center text-muted'>
-							your account is not verified yet. please be patient. After the verification is completed, you will be able to access your account.
+						</div>
+					</div>
+				</section>
+			</Fragment>
+		)
+					: (
+						<Fragment>
+							<section className='section-home container-fluid' >
+								<div className='align-items-center justify-content-center' style={{ marginTop: '15%' }}>
+									<p className="h1 text-center text-muted">
+										Hello <strong>{user.data.name}</strong>
+									</p>
+									<p className='h1 text-center text-muted'>
+										your account is not verified yet. please be patient. After the verification is completed, you will be able to access your account.
 							</p>
-							<p className='h1 text-center text-muted'>
-							Verification process can take upto 72 hours.
+									<p className='h1 text-center text-muted'>
+										Verification process can take upto 72 hours.
 							</p>
-							<p className='h1 text-center'>
-								Thank you!!! <span><i className='fa fa-smile'></i></span>
-							</p>
-							</div>
-						</section>
-					</Fragment>
-				  );
+									<p className='h1 text-center'>
+										Thank you!!! <span><i className='fa fa-smile'></i></span>
+									</p>
+								</div>
+							</section>
+						</Fragment>
+					);
 };
 
 

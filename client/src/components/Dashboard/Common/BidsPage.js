@@ -47,7 +47,7 @@ const BidsPage = ({
     ) : (
             <Fragment>
                 <section className='section-home container-fluid'>
-                    <div className='shadow p-3 mb-5 bg-white rounded'>
+                    <div className='p-3 mb-5 bg-white rounded'>
                         <div className="section-body mt-3 mb-5">
                             <div className="container-fluid">
                                 <div className="row clearfix">

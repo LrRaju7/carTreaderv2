@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import { logout } from '../../../actions/auth';
 import { Container, NavLink, Collapse, Navbar as BootstrapNavbar, NavbarToggler, NavbarBrand, Nav, NavItem, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap';
 import { setAuthToken } from '../../../utils/setAuthToken';
-import ItemWiseSearchModal from '../../Modal/ItemWiseSearchModal';
 
 
 class Navbar extends Component {
@@ -45,11 +44,7 @@ class Navbar extends Component {
   render() {
     let roleElement = []
     let roleLinkElement = <NavLink href='/dashboard/edit' ><span><i className='fa fa-pencil' /></span><span className="ml-3">Edit Account</span></NavLink>
-    let signupElement = []
-
-    if (this.props.role === 'admin') {
-      roleLinkElement = <NavLink href='/admin' ><span><i className='fa fa-user' /></span><spsn>Account</spsn></NavLink>
-    }
+    
 
     if (this.props.auth.isAuthenticated === true) {
       const id = this.props.auth.user._id
@@ -116,11 +111,6 @@ class Navbar extends Component {
                 </NavItem>
                 <NavItem className={this.tabClass('/contact')}>
                   <NavLink href='/contact'> Contact
-                  </NavLink>
-                </NavItem>
-                <NavItem >
-                  <NavLink>
-                  <ItemWiseSearchModal/>
                   </NavLink>
                 </NavItem>
               </Nav>

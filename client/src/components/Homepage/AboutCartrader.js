@@ -5,7 +5,7 @@ class AboutCartrader extends Component {
     render() {
         return (
             <section className='section-home container-fluid' >
-                <div className="page container-fluid static what-is shadow p-3 mb-5 bg-white rounded">
+                <div className="page container-fluid static what-is p-3 mb-5 bg-white rounded">
                     <h2 className='text-center'>What's Cartrader</h2>
                     <div className='mt-5 ml-3 mr-3'>
                         <div className="row">

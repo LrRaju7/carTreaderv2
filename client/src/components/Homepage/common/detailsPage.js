@@ -23,6 +23,13 @@ class DetailsPage extends React.Component {
     let id = nextProps.match.params.id;
     console.log('id is', id)
     let car = find(carData, car => car.id == id)
+    let cars = carData
+    let carBrand = cars.map(({ Make }) => Make);
+    let uCarBrand = [...new Set(carBrand)];
+    console.log("__-------------------------->ALL CARS<-------------------------___")
+    console.log(cars)
+    console.log("__-------------------------->CAR BRANDS<-------------------------___")
+    console.log(uCarBrand)
     return {
       car
     };
