@@ -2,10 +2,12 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { sortBy } from 'underscore'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import SubGrid from './subgrid'
 import moment from 'moment'
 import carData from '../../../data/dummy_cars.js'
+import {getListings} from '../../../actions/listing'
 const list_order = ['newly listed', 'ending soon', 'newest cars', 'oldest cars']
 const orderSelector = (list_order, newlist , found) => {
     switch(list_order) {
@@ -45,6 +47,7 @@ class Grid extends React.Component {
 
   componentDidMount() {
     console.log('mounting',this.props.list_order)
+    this.props.getListings()
     let newlist = carData
     newlist = orderSelector(this.props.list_order, newlist)
     newlist = newlist.slice(0,(8+0))    
@@ -53,10 +56,7 @@ class Grid extends React.Component {
       pageCount: Math.ceil(carData.length / 8),
     });
   }
-  shouldComponentUpdate(nextProps, nextState){
-    console.log("hi")
-    return true
-  }
+
 
   handlePageClick = data => {
     let selected = data.selected;
@@ -76,6 +76,11 @@ class Grid extends React.Component {
 
   render() {
     let props = this.props
+    console.log(props)
+    let {listings} = this.props
+    console.log("???????????????????????????????????????????????????????")
+    console.log(listings)
+    console.log("???????????????????????????????????????????????????????")
     let md = props.md ? props.md : 4
     let lg = props.lg ? props.lg : 3
     let sm = props.sm ? props.sm : 6
@@ -83,7 +88,7 @@ class Grid extends React.Component {
       return (
         <div>
           <Row> 
-              {this.state.data.map((item, key) => <Col key={key} md={md} lg={lg} sm={sm} ><SubGrid car={item} /></Col>)}
+              {listings.length ? listings.map((item, key) => <Col key={key} md={md} lg={lg} sm={sm} ><SubGrid listing={item} /></Col>) : <h1>NO</h1>}
 
           </Row>
           {paginate}
@@ -91,4 +96,11 @@ class Grid extends React.Component {
       );
   }
 }
-export default Grid;
+
+const mapStateToProps = state => ({
+  listings: state.listings.listings
+});
+
+export default connect(mapStateToProps, {
+  getListings,
+})(Grid);

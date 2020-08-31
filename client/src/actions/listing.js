@@ -13,17 +13,20 @@ import {
 import { addNotification } from './notification';
 
 export const getListings = query => async dispatch => {
+  console.log("HEETT")
   try {
-    const res = await axios.get(`/api/listings/${query}`);
+    const res = await axios.get(`/api/listings`);
     console.log('getting listings');
-    console.log(res);
-    dispatch({ type: GET_LISTINGS, payload: res.data });
+    let listings = res.data
+    console.log(listings)
+    dispatch({ type: GET_LISTINGS, payload: {listings: listings} });
   } catch (err) {
-    console.log(`Error: ${err.response.data.message}`);
+    console.log(err);
   }
 };
 
 export const getListing = slug => async dispatch => {
+  console.log("HEETT")
   try {
     const res = await axios.get(`/api/listings/slug/${slug}`);
 

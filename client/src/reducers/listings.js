@@ -10,7 +10,8 @@ import {
 const initialState = {
   data: null,
   numListings: null,
-  loading: true
+  loading: true,
+  listings: []
 };
 
 export default function(state = initialState, action) {
@@ -22,11 +23,10 @@ export default function(state = initialState, action) {
     case GET_LISTINGS:
       return {
         ...state,
-        data: payload.data.listings,
-        numListings: payload.numListings,
+        listings: payload.listings,
+        numListings: payload.listings.count,
         loading: false
       };
-
     case CLEAR_LISTINGS:
       return {
         ...state,

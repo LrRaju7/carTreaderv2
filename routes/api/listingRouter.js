@@ -27,6 +27,12 @@ router.post('/checkAuctionEntry', authController.authenticate, newListingControl
 
 router.post('/payAuctionEnty', authController.authenticate, newListingController.checkAuctionEntry, newListingController.createBid)
 
+
+router.get(
+  '/',
+  newListingController.getAllVerifiedListings
+);
+
 router.get(
   '/',
   listingController.getAllListings,

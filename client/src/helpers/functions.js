@@ -1,7 +1,9 @@
 import moment from 'moment';
 
 export const daysCalculator = (date) => {
-	var given = moment(date, "DD/MM/YYYY");
+  console.log(date)
+  let d = new Date(date)
+	var given = moment(d, "DD/MM/YYYY");
 	var current = moment().startOf('day');
 
 //Difference in number of days

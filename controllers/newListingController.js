@@ -68,26 +68,32 @@ exports.deleteUnverifiedListingByUser = catchAsync(async (req, res, next) => {
 })
 
 exports.getAllVerifiedListings = catchAsync(async (req, res, next) => {
-    const listings = VerifiedListing.find({});
-    res.status(200).json({
-        status: 'success',
-        listings: listings.length,
-        data: {
-            listings
-        }
-    });    
+    console.log("HHHHH")
+     try {
+        const listings = await VerifiedListing.find({});
+        res.send(listings);    
+    } catch(err) {
+        console.log(err)
+    }
 })
 
 exports.getAllVerifiedListingsByUser = catchAsync(async (req, res, next) => {
     const user = req.user
-    const listings = await VerifiedListing.find({created_by: user.id});
-    res.status(200).json({
-        status: 'success',
-        listings: listings.length,
-        data: {
-            listings
-        }
-    }); 
+    try {
+        const listings = await VerifiedListing.find({created_by: user.id});
+        console.log(listings)
+        res.status(200).json({
+            status: 'success',
+            listings: listings.length,
+            data: {
+                listings
+            }
+        }); 
+    } catch(err) {
+        console.log("ERRERRERR")
+        console.log(err)
+    }
+
 })
 
 exports.getVerifiedListingByUser = catchAsync(async (req, res, next) => {
