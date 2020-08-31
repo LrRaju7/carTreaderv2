@@ -23,7 +23,7 @@ exports.createListing = catchAsync(async (req, res, next) => {
       )
     );
   }
-  if (!(listingBody.endDate && listingBody.title && listingBody.description)) {
+  if (!(listingBody.endDateTime && listingBody.title && listingBody.description)) {
     return next(new AppError('Missing required fields', 400));
   }
   const newListing = await Listing.create(listingBody);

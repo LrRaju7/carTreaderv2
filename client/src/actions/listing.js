@@ -61,6 +61,8 @@ export const createListing = (
   minIncrement,
   endDateTime
   };
+  console.log("---------------------->NEW LISTING<---------------------")
+  console.log(body);
   try {
     const res = await axios.post('/api/listings', body, config);
 

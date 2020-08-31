@@ -199,7 +199,7 @@ const ProfilePage = ({
 									</div>
 									<div className="profile-right">
 										{/* <ListingForm /> */}
-										{/* <CreateListing /> */}
+										<CreateListing />
 									</div>
 								</div>
 							</div>

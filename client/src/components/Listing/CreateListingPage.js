@@ -11,29 +11,29 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
   const [formData, setFormData] = useState({
-    title,
-    description,
-    make,
-    model,
-    year,
-    capacity,
-    type,
-    exterior,
-    interior,
-    highlights,
-    equipment,
-    modifications,
-    issues,
-    service_history,
-    ownership_history,
-    status,
-    images,
-    currentPrice,
-    startPrice,
-    minIncrement
+    title:'',
+    description:'',
+    make:'',
+    model:'',
+    year:'',
+    capacity:'',
+    type:'',
+    exterior:'',
+    interior:'',
+    highlights:'',
+    equipment:'',
+    modifications:'',
+    issues:'',
+    service_history:'',
+    ownership_history:'',
+    status:'',
+    images:'',
+    currentPrice:'',
+    startPrice:'',
+    minIncrement:''
   });
 
-  let {
+  const {
     title,
     description,
     make,
@@ -93,30 +93,47 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
   }
 
   const onSubmit = async e => {
+    
     e.preventDefault();
     setUploading(true);
-    if (verified) {
+    if (verifyCallback) {
       let images;
       if (pictures[0]) {
         let formData = new FormData();
         formData.append('image', pictures[0][0]);
-        images = (await axios.post('/api/listings/upload/image', formData)).data
+        image = (await axios.post('/api/listings/upload/image', formData)).data
           .url;
+          
       }
-      createListing(
-        title,
-        description,
-        car,
-        images,
-        currentPrice,
-        startPrice,
-        minIncrement,
-        endDateTime
-      );
-      console.log("success")
-    } else {
-      alert('Something Wrong');
-    }
+      
+
+        createListing(
+          title,
+          description,
+          car,
+          images,
+          currentPrice,
+          startPrice,
+          minIncrement,
+          endDateTime
+        );
+      } else {
+        alert('Do the CAPTCHA');
+      }
+    //   createListing(
+    //     title,
+    //     description,
+    //     car,
+    //     images,
+    //     currentPrice,
+    //     startPrice,
+    //     minIncrement,
+    //     endDateTime
+    //   );
+    //   console.log("success")
+    // } else {
+    //   alert('Something Wrong');
+    // }
     setUploading(false);
   };
 
@@ -138,10 +155,6 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
               onChange={e => onChange(e)}
               required/>
         </FormGroup>
-        <FormGroup >
-          <Label for="slug">Slug</Label>
-          <Input type="text" name="slug" id="slug"  />
-        </FormGroup>
         <FormGroup  >
           <Label for="description">Description</Label>
           <textarea className="form-control" type="text" name="description" id="description" rows="5" value={description}
@@ -149,8 +162,60 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
               required/>
         </FormGroup>
         <FormGroup  >
-          <Label for="category">Item Category</Label>
-          <Input type="text" name="category" id="category"/>
+          <Label for="make">Car Make</Label>
+          <Input type="text" name="make" id="make" value={make} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="model">Car Model</Label>
+          <Input type="text" name="model" id="model" value={model} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="year">Car Year</Label>
+          <Input type="text" name="year" id="year" value={year} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="capacity">Car Engine Capacity</Label>
+          <Input type="text" name="capacity" id="capacity" value={capacity} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="type">Car Engine Type</Label>
+          <Input type="text" name="type" id="type" value={type} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="exterior">Car Color Exterior</Label>
+          <Input type="text" name="exterior" id="exterior" value={exterior} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="interior">Car Color Interior</Label>
+          <Input type="text" name="interior" id="interior" value={interior} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="highlights">Car Highlights</Label>
+          <Input type="text" name="highlights" id="highlights" value={highlights} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="equipment">Car Equipment</Label>
+          <Input type="text" name="equipment" id="equipment" value={equipment} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="modifications">Car Modifications</Label>
+          <Input type="text" name="modifications" id="modifications" value={modifications} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="issues">Car Issues</Label>
+          <Input type="text" name="issues" id="issues" value={issues} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="service_history">Car Service History</Label>
+          <Input type="text" name="service_history" id="service_history" value={service_history} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="ownership_history">Car Ownership History</Label>
+          <Input type="text" name="ownership_history" id="ownership_history" value={ownership_history} onChange={e => onChange(e)} required/>
+        </FormGroup>
+        <FormGroup >
+          <Label for="status">Car Status</Label>
+          <Input type="text" name="status" id="status" value={status} onChange={e => onChange(e)} required/>
         </FormGroup>
         <FormGroup>
           <Label for="images">Item image</Label>
@@ -163,29 +228,13 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
               maxFileSize={5242880}
             />
         </FormGroup>
-        <FormGroup >
-          <Label for="condition">Item condition</Label>
-          <select className='form-control'
-              
-            >
-              <option value='used'>Used</option>
-              <option value='new'>New</option>
-            </select>
+        <FormGroup  >
+          <Label for="startPrice">Start Price</Label>
+          <Input type="number" name="startPrice" id="startPrice" value={startPrice} onChange={e => onChange(e)}/>
         </FormGroup>
         <FormGroup  >
-          <Label for="cPrcurrentPriceice">Current Price</Label>
-          <Input type="number" name="currentPrice" id="currentPrice" />
-        </FormGroup>
-        <FormGroup  >
-          <Label for="startPrice">Item starting price</Label>
-          <Input type="number" name="startPrice" id="startPrice" value={startPrice} step='0.01' onChange={e => {
-                if (
-                  /^(\d+(\.\d{0,2})?|\.?\d{1,2})$/.test(e.target.value) ||
-                  e.target.value == ''
-                ) {
-                  setFormData({ ...formData, startPrice: e.target.value });
-                }
-              }}/>
+          <Label for="currentPrice">Current Price</Label>
+          <Input type="number" name="currentPrice" id="currentPrice" value={currentPrice} onChange={e => onChange(e)}/>
         </FormGroup>
         <FormGroup  >
           <Label for="minIncrement">Minimum bid increment</Label>
@@ -208,7 +257,7 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
               type='date'
               className='form-control'
               selected={endDateTime}
-              onChange={date => setEndDateTime(date)}
+              onChange={e => onChange(e)}
               minDate={new Date()}
               dateFormat='MMMM d, yyyy'
               required

@@ -27,7 +27,10 @@ exports.createUnverifiedListing = catchAsync(async (req, res, next) => {
       )
     );
   }
-  if (!(listingBody.endDate && listingBody.title && listingBody.description)) {
+  console.log(listingBody.endDateTime)
+  console.log(listingBody.title)
+  console.log(listingBody.description)
+  if (!(listingBody.endDateTime && listingBody.title && listingBody.description)) {
     return next(new AppError('Missing required fields', 400));
   }
   const newListing = await UnverifiedListing.create(listingBody);
@@ -64,7 +67,21 @@ exports.editUnverifiedListingByUser = catchAsync(async (req, res, next) => {
 })
 
 exports.deleteUnverifiedListingByUser = catchAsync(async (req, res, next) => {
+    const user = req.user
+    const { listing_id } = req.body
+    const listing = await UnverifiedListing.findOne({ _id: listing_id, created_by: user.id });
 
+    if (listing) {
+        await listing.remove();
+        return res.status(200).json({
+            status: 'success',
+            data: {
+                listing
+            }
+        });
+    } else {
+        return next(new AppError('No Listing Found', 404));
+    }
 })
 
 exports.getAllVerifiedListings = catchAsync(async (req, res, next) => {
