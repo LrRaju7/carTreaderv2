@@ -11,8 +11,8 @@ exports.createUnverifiedListing = catchAsync(async (req, res, next) => {
   const listingBody = {
     ...req.body,
     createdBy: req.user.id,
-    startPrice: req.body.startPrice * 100,
-    minIncrement: req.body.minIncrement * 100
+    startPrice: req.body.startPrice,
+    minIncrement: req.body.minIncrement
   };
   if (
     listingBody.minIncrement % 1 !== 0 &&

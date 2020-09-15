@@ -13,6 +13,7 @@ const UnverifiedListingSchema = new mongoose.Schema({
         required: [true, "An item must have a title!"],
         trim: true,
         maxlength: [30, "A title must be less than 30 characters!"],
+        unique: true
     },
     slug: {
         type: String,

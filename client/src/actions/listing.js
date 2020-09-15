@@ -64,9 +64,17 @@ export const createListing = (
   console.log("---------------------->NEW LISTING<---------------------")
   console.log(body);
   try {
-    const res = await axios.post('/api/listings', body, config);
+    const res = await axios.post('/api/listings', body, config).then(() => {
+      history.push(`/listings/${res.data.listing.slug}`);
+    });
+    // console.log("=-=-=-=-=-RESPONSE-=-=-=--=-=-=-=-=")
+    // console.log(res)
+    // let _path = res.data.listing.slug
+    // console.log("=-=-=-=-=-SLUG DATA-=-=-=--=-=-=-=-=")
+    // console.log(_path)
 
-    history.push(`/listings/${res.data.listing.slug}`);
+    // history.push(`/listings/${_path}`);
+
   } catch (err) {
     console.log(`Error: ${err}`);
     dispatch(addNotification(err.response.data.message, 'error'));

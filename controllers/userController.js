@@ -12,7 +12,7 @@ const Listing = require('../models/listingModel');
 
 exports.createUser = catchAsync(async (req, res, next) => {
   console.log(req.role)
-  const { name, email, password, avatar, location, role, documents } = req.body;
+  const { name, email, password, avatar, location, phone, role, documents } = req.body;
   console.log(req.body)
   if (!(name && email && password)) {
     return next(new AppError('Missing required fields', 400));
@@ -35,6 +35,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
     avatar,
     password,
     location,
+    phone,
     role,
     documents
   });

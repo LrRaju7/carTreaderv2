@@ -27,7 +27,6 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
     service_history:'',
     ownership_history:'',
     status:'',
-    images:'',
     currentPrice:'',
     startPrice:'',
     minIncrement:''
@@ -50,11 +49,12 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
     service_history,
     ownership_history,
     status,
-    images,
     currentPrice,
     startPrice,
     minIncrement
   } = formData;
+
+  const images = [];
 
   const [pictures, setPictures] = useState([]);
 
@@ -97,17 +97,27 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
     e.preventDefault();
     setUploading(true);
     if (verifyCallback) {
-      let images;
+      console.log(pictures)
+      console.log(pictures[0].length)
+      let picData;
       if (pictures[0]) {
+        for(const picture of pictures[0]){
         let formData = new FormData();
-        formData.append('image', pictures[0][0]);
-        image = (await axios.post('/api/listings/upload/image', formData)).data
-          .url;
-          
+        formData.append('image', picture);
+        picData = await axios.post('/api/listings/upload/image', formData)
+        console.log(picData)
+        console.log(picData.data.url)
+        console.log(picData.data.imageId)
+        if(picture === pictures[0][0]){
+          var feed = {image: picData.data.url, _id: picData.data.imageId, highlighted: true}
+        }else{
+          var feed = {image: picData.data.url, _id: picData.data.imageId, highlighted: false}
+        }
+        images.push(feed) 
+        }
+        console.log(images)
       }
-      
-
-        createListing(
+      createListing(
           title,
           description,
           car,
@@ -115,25 +125,13 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
           currentPrice,
           startPrice,
           minIncrement,
-          endDateTime
+          endDateTime,
+          history
         );
       } else {
-        alert('Do the CAPTCHA');
+        alert('Something Wrong');
       }
-    //   createListing(
-    //     title,
-    //     description,
-    //     car,
-    //     images,
-    //     currentPrice,
-    //     startPrice,
-    //     minIncrement,
-    //     endDateTime
-    //   );
-    //   console.log("success")
-    // } else {
-    //   alert('Something Wrong');
-    // }
+
     setUploading(false);
   };
 

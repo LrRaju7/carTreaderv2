@@ -7,8 +7,8 @@ exports.createListing = catchAsync(async (req, res, next) => {
   const listingBody = {
     ...req.body,
     createdBy: req.user.id,
-    startPrice: req.body.startPrice * 100,
-    minIncrement: req.body.minIncrement * 100
+    startPrice: req.body.startPrice * 1,
+    minIncrement: req.body.minIncrement * 1
   };
   if (
     listingBody.minIncrement % 1 !== 0 &&
