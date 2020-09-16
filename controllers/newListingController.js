@@ -14,6 +14,7 @@ exports.createUnverifiedListing = catchAsync(async (req, res, next) => {
     startPrice: req.body.startPrice,
     minIncrement: req.body.minIncrement
   };
+  console.log(listingBody);
   if (
     listingBody.minIncrement % 1 !== 0 &&
     !!listingBody.minIncrement &&

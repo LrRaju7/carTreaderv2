@@ -116,6 +116,7 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
         images.push(feed) 
         }
         console.log(images)
+        console.log(endDateTime);
       }
       createListing(
           title,
@@ -250,19 +251,17 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
               }}/>
         </FormGroup>
         <FormGroup>
-          <Label for="endTime">Auction end date</Label>
-          <Input
-              type='date'
-              className='form-control'
+          <Label for="endDateTime">Auction end date</Label><br/>
+          <DatePicker 
               selected={endDateTime}
-              onChange={e => onChange(e)}
+              onChange={date => setEndDateTime(date)}
               minDate={new Date()}
               dateFormat='MMMM d, yyyy'
               required
             />
         </FormGroup>
           <div className='text-center'>
-        <Input style={{width: 'auto'}} type='submit' className="btn btn-success mt-5 shadow" value={uploading ? 'Creating..' : 'Create listing'}/>
+        <Input style={{width: 'auto'}} type='submit' className="btn btn-success mt-5 shadow" value={uploading ? 'Creating..' : 'Create listing'} disabled={uploading}/>
         </div>
       </Form>
     </Fragment>

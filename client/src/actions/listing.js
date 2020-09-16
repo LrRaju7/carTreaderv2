@@ -68,7 +68,7 @@ export const createListing = (
       history.push(`/listings/${res.data.listing.slug}`);
     });
     // console.log("=-=-=-=-=-RESPONSE-=-=-=--=-=-=-=-=")
-    // console.log(res)
+    console.log(res)
     // let _path = res.data.listing.slug
     // console.log("=-=-=-=-=-SLUG DATA-=-=-=--=-=-=-=-=")
     // console.log(_path)

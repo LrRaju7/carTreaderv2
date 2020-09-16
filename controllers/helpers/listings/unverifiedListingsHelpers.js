@@ -17,8 +17,11 @@ exports.approveUnverifiedListing = async (context) => {
         //##### NEED TO ADD CURRENT ADMIN DETAILS TO VERIFIED LISTING
         // add field verified_by: admin_id
         //################################################################
+        console.log(payload)
         let verifiedListing = new VerifiedListing(payload)
+        console.log(verifiedListing)
         await verifiedListing.save()
+        console.log("HIT")
         context.record = verifiedListing
         console.log("+-+-+-+-+-+-+-+-+-+-+ Verified Listing Created +-+-+-+-+-+-+-+-+-+-+")
         console.log("+-+-+-+-+-+-+-+-+-+-+ Deleting Unverified Listing +-+-+-+-+-+-+-+-+-+-+")
@@ -26,6 +29,7 @@ exports.approveUnverifiedListing = async (context) => {
         console.log("+-+-+-+-+-+-+-+-+-+-+ Unverified Listing Deleted +-+-+-+-+-+-+-+-+-+-+")
         return verifiedListing;
     } catch (err) {
+        console.log(err)
         return {
             isError: true,
             record: record.toJSON(currentAdmin),

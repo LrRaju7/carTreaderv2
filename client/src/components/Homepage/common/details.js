@@ -40,7 +40,7 @@ const Details = ({
     });
   }, [loading, data]);
 
-  let enddate = moment(car["Ending"], "DD/MM/YYYY");
+  let enddate = moment(car["endDateTime"], "DD/MM/YYYY");
   let endtime = enddate.valueOf();
   let curdate = new Date();
   let curtime = curdate.getTime();

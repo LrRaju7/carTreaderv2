@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
 import { Col, Row, Button, Form, FormGroup, Label, Input,FormText} from 'reactstrap';
+import ImageUploader from 'react-images-upload';
 
 const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -20,7 +21,11 @@ const Register = ({ register, isAuthenticated }) => {
   const role = 'Auctioneer'
   
   const { email, name, password, passwordConfirm, phone, location, nid, tradeLicense} = formData;
+  const [picture, setPicture] = useState([]);
 
+  const onDrop = picture => {
+    setPicture(picture);
+  };
   
   console.log(verified)
 
@@ -32,6 +37,7 @@ const Register = ({ register, isAuthenticated }) => {
     console.log("----------------------------->ROLE IS ", role)
     console.log("----------------------------->PHONE IS ", phone)
     console.log("----------------------------->LOCATION IS ", location)
+    
     const documents = {
       nid: nid,
       trade_license: tradeLicense,
@@ -79,6 +85,18 @@ const Register = ({ register, isAuthenticated }) => {
             </FormGroup>
           </Col>
         </Row>
+        <FormGroup>
+          <Label for="images">Avatar</Label>
+          <ImageUploader
+              withIcon={true}
+              buttonText='Choose images'
+              withPreview={true}
+              onChange={onDrop}
+              imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
+              maxFileSize={5242880}
+              singleImage={true}
+            />
+        </FormGroup>
         <FormGroup>
           <Label for="examplePhone">Auctioneer Phone</Label>
           <Input type="number" name="phone" value={phone} id="examplephone" onChange={e => onChange(e)}/>

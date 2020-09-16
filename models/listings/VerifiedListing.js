@@ -66,13 +66,12 @@ const VerifiedListingSchema = new mongoose.Schema({
     highest_bid: {
         amount: {
             type: Number,
-            required: true,
             default: 0
         },
         user: {
             type: mongoose.Schema.ObjectId,
             ref: 'user',
-            required: true
+            default: null
         }        
     },
     bids: {
