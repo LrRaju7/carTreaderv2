@@ -229,11 +229,11 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
         </FormGroup>
         <FormGroup  >
           <Label for="startPrice">Start Price</Label>
-          <Input type="number" name="startPrice" id="startPrice" value={startPrice} onChange={e => onChange(e)}/>
+          <Input type="number" name="startPrice" id="startPrice" value={startPrice} onChange={e => onChange(e)} required/>
         </FormGroup>
         <FormGroup  >
           <Label for="currentPrice">Current Price</Label>
-          <Input type="number" name="currentPrice" id="currentPrice" value={currentPrice} onChange={e => onChange(e)}/>
+          <Input type="number" name="currentPrice" id="currentPrice" value={currentPrice} onChange={e => onChange(e)} required/>
         </FormGroup>
         <FormGroup  >
           <Label for="minIncrement">Minimum bid increment</Label>
