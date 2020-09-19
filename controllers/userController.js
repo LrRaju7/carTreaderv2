@@ -117,7 +117,12 @@ exports.getUserBidHistory = catchAsync(async (req, res, next) => {
 
 exports.getUserById = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id).select('-password');
+  console.log(req.params.id)
+  // console.log("---------USER DETAILS----------")
+  // console.log(user)
+  // console.log("---------USER DETAILS----------")
   if (!user) {
+    console.log("---------USER NOT FOUND----------")
     return next(new AppError('No user found', 404));
     
   }

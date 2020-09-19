@@ -39,7 +39,9 @@ const Details = ({
       verified: loading || !data.verified.status ? '' : data.verified.status,
     });
   }, [loading, data]);
-
+  console.log("----------------CAR DATA----------------------")
+  console.log(car)
+  console.log("----------------CAR DATA----------------------")
   let enddate = moment(car["endDateTime"], "DD/MM/YYYY");
   let endtime = enddate.valueOf();
   let curdate = new Date();

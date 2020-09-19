@@ -30,10 +30,14 @@ const ProfilePage = ({
 	clearReviews,
 	listings
 }) => {
+	console.log("-----------USER----------")
+	console.log(user)
+	console.log("-----------USER----------")
 	useEffect(() => {
 		getReviewsWrittenForUser(match.params.id);
 		getListings(`?createdBy=${match.params.id}&limit=5`);
-		getUserById(match.params.id);
+		let USER = getUserById(match.params.id);
+		console.log(USER)
 		return () => {
 			clearUser();
 			clearReviews();
@@ -47,13 +51,25 @@ const ProfilePage = ({
 		match.params.id,
 		clearReviews
 	]);
-
+	// console.log("-----------CHECK------------")
+	// console.log(user.loading)
+	// console.log("-----------user.data CHECK------------")
+	// console.log(user.data)
+	// console.log("-----------auth.loading CHECK------------")
+	// console.log(auth.loading)
+	// console.log("-----------auth.user CHECK------------")
+	// console.log(auth.user)
+	// console.log("-----------listings.loading CHECK------------")
+	// console.log(listings.loading)
+	// console.log("-----------listings.data CHECK------------")
+	// console.log(listings.data)
+	// console.log("-----------user.errors CHECK------------")
+	// console.log(user.errors)
+	// console.log("-----------CHECK------------")
 	return (user.loading ||
 		user.data === null ||
 		auth.loading ||
-		auth.user === null ||
-		listings.loading ||
-		listings.data === null) &&
+		auth.user === null) &&
 		!user.errors ? (
 			<Spinner />
 		) : user.errors ? (

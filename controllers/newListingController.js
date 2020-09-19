@@ -86,7 +86,9 @@ exports.deleteUnverifiedListingByUser = catchAsync(async (req, res, next) => {
 })
 
 exports.getAllVerifiedListings = catchAsync(async (req, res, next) => {
-    const listings = VerifiedListing.find({});
+    // console.log("GETTING ALL VERIFIED LISTINGS")
+    const listings = await VerifiedListing.find({});
+    // console.log(listings)
     res.status(200).json({
         status: 'success',
         listings: listings.length,
@@ -119,6 +121,20 @@ exports.getVerifiedListingByUser = catchAsync(async (req, res, next) => {
         }
     }); 
 })
+
+// exports.getVerifiedListingById = catchAsync(async (req, res, next) => {
+//     const {listing_id} = req.body
+//     const listing = await VerifiedListing.findOne({_id: listing_id});
+//     console.log("---------GET LISTING BY ID---------")
+//     console.log(listing)
+//     console.log("---------GET LISTING BY ID---------")
+//     res.status(200).json({
+//         status: 'success',
+//         data: {
+//             listing
+//         }
+//     }); 
+// })
 
 exports.endExpiredListing = catchAsync(async (req, res, next) => {
     

@@ -14,7 +14,7 @@ import { addNotification } from './notification';
 
 export const getListings = query => async dispatch => {
   try {
-    const res = await axios.get(`/api/listings/${query}`);
+    const res = await axios.get(`/api/listings`);
     console.log('getting listings');
     console.log(res);
     dispatch({ type: GET_LISTINGS, payload: res.data });
@@ -27,12 +27,31 @@ export const getListing = slug => async dispatch => {
   try {
     const res = await axios.get(`/api/listings/slug/${slug}`);
 
+    // console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
+    // console.log(res.data.listing);
+    // console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
+    console.log(res.data)
+
     dispatch({ type: GET_LISTING, payload: res.data.listing });
   } catch (err) {
     console.log(`Error: ${err.response.data.message}`);
     dispatch({ type: LISTING_ERROR });
   }
 };
+
+// export const getListingById = id => async dispatch => {
+//   try {
+//     const res = await axios.get(`/api/listings/${id}`);
+//     console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
+//     console.log(res);
+//     console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
+//     dispatch({ type: GET_LISTING, payload: res.data});
+    
+//   } catch (err) {
+//     console.log(`Error: ${err.response.data.message}`);
+//     dispatch({ type: LISTING_ERROR });
+//   }
+// };
 
 export const createListing = (
   title,

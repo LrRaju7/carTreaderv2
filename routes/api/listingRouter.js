@@ -17,8 +17,8 @@ const upload = multer({ storage: storage });
 // @route    POST api/listings
 // @desc     Create an auction listing
 // @access   Private
-router.post('/', authController.authenticate, listingController.createListing);
 // router.post('/', authController.authenticate, listingController.createListing);
+router.post('/', authController.authenticate, listingController.createListing);
 
 // @route    GET api/listings
 // @desc     Query Listings
@@ -26,6 +26,12 @@ router.post('/', authController.authenticate, listingController.createListing);
 router.post('/checkAuctionEntry', authController.authenticate, newListingController.checkAuctionEntry)
 
 router.post('/payAuctionEnty', authController.authenticate, newListingController.checkAuctionEntry, newListingController.createBid)
+
+
+router.get(
+  '/',
+  newListingController.getAllVerifiedListings
+);
 
 router.get(
   '/',
