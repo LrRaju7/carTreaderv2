@@ -16,7 +16,7 @@ const SubGrid = ({listing}) => {
     <div>
       <Card style={{marginTop: 20, border:'none'}}>
         {/* <Link to={`/auctions/${listing.id}`}> */}
-        <Link to={`/auctions/${listing.id}/details`}>
+        <Link to={`/auctions/${listing._id}/details`}>
           <CardImg top width="100%" src={listing.images[0].image} alt="Card image cap" style={{width: '100%', height: 200, objectFit: 'cover'}}/>
         </Link>
         <CardBody style={{padding: 0}}>

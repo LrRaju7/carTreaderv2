@@ -55,7 +55,7 @@ class Grid extends React.Component {
     newlist = newlist.slice(0,(8+0))    
     this.setState({
       data: newlist,
-      pageCount: Math.ceil(carData.length / 8),
+      pageCount: Math.ceil(this.props.length / 8),
     });
   }
 
@@ -64,14 +64,14 @@ class Grid extends React.Component {
     let selected = data.selected;
     let offset = Math.ceil(selected * this.props.perPage);
     let that = this
-    let newlist = carData
+    let newlist = this.props
     newlist = orderSelector(this.props.list_order, newlist)
     let newstart = 8*selected
     newlist = newlist.slice(newstart,(8+newstart))
     this.setState({ offset: offset }, () => {
      that.setState({
       data: newlist,
-      pageCount: Math.ceil(carData.length / 8),
+      pageCount: Math.ceil(this.props.length / 8),
     });
     });
   };
