@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { sortBy } from 'underscore'
@@ -13,10 +12,10 @@ const list_order = ['newly listed', 'ending soon', 'newest cars', 'oldest cars']
 const orderSelector = (list_order, newlist , found) => {
     switch(list_order) {
       case "ending soon":
-          newlist = sortBy(newlist, (o) => moment(o["Ending"], "DD/MM/YYYY").unix());
+          newlist = sortBy(newlist, (o) => moment(o["endDateTime"], "DD/MM/YYYY").unix());
           break;
       case "newly listed":
-          newlist = sortBy(newlist, (o) => moment(o["Listing Date"], "DD/MM/YYYY").unix());
+          newlist = sortBy(newlist, (o) => moment(o["createdAt"], "DD/MM/YYYY").unix());
           break;
       case "newest cars":
           newlist = sortBy(newlist, (o) => o["Year"]).reverse();
@@ -50,7 +49,7 @@ class Grid extends React.Component {
     console.log('mounting',this.props.list_order)
     this.props.getListings()
     let newlist = this.props.getListings()
-    console.log(this.props.getListings())
+    console.log(newlist)
     newlist = orderSelector(this.props.list_order, newlist)
     newlist = newlist.slice(0,(8+0))    
     this.setState({
@@ -66,12 +65,14 @@ class Grid extends React.Component {
     let that = this
     let newlist = this.props
     newlist = orderSelector(this.props.list_order, newlist)
+    console.log(newlist)
     let newstart = 8*selected
     newlist = newlist.slice(newstart,(8+newstart))
     this.setState({ offset: offset }, () => {
      that.setState({
       data: newlist,
       pageCount: Math.ceil(this.props.length / 8),
+      
     });
     });
   };
@@ -82,6 +83,7 @@ class Grid extends React.Component {
     let {listings} = this.props
     console.log("???????????????????????????????????????????????????????")
     console.log(listings.length)
+    
     console.log("???????????????????????????????????????????????????????")
     let md = props.md ? props.md : 4
     let lg = props.lg ? props.lg : 3

@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { find } from 'underscore'
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
+import { connect } from 'react-redux';
 import carData from '../../../data/dummy_cars.js'
 import {getListings} from '../../../actions/listing'
 import PageSpinner from '../../Layouts/Components/Spinner.js'
@@ -10,29 +11,27 @@ import Details from './details'
 
 class DetailsPage extends React.Component {   
   static propTypes = {
-    perPage: 12,
+    perPage: 8,
   };  
 
   constructor(props) {
     super(props);
     this.state = {
-		car: null,
+    data: [],
     loading: true
     };
   }  
   static getDerivedStateFromProps(nextProps, prevState) {
     let id = nextProps.match.params.id;
     console.log('id is', id)
-    console.log(getListings())
-    let car = getListings()
-    // console.log("---------------------------CAR--------------------------------")
-    // console.log(car)
-    // console.log("---------------------------CAR--------------------------------")
-    // let cars = car
-    // console.log("__-------------------------->ALL CARS<-------------------------___")
-    // console.log(cars)
-    // console.log("__-------------------------->CAR BRANDS<-------------------------___")
-    // console.log(uCarBrand)
+    let car = find(carData, car => car.id == id)
+    let cars = carData
+    let carBrand = cars.map(({ Make }) => Make);
+    let uCarBrand = [...new Set(carBrand)];
+    console.log("__-------------------------->ALL CARS<-------------------------___")
+    console.log(cars)
+    console.log("__-------------------------->CAR BRANDS<-------------------------___")
+    console.log(uCarBrand)
     return {
       car
     };
@@ -48,16 +47,28 @@ class DetailsPage extends React.Component {
   componentDidMount() {
     let id = this.props.match.params.id;
     console.log('id is', id)
-    let car = getListings()
-    console.log("---------------------------CAR--------------------------------")
-    console.log(car)
-    console.log("---------------------------CAR--------------------------------")
-    setTimeout(() => this.setState({car, loading: false }), 500);
+    let car = find(carData, car => car.id == id)
+    this.props.getListings()
+    let newlist = this.props.getListings()
+    console.log(newlist)
+    setTimeout(() => this.setState({data: newlist, loading: false }), 500);
   }
 
   render() {
-  	let loader = this.state.loading ? <PageSpinner loading={this.state.loading}/> : <Details car={this.state.car} user={this.state.user}/>
-    console.log(this.state.car)
+    let props = this.props
+    console.log(props)
+    let {listings} = this.props
+    console.log("???????????????????????????????????????????????????????")
+    console.log(listings)
+    console.log("???????????????????????????????????????????????????????")
+
+    let list = find(listings, list => list._id == this.props.match.params.id)
+    console.log("???????????????????????????????????????????????????????")
+    console.log(list)
+    console.log("???????????????????????????????????????????????????????")
+
+  	let loader = this.state.loading ? <PageSpinner loading={this.state.loading}/> : <Details car={list} user={this.state.user}/>
+    console.log(list)
     console.log(this.state.user)
       return (
         <div>
@@ -66,4 +77,11 @@ class DetailsPage extends React.Component {
       );
   }
 }
-export default DetailsPage;
+
+const mapStateToProps = state => ({
+  listings: state.listings.listings
+});
+
+export default connect(mapStateToProps, {
+  getListings,
+})(DetailsPage);

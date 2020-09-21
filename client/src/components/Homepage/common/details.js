@@ -42,26 +42,45 @@ const Details = ({
   console.log("----------------CAR DATA----------------------")
   console.log(car)
   console.log("----------------CAR DATA----------------------")
-  let enddate = moment(car["endDateTime"], "DD/MM/YYYY");
+  let img = car.images
+  console.log("----------------IMG----------------------")
+  console.log(img)
+  console.log("----------------IMG----------------------")
+  console.log("----------------IMG LENGTH----------------------")
+  let lengthIMG = img.length
+  console.log(img.length)
+  console.log("----------------IMG LENGTH----------------------")
+  let pics = []
+  let i
+  for(i=1; i < lengthIMG; i++){
+    pics.push({src: img[i].image , thumbnail: img[i].image , thumbnailWidth: '300', thumbnailHeight: '300'})
+  }
+
+  console.log("----------------PICS----------------------")
+  console.log(pics)
+  console.log(images)
+  console.log("----------------PICS----------------------")
+
+  let enddate = moment(car.endDateTime, "YYYY/MM/DD");
   let endtime = enddate.valueOf();
   let curdate = new Date();
   let curtime = curdate.getTime();
   let diff = endtime - curtime;
+
   let comp = diff < 0 ? (<span style={{ fontWeight: 600, marginLeft: 10 }}>Ended</span>) : (<Countdown date={Date.now() + diff} />);
-  // let button = isAuthenticated ? <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link> : <EntryFee /> 
-  let button = (isAuthenticated) ? <EntryFee /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link> 
+  let button = isAuthenticated ?  <EntryFee /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link>
   return (
     <Container fluid style={{ height: "80vh" }}>
       <Row>
         <Col>
           <div class='auction-title'>
             <h3>
-              {car["Year"]} {car["Make"]} {car["Model"]}
+              {car.title}
             </h3>
           </div>
           <div class='d-md-flex justify-content-between flex-wrap'>
             <p style={{ marginBottom: 0 }}>
-              {car["Exterior Color"]} {car["Make"]} {car["Model"]}
+              {car.car.color.exterior} {car.car.make} {car.car.model}
             </p>
           </div>
         </Col>
@@ -78,12 +97,12 @@ const Details = ({
               height: 550,
               objectFit: "cover",
             }}
-            src={car["Main Image"]}
+            src={car.images[0].image}
           />
         </Col>
         <Col className='nopadl' xs={4}>
           <Gallery
-            images={images}
+            images={pics}
             tagStyle={{
               color: "white",
               backgroundColor: "rgba(0,0,0,0.5)",
@@ -139,7 +158,7 @@ const Details = ({
                           fontWeight: 600,
                           marginLeft: 10,
                         }}>
-                        ৳ {car["Highest Bid"]}
+                        ৳ {car.highest_bid.amount}
                       </span>
                     </span>
                   </Col>
@@ -155,7 +174,7 @@ const Details = ({
                           fontWeight: 600,
                           marginLeft: 10,
                         }}>
-                        {car["Bids"]}
+                        {car.bids}
                       </span>
                     </span>
                   </Col>
@@ -172,32 +191,32 @@ const Details = ({
               <Table responsive striped bordered hover>
                 <tbody>
                   <tr>
-                    <td style={{ fontWeight: 500 }}>VIN</td>
-                    <td>{car["VIN"]}</td>
+                    <td style={{ fontWeight: 500 }}>Engine Type</td>
+                    <td>{car.car.engine.type}</td>
                     <td style={{ fontWeight: 500 }}>Engine Capacity(CC)</td>
-                    <td>3000</td>
+                    <td>{car.car.engine.capacity}</td>
                   </tr>
                   <tr>
-                    <td style={{ fontWeight: 500 }}>Mileage</td>
-                    <td>{car["Mileage"]}</td>
-                    <td style={{ fontWeight: 500 }}>Drive</td>
-                    <td>{car["Exterior Color"]}</td>
+                    <td style={{ fontWeight: 500 }}>Current price</td>
+                    <td>{car.currentPrice}</td>
+                    <td style={{ fontWeight: 500 }}>Start Price</td>
+                    <td>{car.startPrice}</td>
                   </tr>
                   <tr>
                     <td style={{ fontWeight: 500 }}>Body Style</td>
                     <td>{car["Title"]}</td>
                     <td style={{ fontWeight: 500 }}>Exterior Color</td>
-                    <td>{car["Exterior Color"]}</td>
+                    <td>{car.car.color.exterior}</td>
                   </tr>
                   <tr>
                     <td style={{ fontWeight: 500 }}>Car Status</td>
-                    <td>{car["Title"]}</td>
+                    <td>{car.car.status}</td>
                     <td style={{ fontWeight: 500 }}>Interior Color</td>
-                    <td>{car["Interior Color"]}</td>
+                    <td>{car.car.color.interior}</td>
                   </tr>
                   <tr>
                     <td style={{ fontWeight: 500 }}>Seller Status</td>
-                    <td>{car["Title"]}</td>
+                    <td>{car.car.status}</td>
                   </tr>
                 </tbody>
               </Table>
@@ -206,42 +225,42 @@ const Details = ({
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Highlights</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>{car["Highlights"]}</p>
+                <p style={{ fontSize: 16 }}>{car.car.highlights}</p>
               </div>
               <div className='nopad toppad20'>
                 <hr />
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Equipment</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>{car["Equipment"]}</p>
+                <p style={{ fontSize: 16 }}>{car.car.equipment}</p>
               </div>
               <div className='nopad toppad20'>
                 <hr />
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Modifications</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>{car["Modifications"]}</p>
+                <p style={{ fontSize: 16 }}>{car.car.modifications}</p>
               </div>
               <div className='nopad toppad20'>
                 <hr />
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Issues</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>{car["Issues"]}</p>
+                <p style={{ fontSize: 16 }}>{car.car.issues}</p>
               </div>
               <div className='nopad toppad20'>
                 <hr />
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Service History</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>{car["Service History"]}</p>
+                <p style={{ fontSize: 16 }}>{car.car.service_history}</p>
               </div>
               <div className='nopad toppad20'>
                 <hr />
                 <br />
                 <h3 style={{ fontWeight: 700 }}>Ownership History</h3>
                 <br />
-                <p style={{ fontSize: 16 }}>{car["Ownership History"]}</p>
+                <p style={{ fontSize: 16 }}>{car.car.ownership_history}</p>
                 <br />
                 <hr />
               </div>

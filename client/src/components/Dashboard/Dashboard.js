@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUserByToken} from '../../actions/user';
+import { getActiveListingsByToken } from '../../actions/listing';
 import { Link } from 'react-router-dom';
 import Spinner from '../Layouts/Components/Spinner';
 import AuctionsPage from './Common/AuctionsPage'
@@ -11,6 +12,7 @@ import '../../styles/components/_dashboard.scss';
 const DashboardTab = ({
   getUserByToken,
   isAuthenticated,
+  getActiveListingsByToken,
   user: { data, loading }
 }) => {
   const [formData, setFormData] = useState({
@@ -18,8 +20,10 @@ const DashboardTab = ({
     email: '',
     location: '',
     bio: '',
+    title: '',
+    bids: '',
+    endDateTime: ''
   });
-
   useEffect(() => {
     getUserByToken();
   }, [getUserByToken, isAuthenticated]);
@@ -32,7 +36,13 @@ const DashboardTab = ({
       avatar: loading || !data.avatar ? '' : data.avatar,
       role: loading || !data.role ? '' : data.role,
       verified: loading || !data.verified.status ? '' : data.verified.status,
-    });
+    }
+    // ,{
+    //   title: loading || !listingsData.title ? '' : listingsData.title,
+    //   bids: loading || !listingsData.bids ? '' : listingsData.bids,
+    //   endDateTime: loading || !listingsData.endDateTime ? '' : listingsData.endDateTime
+    // }
+    );
     
   }, [loading, data]);
 

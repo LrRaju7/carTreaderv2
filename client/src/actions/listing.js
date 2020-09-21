@@ -39,19 +39,19 @@ export const getListing = slug => async dispatch => {
   }
 };
 
-// export const getListingById = id => async dispatch => {
-//   try {
-//     const res = await axios.get(`/api/listings/${id}`);
-//     console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
-//     console.log(res);
-//     console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
-//     dispatch({ type: GET_LISTING, payload: res.data});
+export const getListingById = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/listings/${id}`);
+    console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
+    console.log(res.data);
+    console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
+    dispatch({ type: GET_LISTING, payload: res.data});
     
-//   } catch (err) {
-//     console.log(`Error: ${err.response.data.message}`);
-//     dispatch({ type: LISTING_ERROR });
-//   }
-// };
+  } catch (err) {
+    console.log(`Error: ${err.response.data.message}`);
+    dispatch({ type: LISTING_ERROR });
+  }
+};
 
 export const createListing = (
   title,
@@ -197,7 +197,7 @@ export const getInactiveListingsByUserId = id => async dispatch => {
   }
 };
 
-export const getActiveListingsByToken = id => async dispatch => {
+export const getActiveListingsByToken = () => async dispatch => {
   try {
     const res = await axios.get(`/api/listings/dashboard/active`);
     dispatch({
