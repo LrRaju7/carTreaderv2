@@ -5,6 +5,7 @@ import { addNotification } from './notification';
 export const getUserById = id => async dispatch => {
   try {
     const res = await axios.get(`/api/users/${id}`);
+    console.log(res.data)
     dispatch({ type: GET_USER, payload: res.data });
   } catch (err) {
     dispatch({ type: USER_ERROR });

@@ -37,6 +37,10 @@ const customStyles = {
 function EntryFeeModal({ user, authenticated, }) {
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
+    const onSubmit = async e => {
+        console.log("___________________PAYMENT_SUBMITTED___________________")
+      };
+
     return (
         <div>
             <button className='btn btn-outline-dark shadow' onClick={() => setModalIsOpen(true)} style={{width:'100%', height:'100%'}}>Pay Entry Fee</button>
@@ -45,8 +49,8 @@ function EntryFeeModal({ user, authenticated, }) {
                     <div className="row">
                         <div className="col-md-12 order-md-1">
                             <h3 className="text-center">Entry-Fee</h3>
-                            <h6 className="text-center mb-2"><small>Entry Fee is 100 taka for each product. That will allow you to enter the bidding. The entry fee is not refundable.</small></h6>
-                            <form className="needs-validation" novalidate="">
+                            <h4 className="text-center mb-2"><small>Entry Fee is <strong>100 taka</strong> for each product. That will allow you to enter the bidding. The entry fee is not refundable.</small></h4>
+                            <form className="needs-validation" novalidate="" onSubmit={e => onSubmit(e)}>
                                     <div>
                                         <label for="cc-name">Name on card</label>
                                         <input type="text" className="form-control" id="cc-name" placeholder="" required="" />

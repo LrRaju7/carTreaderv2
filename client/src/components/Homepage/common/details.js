@@ -3,7 +3,7 @@ import { Container, Row, Col, Badge, Button, Table } from "reactstrap";
 import Gallery from "react-grid-gallery";
 import Countdown from "react-countdown";
 import moment from "moment";
-import { getUserByToken} from '../../../actions/user';
+import { getUserByToken, getUserById} from '../../../actions/user';
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Grid from "./grid.js";
@@ -17,6 +17,7 @@ const Details = ({
   car,
   getUserByToken,
   isAuthenticated,
+  // getUserById,
   user: { data, loading }
 }) => {
   const [formData, setFormData] = useState({
@@ -27,6 +28,7 @@ const Details = ({
   });
   useEffect(() => {
     getUserByToken();
+    // getUserById();
   }, [getUserByToken, isAuthenticated]);
 
   useEffect(() => {
@@ -39,6 +41,13 @@ const Details = ({
       verified: loading || !data.verified.status ? '' : data.verified.status,
     });
   }, [loading, data]);
+
+  // let author = getUserById(car.createdBy);
+
+  // console.log("----------------AUTHOR----------------------")
+  // console.log(author)
+  // console.log("----------------AUTHOR----------------------")
+
   console.log("----------------CAR DATA----------------------")
   console.log(car)
   console.log("----------------CAR DATA----------------------")

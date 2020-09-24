@@ -8,7 +8,8 @@ const AuctionPaymentSchema = new Schema({
     },
     payment_id: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     payment_amount: {
         type: Number,

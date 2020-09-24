@@ -12,16 +12,28 @@ const list_order = ['newly listed', 'ending soon', 'newest cars', 'oldest cars']
 const orderSelector = (list_order, newlist , found) => {
     switch(list_order) {
       case "ending soon":
-          newlist = sortBy(newlist, (o) => moment(o["endDateTime"], "DD/MM/YYYY").unix());
+          newlist = sortBy(newlist, (o) => moment(o.endDateTime, "YYYY/MM/DD"));
+          console.log("-------------ENDING SOON-------------")
+          console.log(newlist)
+          console.log("-------------ENDING SOON-------------")
           break;
       case "newly listed":
-          newlist = sortBy(newlist, (o) => moment(o["createdAt"], "DD/MM/YYYY").unix());
+          newlist = sortBy(newlist, (o) => moment(o.createdAt, "YYYY/MM/DD").unix());
+          console.log("-------------NEWLY LISTED-------------")
+          console.log(newlist)
+          console.log("-------------NEWLY LISTED-------------")
           break;
       case "newest cars":
-          newlist = sortBy(newlist, (o) => o["Year"]).reverse();
+          newlist = sortBy(newlist, (o) => o.car.year).reverse();
+          console.log("-------------NEWEST CARS-------------")
+          console.log(newlist)
+          console.log("-------------NEWEST CARS-------------")
           break;
       case "oldest cars":
-          newlist = sortBy(newlist, (o) => o["Year"]);
+          newlist = sortBy(newlist, (o) => o.car.year);
+          console.log("-------------OLDEST CARS-------------")
+          console.log(newlist)
+          console.log("-------------OLDEST CARS-------------")
           break;
       case "found":
           newlist = found;
@@ -51,7 +63,12 @@ class Grid extends React.Component {
     let newlist = this.props.getListings()
     console.log(newlist)
     newlist = orderSelector(this.props.list_order, newlist)
-    newlist = newlist.slice(0,(8+0))    
+    newlist = newlist.slice(0,(8+0))  
+    console.log("----------------LISTING ORDER--------------")
+    console.log(this.props.list_order)
+    console.log(newlist)
+    console.log(newlist.length)
+    console.log("----------------LISTING ORDER--------------")
     this.setState({
       data: newlist,
       pageCount: Math.ceil(this.props.length / 8),
@@ -81,14 +98,20 @@ class Grid extends React.Component {
     let props = this.props
     console.log(props)
     let {listings} = this.props
+
     console.log("???????????????????????????????????????????????????????")
     console.log(listings.length)
-    
     console.log("???????????????????????????????????????????????????????")
+    listings = orderSelector(this.props.list_order, listings)
+    console.log("???????????????????????????????????????????????????????")
+    console.log(listings)
+    console.log("???????????????????????????????????????????????????????")
+
+    let pgCnt = Math.ceil(listings.length / 8)
     let md = props.md ? props.md : 4
     let lg = props.lg ? props.lg : 3
     let sm = props.sm ? props.sm : 6
-    let paginate = !props.paginate ? null : <ReactPaginate previousLabel={'prev'} nextLabel={'next'} breakLabel={'...'} breakClassName={'break-me'} pageCount={this.state.pageCount} marginPagesDisplayed={1} pageRangeDisplayed={1} onPageChange={this.handlePageClick} containerClassName={'pagination'} subContainerClassName={'pages pagination'} activeClassName={'active'} size="sm"/>              
+    let paginate = !props.paginate ? null : <ReactPaginate previousLabel={'prev'} nextLabel={'next'} breakLabel={'...'} breakClassName={'break-me'} pageCount={pgCnt} marginPagesDisplayed={1} pageRangeDisplayed={1} onPageChange={this.handlePageClick} containerClassName={'pagination'} subContainerClassName={'pages pagination'} activeClassName={'active'} size="sm"/>              
       return (
         <div>
           <Row> 
