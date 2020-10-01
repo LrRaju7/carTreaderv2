@@ -7,8 +7,8 @@ const AuctionPaymentSchema = new Schema({
     //     unique: true
     // },
     payment_id: {
-        unique: true,
-        type: String,
+        type: mongoose.Schema.ObjectId,
+        unique: true
     },
     payment_amount: {
         type: Number,

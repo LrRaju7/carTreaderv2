@@ -3,7 +3,7 @@ import { Container, Row, Col, Badge, Button, Table } from "reactstrap";
 import Gallery from "react-grid-gallery";
 import Countdown from "react-countdown";
 import moment from "moment";
-import { getUserByToken, getUserById} from '../../../actions/user';
+import { getUserByToken, getUserById } from '../../../actions/user';
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Grid from "./grid.js";
@@ -13,7 +13,7 @@ import EntryFee from "../../Modal/EntryFeeModal"
 // import PlaceBid from "../../Listing/ListingPage"
 import { Link } from "react-router-dom";
 
-const Details = ({ 
+const Details = ({
   car,
   getUserByToken,
   isAuthenticated,
@@ -33,6 +33,7 @@ const Details = ({
 
   useEffect(() => {
     setFormData({
+      id: loading || !data._id ? '' : data._id,
       name: loading || !data.name ? '' : data.name,
       email: loading || !data.email ? '' : data.email,
       location: loading || !data.location ? '' : data.location,
@@ -71,10 +72,10 @@ const Details = ({
   console.log("----------------IMG LENGTH----------------------")
   let pics = []
   let i
-  for(i=1; i < lengthIMG; i++){
-    pics.push({src: img[i].image , thumbnail: img[i].image , thumbnailWidth: '300', thumbnailHeight: '300'})
+  for (i = 1; i < lengthIMG; i++) {
+    pics.push({ src: img[i].image, thumbnail: img[i].image, thumbnailWidth: '300', thumbnailHeight: '300' })
   }
-  
+
   console.log("----------------PICS----------------------")
   console.log(pics)
   console.log(images)
@@ -90,7 +91,7 @@ const Details = ({
   let list = CAR;
 
   let comp = diff < 0 ? (<span style={{ fontWeight: 600, marginLeft: 10 }}>Ended</span>) : (<Countdown date={Date.now() + diff} />);
-  let button = isAuthenticated ?  <EntryFee userID={uID} listingID={list} /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link>
+  let button = isAuthenticated ? <EntryFee userID={uID} listingID={list} /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{ width: '100%' }}>Login to Bid</button></Link>
   return (
     <Container fluid style={{ height: "80vh" }}>
       <Row>
@@ -290,7 +291,7 @@ const Details = ({
           </Row>
         </Col>
         <Col>
-          <Grid sm={6} md={6} lg={6} list_order='newest cars'/>
+          <Grid sm={6} md={6} lg={6} list_order='newest cars' />
         </Col>
       </Row>
     </Container>
@@ -303,4 +304,4 @@ const mapStateToProps = state => ({
   role: state.auth.role
 })
 
-export default connect(mapStateToProps, {getUserByToken})(Details)
+export default connect(mapStateToProps, { getUserByToken })(Details)

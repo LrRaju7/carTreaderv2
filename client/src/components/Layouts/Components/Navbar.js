@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../../actions/auth';
 import { Container, NavLink, Collapse, Navbar as BootstrapNavbar, NavbarToggler, NavbarBrand, Nav, NavItem, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Button } from 'reactstrap';
 import { setAuthToken } from '../../../utils/setAuthToken';
+import { LOGOUT } from '../../../actions/types';
 
 
 class Navbar extends Component {
@@ -66,7 +67,7 @@ class Navbar extends Component {
                 <NavLink href={`/dashboard`} ><i className='fa fa-dashboard' /><span className="ml-3">Dashboard</span></NavLink>
               </DropdownItem>
               <DropdownItem>
-                <NavLink href='/logout'><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
+                <NavLink href='/logout' onClick= {LOGOUT}><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
