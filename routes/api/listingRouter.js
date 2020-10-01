@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const auctionPaymentController = require('../../controllers/auctionPaymentController');
 const listingController = require('../../controllers/listingController');
 const newListingController = require('../../controllers/newListingController');
 const authController = require('../../controllers/authController');
@@ -71,6 +71,11 @@ router.patch(
 // @desc     Make bid on listing
 // @access   Private
 router.post('/:id/bid', authController.authenticate, listingController.makeBid);
+
+// @route    POST api/listings/entryfee
+// @desc     Pay Entry Fee on listing
+// @access   Private
+// router.post('/entryfee', authController.authenticate, auctionPaymentController.createAuctionPayment);
 
 // @route    DELETE api/listings/:listing_id/bid/bid_id
 // @desc     Delete a bid on a listing

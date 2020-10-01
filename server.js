@@ -93,6 +93,7 @@ const connectDB = async () => {
     app.use("/api/auth", require("./routes/api/authRouter"));
     app.use("/api/review", require("./routes/api/reviewRouter"));
     app.use("/api/report", require("./routes/api/reportRouter"));
+    app.use("/api/auction", require("./routes/api/auctionPaymentRouter"));
 
     app.all("*", (req, res, next) => {
       next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

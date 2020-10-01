@@ -39,6 +39,7 @@ const Details = ({
       avatar: loading || !data.avatar ? '' : data.avatar,
       role: loading || !data.role ? '' : data.role,
       verified: loading || !data.verified.status ? '' : data.verified.status,
+
     });
   }, [loading, data]);
 
@@ -47,10 +48,19 @@ const Details = ({
   // console.log("----------------AUTHOR----------------------")
   // console.log(author)
   // console.log("----------------AUTHOR----------------------")
-
   console.log("----------------CAR DATA----------------------")
-  console.log(car)
+  console.log(data)
   console.log("----------------CAR DATA----------------------")
+  let r = data;
+  // let carid = car._id;
+  console.log("----------------CAR DATA----------------------")
+  console.log(car._id)
+  let CAR = car._id;
+  console.log("----------------CAR DATA----------------------")
+  console.log("----------------USER DATA----------------------")
+  console.log(r)
+  let UID = r;
+  console.log("----------------USER DATA----------------------")
   let img = car.images
   console.log("----------------IMG----------------------")
   console.log(img)
@@ -64,7 +74,7 @@ const Details = ({
   for(i=1; i < lengthIMG; i++){
     pics.push({src: img[i].image , thumbnail: img[i].image , thumbnailWidth: '300', thumbnailHeight: '300'})
   }
-
+  
   console.log("----------------PICS----------------------")
   console.log(pics)
   console.log(images)
@@ -76,8 +86,11 @@ const Details = ({
   let curtime = curdate.getTime();
   let diff = endtime - curtime;
 
+  let uID = UID;
+  let list = CAR;
+
   let comp = diff < 0 ? (<span style={{ fontWeight: 600, marginLeft: 10 }}>Ended</span>) : (<Countdown date={Date.now() + diff} />);
-  let button = isAuthenticated ?  <EntryFee /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link>
+  let button = isAuthenticated ?  <EntryFee userID={uID} listingID={list} /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{width:'100%'}}>Login to Bid</button></Link>
   return (
     <Container fluid style={{ height: "80vh" }}>
       <Row>

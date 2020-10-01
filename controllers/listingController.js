@@ -182,6 +182,32 @@ exports.updateListing = catchAsync(async (req, res, next) => {
   }
 });
 
+exports.payEntryFee = catchAsync(async (req, res, next) => {
+  const entryFee = {
+    user: req.user.id,
+    entryFee: 100 * 100
+  };
+
+  if (entryFee) {
+    return next(
+      new AppError(
+        'Money fields are required and must only have two decimal places',
+        400
+      )
+    );
+  }
+
+  const listing = await Listing.findById(req.params.id).populate('createdBy');
+
+  if (!listing) {
+    return next(new AppError('No listing by that Id', 400));
+  }
+
+  if (!listing.active) {
+    return next(new AppError('Cannot pay entry fee on expired listings', 400));
+  }
+});
+
 exports.makeBid = catchAsync(async (req, res, next) => {
   const bid = {
     user: req.user.id,

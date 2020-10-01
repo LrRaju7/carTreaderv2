@@ -70,6 +70,8 @@ const EditProfilePage = ({
     updatePassword(currentPassword, newPassword, confirmNewPassword);
   };
 
+  console.log(data._id)
+
   return loading || data === null ? (
     <Spinner />
   ) : (data.role === 'Buyer' || (data.role === 'Bidder' && data.verified.status === true) || (data.role === 'Auctioneer' && data.verified.status === true)) ? (

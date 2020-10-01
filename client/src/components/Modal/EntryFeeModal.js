@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
-import Modal from 'react-modal'
+import Modal from 'react-modal';
+import { connect } from 'react-redux';
+import { createAuctionPayment } from '../../actions/auctionPayment';
+
 const customStyles = {
     content: {
         width: '60vw',
@@ -34,11 +37,47 @@ const customStyles = {
     }
 };
 
-function EntryFeeModal({ user, authenticated, }) {
+function EntryFeeModal({createAuctionPayment, listingID, userID,history}) {
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [verified, setVerified] = useState(false);
+    const [formData, setFormData] = useState({
+        payment_amount: '',
+        user: '',
+        listing: '',
+      });
+      console.log("----------------USER----------------------")
+      console.log(userID)
+      console.log(listingID)
+      console.log("----------------USER----------------------")
+      const payment_amount = 100
+      const user = listingID
+      const listing = listingID
 
     const onSubmit = async e => {
+        e.preventDefault();
         console.log("___________________PAYMENT_SUBMITTED___________________")
+        if (verifyCallback) {
+            console.log(payment_amount)
+            console.log(listing)
+            // createAuctionPayment(payment_amount,listingID);
+            
+
+            createAuctionPayment(
+                payment_amount,
+                user,
+                listing,
+                history
+              );
+
+              console.log("----------------------------DONE----------------------------")
+            } else {
+              alert('Something Wrong');
+            }
+
+      };
+
+      const verifyCallback = async e => {
+        await setVerified(true);
       };
 
     return (
@@ -50,7 +89,7 @@ function EntryFeeModal({ user, authenticated, }) {
                         <div className="col-md-12 order-md-1">
                             <h3 className="text-center">Entry-Fee</h3>
                             <h4 className="text-center mb-2"><small>Entry Fee is <strong>100 taka</strong> for each product. That will allow you to enter the bidding. The entry fee is not refundable.</small></h4>
-                            <form className="needs-validation" novalidate="" onSubmit={e => onSubmit(e)}>
+                            <form className="needs-validation" style={{ width: '100%' }} encType='multipart/form-data' onSubmit={e => onSubmit(e)}>
                                     <div>
                                         <label for="cc-name">Name on card</label>
                                         <input type="text" className="form-control" id="cc-name" placeholder="" required="" />
@@ -88,16 +127,6 @@ function EntryFeeModal({ user, authenticated, }) {
                                     </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <h5>Contact Information</h5>
-                                </div>
-                                <div>
-                                        <label for="cc-number">Phone Number (in the event you win an auction)</label>
-                                        <input type="text" className="form-control" id="cc-number" placeholder="" required="" />
-                                        <div className="invalid-feedback">
-                                            Phone number is required
-                                    </div>
-                                </div>
                                 <hr className="mb-4" />
                                 <div className='text-center mb-4'>
                                     <button style={{ width: 'auto' }} className="btn btn-primary mb-3 shadow" type="submit">Pay Entry Fee</button>
@@ -111,4 +140,8 @@ function EntryFeeModal({ user, authenticated, }) {
     );
 }
 
-export default EntryFeeModal
+EntryFeeModal.propTypes = {};
+
+export default connect(null, { createAuctionPayment })(EntryFeeModal);
+
+// export default EntryFeeModal

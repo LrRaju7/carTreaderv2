@@ -46,6 +46,9 @@ export const updateUserProfile = (
   }
 };
 
+
+
+
 export const clearUser = () => async dispatch => {
   dispatch({ type: CLEAR_USER });
 };

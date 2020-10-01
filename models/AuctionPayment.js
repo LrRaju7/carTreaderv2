@@ -1,15 +1,14 @@
 const mongoose = require('mongoose')
-const {Schema} = mongoose
+const { Schema } = mongoose
 const AuctionPaymentSchema = new Schema({
-    _id: {
-        type: String,
-        required: true,
-        unique: true
-    },
+    // _id: {
+    //     type: String,
+    //     required: true,
+    //     unique: true
+    // },
     payment_id: {
+        unique: true,
         type: String,
-        required: true,
-        unique: true
     },
     payment_amount: {
         type: Number,
@@ -29,6 +28,11 @@ const AuctionPaymentSchema = new Schema({
         type: Date,
         default: Date.now()
     }
-})
+});
 
-module.exports = AuctionPaymentSchema
+const AuctionPayment = mongoose.model(
+    "AuctionPayment",
+    AuctionPaymentSchema
+);
+
+module.exports = AuctionPayment

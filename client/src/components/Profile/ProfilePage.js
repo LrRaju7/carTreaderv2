@@ -33,6 +33,9 @@ const ProfilePage = ({
 	console.log("-----------USER----------")
 	console.log(user)
 	console.log("-----------USER----------")
+	console.log("-----------USER_ID----------")
+	console.log(match.params.id)
+	console.log("-----------USER_ID----------")
 	useEffect(() => {
 		getReviewsWrittenForUser(match.params.id);
 		getListings(`?createdBy=${match.params.id}&limit=5`);

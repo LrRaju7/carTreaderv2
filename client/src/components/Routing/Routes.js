@@ -52,7 +52,7 @@ const Routes = ({ loadUser, dispatch }) => {
         <AppRoute exact path='/register' layout={BuyBidAuctionLayout} component={RegisterTab} />
         <AppRoute exact path='/listings' layout={BuyBidAuctionLayout} component={ListingsPage} />
         <AppRoute exact path='/listings/:slug' layout={BuyBidAuctionLayout} component={ListingPage} />
-        <AppRoute exact path='/entryfee' layout={BuyBidAuctionLayout} component={EntryFee} />
+        <AppRoute exact path='/auction/entryfee' layout={BuyBidAuctionLayout} component={EntryFee} />
         <PrivateRoute exact path='/create' layout={BuyBidAuctionLayout} component={CreateListingPage} />
         <PrivateRoute
           exact

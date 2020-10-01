@@ -210,7 +210,7 @@ export const getActiveListingsByToken = () => async dispatch => {
   }
 };
 
-export const getInactiveListingsByToken = id => async dispatch => {
+export const getInactiveListingsByToken = () => async dispatch => {
   try {
     const res = await axios.get(`/api/listings/dashboard/inactive`);
     dispatch({

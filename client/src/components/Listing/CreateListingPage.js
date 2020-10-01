@@ -98,6 +98,9 @@ const CreateListingPage = ({ createListing, history, isAuthenticated }) => {
     status: status,
   }
 
+  function refreshPage() {
+		window.location.reload(false);
+	}
 
   let CarBrand = BrandData
   let CarYear = YearData
