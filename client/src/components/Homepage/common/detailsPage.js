@@ -6,6 +6,7 @@ import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import carData from '../../../data/dummy_cars.js'
 import {getListings} from '../../../actions/listing'
+import {getAuctionPayment} from '../../../actions/auctionPayment'
 import {getUserByToken} from '../../../actions/user'
 import PageSpinner from '../../Layouts/Components/Spinner.js'
 import Details from './details'
@@ -20,6 +21,7 @@ class DetailsPage extends React.Component {
     this.state = {
     data: [],
     user:[],
+    auction: [],
     loading: true
     };
   }  
@@ -51,11 +53,14 @@ class DetailsPage extends React.Component {
     console.log('id is', id)
     let car = find(carData, car => car.id == id)
     this.props.getListings()
+    this.props.getAuctionPayment()
     let newlist = this.props.getListings()
+    let a = this.props.getAuctionPayment()
     let r = this.props.getUserByToken()
     console.log(newlist)
     console.log(r)
-    setTimeout(() => this.setState({data: newlist, user: r, loading: false }), 500);
+    console.log(this.props.getAuctionPayment())
+    setTimeout(() => this.setState({data: newlist, user: r, auction: a, loading: false }), 500);
   }
 
   render() {
@@ -73,8 +78,11 @@ class DetailsPage extends React.Component {
     console.log("????????????????????????????USER???????????????????????????")
     console.log(this.state.user)
     console.log("????????????????????????????USER???????????????????????????")
+    console.log("????????????????????????????AUCTIONS???????????????????????????")
+    console.log(this.state.auctionPayment)
+    console.log("????????????????????????????AUCTIONS???????????????????????????")
 
-  	let loader = this.state.loading ? <PageSpinner loading={this.state.loading}/> : <Details car={list} user={this.state.user}/>
+  	let loader = this.state.loading ? <PageSpinner loading={this.state.loading}/> : <Details car={list} user={this.state.user} auction={this.state.auctionPayment}/>
     console.log(list)
     console.log(this.state.user)
       return (
@@ -88,9 +96,11 @@ class DetailsPage extends React.Component {
 const mapStateToProps = state => ({
   listings: state.listings.listings,
   user: state.user.user,
+  auctionPayment: state.auction,
 });
 
 export default connect(mapStateToProps, {
   getListings,
   getUserByToken,
+  getAuctionPayment,
 })(DetailsPage);

@@ -4,6 +4,7 @@ import Gallery from "react-grid-gallery";
 import Countdown from "react-countdown";
 import moment from "moment";
 import { getUserByToken, getUserById } from '../../../actions/user';
+import { getAuctionPayment } from '../../../actions/auctionPayment';
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Grid from "./grid.js";
@@ -18,6 +19,7 @@ const Details = ({
   getUserByToken,
   isAuthenticated,
   // getUserById,
+  getAuctionPayment,
   user: { data, loading }
 }) => {
   const [formData, setFormData] = useState({
@@ -29,7 +31,8 @@ const Details = ({
   useEffect(() => {
     getUserByToken();
     // getUserById();
-  }, [getUserByToken, isAuthenticated]);
+    getAuctionPayment();
+  }, [getUserByToken, isAuthenticated, getAuctionPayment ]);
 
   useEffect(() => {
     setFormData({
@@ -41,14 +44,15 @@ const Details = ({
       role: loading || !data.role ? '' : data.role,
       verified: loading || !data.verified.status ? '' : data.verified.status,
 
+      
     });
   }, [loading, data]);
 
   // let author = getUserById(car.createdBy);
 
-  // console.log("----------------AUTHOR----------------------")
-  // console.log(author)
-  // console.log("----------------AUTHOR----------------------")
+  console.log("----------------AUCTION----------------------")
+  console.log()
+  console.log("----------------AUCTION----------------------")
   console.log("----------------CAR DATA----------------------")
   console.log(data)
   console.log("----------------CAR DATA----------------------")
@@ -89,9 +93,16 @@ const Details = ({
 
   let uID = UID;
   let list = CAR;
+  let button = []
+  if(isAuthenticated){
+    button = isAuthenticated ? <EntryFee userID={uID} listingID={list} /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{ width: '100%' }}>Login to Bid</button></Link>
+  }
+  else{
+
+  }
 
   let comp = diff < 0 ? (<span style={{ fontWeight: 600, marginLeft: 10 }}>Ended</span>) : (<Countdown date={Date.now() + diff} />);
-  let button = isAuthenticated ? <EntryFee userID={uID} listingID={list} /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{ width: '100%' }}>Login to Bid</button></Link>
+  
   return (
     <Container fluid style={{ height: "80vh" }}>
       <Row>
@@ -304,4 +315,4 @@ const mapStateToProps = state => ({
   role: state.auth.role
 })
 
-export default connect(mapStateToProps, { getUserByToken })(Details)
+export default connect(mapStateToProps, { getUserByToken,getAuctionPayment })(Details)

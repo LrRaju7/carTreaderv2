@@ -8,4 +8,10 @@ const authController = require('../../controllers/authController');
 // @access   Private
 router.post('/entryfee', authController.authenticate, auctionPaymentController.createAuctionPayment);
 
+
+router.get(
+    '/',
+    auctionPaymentController.getAllAuctionPayments
+  );
+
 module.exports = router;

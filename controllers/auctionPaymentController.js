@@ -31,3 +31,15 @@ exports.createAuctionPayment = catchAsync(async (req, res, next) => {
 
 
 
+  exports.getAllAuctionPayments = catchAsync(async (req, res, next) => {
+    console.log("GETTING ALL AUCTION PAYMENTS")
+    const auctions = await AuctionPayment.find({});
+    console.log(auctions)
+    res.status(200).json({
+        status: 'success',
+        auctions: auctions.length,
+        data: {
+            auctions
+        }
+    });    
+})
