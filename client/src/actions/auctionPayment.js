@@ -7,8 +7,9 @@ import { addNotification } from './notification';
 
 
 export const getAuctionPayment = query => async dispatch => {
+  
   try {
-    const res = await axios.get(`/api/auction`);
+    const res = await axios.get(`/api/listings/checkAuctionEntry`);
     console.log('getting Auction Payments');
     console.log(res);
     dispatch({ type: GET_AUCTIONPAYMENT, payload: res.data });
@@ -31,7 +32,7 @@ export const createAuctionPayment = (
   };
   try {
     console.log("HITTING")
-    const res = await axios.post('/api/auction/entryfee', {
+    const res = await axios.post('/api/listings/payAuctionEnty', {
       payment_amount,
       user,
       listing

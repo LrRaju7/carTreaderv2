@@ -211,7 +211,7 @@ exports.payEntryFee = catchAsync(async (req, res, next) => {
 exports.makeBid = catchAsync(async (req, res, next) => {
   const bid = {
     user: req.user.id,
-    bid: req.body.bid * 100
+    bid: req.body.bid,
   };
 
   if (bid.bid % 1 !== 0 && !!bid.bid) {

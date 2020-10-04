@@ -11,6 +11,7 @@ import Grid from "./grid.js";
 import { daysCalculator } from "../../../helpers/functions.js";
 import images from "../../../data/images.js";
 import EntryFee from "../../Modal/EntryFeeModal"
+import PlaceBid from "../../Modal/PlaceBidModal"
 // import PlaceBid from "../../Listing/ListingPage"
 import { Link } from "react-router-dom";
 
@@ -28,6 +29,7 @@ const Details = ({
     location: '',
     bio: '',
   });
+
   useEffect(() => {
     getUserByToken();
     // getUserById();
@@ -91,14 +93,25 @@ const Details = ({
   let curtime = curdate.getTime();
   let diff = endtime - curtime;
 
-  let uID = UID;
+  let uID = {UID}
   let list = CAR;
   let button = []
+
+  console.log("----------------USER DATA----------------------")
+  console.log(data._id)
+  console.log("----------------USER DATA----------------------")
+  let user_id = data._id
+  let listing_id = list
+   let isEntryfeePaid = getAuctionPayment(user_id,listing_id)
+   console.log("----------------isEntryfeePaid DATA----------------------")
+   console.log(isEntryfeePaid)
+   console.log("----------------isEntryfeePaid DATA----------------------")
+
   if(isAuthenticated){
-    button = isAuthenticated ? <EntryFee userID={uID} listingID={list} /> : <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{ width: '100%' }}>Login to Bid</button></Link>
+    button = isEntryfeePaid ? <PlaceBid/> : <EntryFee userID={uID} listingID={list} />
   }
   else{
-
+    button = <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{ width: '100%' }}>Login to Bid</button></Link>
   }
 
   let comp = diff < 0 ? (<span style={{ fontWeight: 600, marginLeft: 10 }}>Ended</span>) : (<Countdown date={Date.now() + diff} />);

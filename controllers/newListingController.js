@@ -178,29 +178,79 @@ exports.getExpiredListingByUser = catchAsync(async (req, res, next) => {
 
 
 exports.checkAuctionEntry = catchAsync(async (req, res, next) => {
-    const {listing_id} = req.body
-    const user = req.user
-    let newId = user.id + listing_id
-    let hash = md5(newId);    
+
+    const checkAuctionPaymentBody = {
+        ...req.body,
+        listing_id: req.body.listing_id,
+        user: req.body.user_id ,
+    }
+    console.log("---------HITTING HERE---------")
+    console.log(req.user_id)
+    console.log("---------HITTING HERE---------")
+
+
+    const listing_id = req.body.listing_id
+    console.log("---------HITTING HERE---------")
+    console.log(req.body.listing_id)
+    console.log("---------HITTING HERE---------")
+    const user = req.body.user_id
+    console.log("---------HITTING HERE---------")
+    console.log(req.body.user_id)
+    console.log("---------HITTING HERE---------")
+    let newId = user + listing_id
+    let hash = md5(newId);
+    console.log("---------HITTING HERE---------")
+    console.log(hash) 
+    console.log("---------HITTING HERE---------")   
     const auctionPayment = await AuctionPayment.findById(hash)
     if (next){
-        if (auctionPayment) next()
+        if (!auctionPayment) next()
         return next(new AppError('You have not paid the entry fee for the auction. Please pay entry fee to bid.', 401));    
     } else {
         return res.status(200).json({auctionEntryPaid: false})
     }
+    // console.log("---------HITTING HERE---------")
+    // console.log("---------AUCTION PAYMENT---------")
+    // console.log(auctionPayment)
+    // console.log("---------AUCTION PAYMENT---------")
+    // console.log("---------HITTING HERE---------")
+
+    // if (auctionPayment) {
+    //     await auctionPayment.remove();
+    //     return res.status(200).json({
+    //         status: 'success',
+    //         data: {
+    //             auctionPayment
+    //         }
+    //     });
+    // } else {
+    //     return res.status(200).json({
+    //         status: 'success',
+    //         data: {
+    //             auctionPayment
+    //         }
+    //     });
+    // }
 })
 
 exports.payAuctionEntry = catchAsync(async (req, res, next) => {
-    const {listing_id} = req.body
-    const user = req.user
-    // REDIRECT TO ... TO PAY
-    const listing = await VerifiedListing.findById(listing_id)
+    // const {listing_id} = req.body
+    // const user = req.user
+    // // REDIRECT TO ... TO PAY
+
+    const auctionPaymentBody = {
+        ...req.body,
+        payment_amount: req.body.payment_amount,
+        user: req.body.user ,
+        listing: req.body.listing ,
+    }
+
+    const listing = await VerifiedListing.findById(auctionPaymentBody.listing)
     if (listing){
         try {
-            let newId = user.id + listing.id
+            let newId = auctionPaymentBody.user + auctionPaymentBody.listing
             let hash = md5(newId);
-            let newAuctionPayment = new AuctionPayment({_id: hash, user: user.id, payment_id: "ABCDEFGHIJ", payment_amount: 100, listing: listing._id})
+            let newAuctionPayment = new AuctionPayment({_id: hash, user: auctionPaymentBody.user, payment_id: "ABCDEFGHIJ", payment_amount: 100, listing: auctionPaymentBody.listing})
             await newAuctionPayment.save()
         } catch (err){
             console.log(err)

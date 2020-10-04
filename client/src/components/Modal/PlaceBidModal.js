@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal'
+import { makeBid } from '../../actions/listing';
+
 const customStyles = {
     content: {
         width: '60vw',
@@ -33,8 +35,22 @@ const customStyles = {
     }
 };
 
-function PlaceBidModal({ user, authenticated, }) {
+function PlaceBidModal({ user, authenticated, makeBid}) {
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [verified, setVerified] = useState(false);
+    const [formData, setFormData] = useState({
+        
+    });
+    
+
+    const onSubmit = async e => {
+        
+
+    };
+
+    const verifyCallback = async e => {
+        await setVerified(true);
+    };
 
     return (
         <div>
@@ -44,7 +60,7 @@ function PlaceBidModal({ user, authenticated, }) {
                     <div className="row">
                         <div className="col-md-12 order-md-1">
                             <h3 className="text-center">Start Bidding</h3>
-                            <form className="needs-validation" novalidate="">
+                            <form className="needs-validation" style={{ width: '100%' }} encType='multipart/form-data' onSubmit={e => onSubmit(e)}>
                                 <div className="col-md-6 mb-3">
                                     <label for="bid">Bid Amount</label>
                                     <input type="number" className="form-control" id="bid" placeholder="" required="" />

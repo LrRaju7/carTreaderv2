@@ -23,9 +23,9 @@ router.post('/', authController.authenticate, listingController.createListing);
 // @route    GET api/listings
 // @desc     Query Listings
 // @access   Public
-router.post('/checkAuctionEntry', authController.authenticate, newListingController.checkAuctionEntry)
+router.get('/checkAuctionEntry', newListingController.checkAuctionEntry)
 
-router.post('/payAuctionEnty', authController.authenticate, newListingController.checkAuctionEntry, newListingController.createBid)
+router.post('/payAuctionEnty', authController.authenticate, newListingController.payAuctionEntry)
 
 
 router.get(
