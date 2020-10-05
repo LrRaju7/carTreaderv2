@@ -4,19 +4,32 @@ import {
   AUCTIONPAYMENT_ERROR,
 } from './types';
 import { addNotification } from './notification';
+import { config } from '@fortawesome/fontawesome-svg-core';
 
 
-export const getAuctionPayment = query => async dispatch => {
+// export const getAuctionPayment = query => async dispatch => {
   
-  try {
-    const res = await axios.get(`/api/listings/checkAuctionEntry`);
-    console.log('getting Auction Payments');
-    console.log(res);
-    dispatch({ type: GET_AUCTIONPAYMENT, payload: res.data });
-  } catch (err) {
-    console.log(`Error: ${err.response.data.message}`);
-  }
-};
+//   try {
+//     const res = await axios.get(`/api/listings/checkAuctionEntry`);
+//     console.log('getting Auction Payments');
+//     console.log(res);
+//     dispatch({ type: GET_AUCTIONPAYMENT, payload: res.data });
+//   } catch (err) {
+//     console.log(`Error: ${err.response.data.message}`);
+//   }
+// };
+
+export const getAuctionPayment = (user_id,listing_id) => async dispatch => {
+  
+    try {
+      const res = await axios.post(`/api/listings/checkAuctionEntry`,{user_id,listing_id},config);
+      console.log('getting Auction Payments');
+      console.log(res);
+      dispatch({ type: GET_AUCTIONPAYMENT, payload: res.data });
+    } catch (err) {
+      console.log(`Error: ${err.response.data.message}`);
+    }
+  };
 
 
 export const createAuctionPayment = (

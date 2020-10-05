@@ -23,7 +23,7 @@ router.post('/', authController.authenticate, listingController.createListing);
 // @route    GET api/listings
 // @desc     Query Listings
 // @access   Public
-router.get('/checkAuctionEntry', newListingController.checkAuctionEntry)
+router.post('/checkAuctionEntry', authController.authenticate, newListingController.checkAuctionEntry)
 
 router.post('/payAuctionEnty', authController.authenticate, newListingController.payAuctionEntry)
 
@@ -70,7 +70,7 @@ router.patch(
 // @route    POST api/listings/:id/bid
 // @desc     Make bid on listing
 // @access   Private
-router.post('/:id/bid', authController.authenticate, listingController.makeBid);
+router.post('/:id/bid', authController.authenticate, newListingController.createBid);
 
 // @route    POST api/listings/entryfee
 // @desc     Pay Entry Fee on listing

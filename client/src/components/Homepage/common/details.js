@@ -96,19 +96,24 @@ const Details = ({
   let uID = {UID}
   let list = CAR;
   let button = []
-
-  console.log("----------------USER DATA----------------------")
+  let BIDS = car.bids
+  let totalBids = BIDS.length
+  console.log("----------------USER DATA DETAILS PAGE----------------------")
   console.log(data._id)
+  console.log(totalBids)
   console.log("----------------USER DATA----------------------")
+
   let user_id = data._id
   let listing_id = list
-   let isEntryfeePaid = getAuctionPayment(user_id,listing_id)
-   console.log("----------------isEntryfeePaid DATA----------------------")
-   console.log(isEntryfeePaid)
-   console.log("----------------isEntryfeePaid DATA----------------------")
+  // let isEntryfeePaid = getAuctionPayment(user_id,listing_id)
+  let isEntryfeePaid = true
+
+  console.log("----------------isEntryfeePaid DATA----------------------")
+  console.log(isEntryfeePaid)
+  console.log("----------------isEntryfeePaid DATA----------------------")
 
   if(isAuthenticated){
-    button = isEntryfeePaid ? <PlaceBid/> : <EntryFee userID={uID} listingID={list} />
+    button = isEntryfeePaid ? <PlaceBid userID={user_id} listing={car}/> : <EntryFee userID={uID} listingID={list} />
   }
   else{
     button = <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{ width: '100%' }}>Login to Bid</button></Link>
@@ -221,7 +226,7 @@ const Details = ({
                           fontWeight: 600,
                           marginLeft: 10,
                         }}>
-                        {car.bids}
+                        {totalBids}
                       </span>
                     </span>
                   </Col>

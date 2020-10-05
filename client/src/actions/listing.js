@@ -45,8 +45,8 @@ export const getListingById = id => async dispatch => {
     console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
     console.log(res.data);
     console.log('-=-==--=-=-=-=-getting listing-=-==--=-=-=-=-');
-    dispatch({ type: GET_LISTING, payload: res.data});
-    
+    dispatch({ type: GET_LISTING, payload: res.data });
+
   } catch (err) {
     console.log(`Error: ${err.response.data.message}`);
     dispatch({ type: LISTING_ERROR });
@@ -72,13 +72,13 @@ export const createListing = (
 
   const body = {
     title,
-  description,
-  car,
-  images,
-  currentPrice,
-  startPrice,
-  minIncrement,
-  endDateTime
+    description,
+    car,
+    images,
+    currentPrice,
+    startPrice,
+    minIncrement,
+    endDateTime
   };
   console.log("---------------------->NEW LISTING<---------------------")
   console.log(body);
@@ -144,7 +144,13 @@ export const editListing = (
   }
 };
 
-export const makeBid = (bid, listingId) => async dispatch => {
+export const placeBid = (
+  user,
+  bid,
+  listingID,
+  endDateTime,
+  history
+) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -153,11 +159,19 @@ export const makeBid = (bid, listingId) => async dispatch => {
     };
 
     const body = {
-      bid
+      user,
+      bid,
+      listingID,
+      endDateTime
     };
 
+    console.log("-----------------------HITTING_________________")
+    console.log("-----------------------FROM ACTION LISTING-------------------")
+    console.log(body)
+    console.log("-----------------------FROM ACTION LISTING_________________")
+
     const res = await axios.post(
-      `/api/listings/${listingId}/bid`,
+      `/api/listings/${listingID}/bid`,
       body,
       config
     );

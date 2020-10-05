@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { placeBid } from '../../actions/listing'
+import { connect } from 'react-redux'
 import Modal from 'react-modal'
-import { makeBid } from '../../actions/listing';
+
 
 const customStyles = {
     content: {
@@ -35,16 +37,41 @@ const customStyles = {
     }
 };
 
-function PlaceBidModal({ user, authenticated, makeBid}) {
+function PlaceBidModal({ placeBid, userID, listing, history }) {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [verified, setVerified] = useState(false);
     const [formData, setFormData] = useState({
-        
+        bid: '',
     });
-    
-
+    const { bid } = formData;
+    const onChange = e => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+    const endDateTime = listing.endDateTime
+    const listingID = listing._id
+    const user = userID
     const onSubmit = async e => {
-        
+        e.preventDefault();
+        console.log("___________________BID_SUBMITTED___________________")
+        if (verifyCallback) {
+            console.log(bid)
+            console.log(listing)
+            console.log(user)
+            // createAuctionPayment(payment_amount,listingID);
+
+
+            placeBid(
+                user,
+                bid,
+                listingID,
+                endDateTime,
+                history
+            );
+
+            console.log("----------------------------DONE----------------------------")
+        } else {
+            alert('Something Wrong');
+        }
 
     };
 
@@ -61,16 +88,17 @@ function PlaceBidModal({ user, authenticated, makeBid}) {
                         <div className="col-md-12 order-md-1">
                             <h3 className="text-center">Start Bidding</h3>
                             <form className="needs-validation" style={{ width: '100%' }} encType='multipart/form-data' onSubmit={e => onSubmit(e)}>
+
                                 <div className="col-md-6 mb-3">
                                     <label for="bid">Bid Amount</label>
-                                    <input type="number" className="form-control" id="bid" placeholder="" required="" />
-                                    <div className="invalid-feedback">
-                                        invalid Bid
+                                    <input type="text" className="form-control" name="bid" value={bid} id="exampleBid" onChange={e => onChange(e)} />
+                                        <div className="invalid-feedback">
+                                        Bid Amount is required
                                     </div>
                                 </div>
                                 <hr className="mb-4" />
                                 <div className='text-center mb-4'>
-                                    <button style={{ width: 'auto' }} className="btn btn-primary mb-3 shadow" type="submit">Place Bid</button>
+                                    <button style={{ width: 'auto' }} className="btn btn-primary mb-3 shadow" type="submit">Pay Entry Fee</button>
                                 </div>
                             </form>
                         </div>
@@ -81,4 +109,5 @@ function PlaceBidModal({ user, authenticated, makeBid}) {
     );
 }
 
-export default PlaceBidModal
+PlaceBidModal.propTypes = {};
+export default connect(null, { placeBid })(PlaceBidModal);

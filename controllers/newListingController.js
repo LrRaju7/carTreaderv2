@@ -5,7 +5,7 @@ const AuctionPayment = require('./../models/AuctionPayment.js');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const md5 = require('md5');
-const {verifyBidAmount} = require('./helpers/bidHelpers.js')
+const {verifyBidAmountAndSave} = require('./helpers/bidHelpers.js')
 
 exports.createUnverifiedListing = catchAsync(async (req, res, next) => {
   const listingBody = {
@@ -179,64 +179,44 @@ exports.getExpiredListingByUser = catchAsync(async (req, res, next) => {
 
 exports.checkAuctionEntry = catchAsync(async (req, res, next) => {
 
-    const checkAuctionPaymentBody = {
-        ...req.body,
-        listing_id: req.body.listing_id,
-        user: req.body.user_id ,
-    }
-    console.log("---------HITTING HERE---------")
-    console.log(req.user_id)
-    console.log("---------HITTING HERE---------")
-
-
     const listing_id = req.body.listing_id
-    console.log("---------HITTING HERE---------")
-    console.log(req.body.listing_id)
-    console.log("---------HITTING HERE---------")
+    // console.log("---------LISTING ID---------")
+    // console.log(listing_id)
+    // console.log("---------LISTING ID---------")
     const user = req.body.user_id
-    console.log("---------HITTING HERE---------")
-    console.log(req.body.user_id)
-    console.log("---------HITTING HERE---------")
+    // console.log("---------USER ID---------")
+    // console.log(user)
+    // console.log("---------USER ID---------")
     let newId = user + listing_id
     let hash = md5(newId);
-    console.log("---------HITTING HERE---------")
+    console.log("---------HASH---------")
     console.log(hash) 
-    console.log("---------HITTING HERE---------")   
-    const auctionPayment = await AuctionPayment.findById(hash)
+    console.log("---------HASH---------") 
+
+    const auctionPayment = await AuctionPayment.find({user: user , listing: listing_id}) 
+
+    console.log("---------AUCTION PAYMENT---------")
+    console.log(auctionPayment)
+    console.log("---------AUCTION PAYMENT---------")
+
     if (next){
-        if (!auctionPayment) next()
-        return next(new AppError('You have not paid the entry fee for the auction. Please pay entry fee to bid.', 401));    
+        if (auctionPayment) {
+            console.log("---------RESPONSE---------")
+    console.log(res.json.auctionEntryPaid)
+    console.log("---------RESPONSE---------")
+            next()
+        }else{
+            return next(new AppError('You have not paid the entry fee for the auction. Please pay entry fee to bid.', 401));  
+        }  
     } else {
         return res.status(200).json({auctionEntryPaid: false})
     }
-    // console.log("---------HITTING HERE---------")
-    // console.log("---------AUCTION PAYMENT---------")
-    // console.log(auctionPayment)
-    // console.log("---------AUCTION PAYMENT---------")
-    // console.log("---------HITTING HERE---------")
-
-    // if (auctionPayment) {
-    //     await auctionPayment.remove();
-    //     return res.status(200).json({
-    //         status: 'success',
-    //         data: {
-    //             auctionPayment
-    //         }
-    //     });
-    // } else {
-    //     return res.status(200).json({
-    //         status: 'success',
-    //         data: {
-    //             auctionPayment
-    //         }
-    //     });
-    // }
 })
 
 exports.payAuctionEntry = catchAsync(async (req, res, next) => {
     // const {listing_id} = req.body
     // const user = req.user
-    // // REDIRECT TO ... TO PAY
+    // REDIRECT TO ... TO PAY
 
     const auctionPaymentBody = {
         ...req.body,
@@ -259,10 +239,22 @@ exports.payAuctionEntry = catchAsync(async (req, res, next) => {
     
 })
 
+
+// user,
+//     bid,
+//     listingID,
+//     endDateTime,
+
 exports.createBid = catchAsync(async (req, res, next) => {
-    const { listing_id, bid } = req.body
-    const user = req.user
-    const verified = await verifyBidAmount(listing_id, bid, user)
+    const listing_id = req.body.listingID
+    const user = req.body.user
+    console.log("-----------------------HITTING_________________")
+    console.log("-----------------------REQ BODY FROM CONTROLLER-------------------")
+    console.log(req.body)
+    console.log("-----------------------HITTING_________________")
+    let bid = req.body.bid
+    const endDateTime = req.body.endDateTime
+    const verified = await verifyBidAmountAndSave(listing_id, bid, user, endDateTime)
     if (verified.isError && verified.errType) return next(new AppError(verified.errType, 404));
     let {listing} = verified
     return res.status(200).json({ listing });

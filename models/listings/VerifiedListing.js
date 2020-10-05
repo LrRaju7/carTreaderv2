@@ -78,7 +78,7 @@ const VerifiedListingSchema = new mongoose.Schema({
         type: [Bid],
         required: true
     },
-  verified_by: {
+    verified_by: {
     type: mongoose.Schema.ObjectId,
     ref: 'user'
   },    

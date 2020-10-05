@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import {
   getListing,
-  makeBid,
+  placeBid,
   getListings,
   clearListing,
   clearListings
@@ -18,7 +18,7 @@ import Spinner from './../Layouts/Components/Spinner';
 
 const Listing = ({
   getListing,
-  makeBid,
+  placeBid,
   match,
   getListings,
   clearListing,
@@ -76,7 +76,7 @@ const Listing = ({
     e.preventDefault();
     setUploading(true);
     if (bid * 100 > data.currentPrice + data.minIncrement) {
-      await makeBid(bid, data._id);
+      await placeBid(bid, data._id);
       socket.emit('bid');
     } else {
       console.log("Bid isn't big enough");
@@ -195,7 +195,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getListing,
   getListings,
-  makeBid,
+  placeBid,
   clearListing,
   clearListings
 })(Listing);
