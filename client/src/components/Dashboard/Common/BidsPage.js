@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { getUserByToken, updateUserProfile } from '../../../actions/user';
+import BiddingHistory from '../BiddingHistoryPage'
 import { Link } from 'react-router-dom';
 import Spinner from '../../Layouts/Components/Spinner';
 import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
@@ -78,7 +79,7 @@ const BidsPage = ({
                                 </div>
                                 <Row>
                                     <Col sm="12">
-                                        <div className="row clearfix row-deck mt-3">
+                                        {/* <div className="row clearfix row-deck mt-3">
                                             <div className="col-xl-9 col-lg-12">
                                                 <div className="card bg-light">
                                                     <div className="card-header">
@@ -254,7 +255,8 @@ const BidsPage = ({
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        </div> */}
+                                        <BiddingHistory/>
                                     </Col>
                                 </Row>
                                 <div className="card-deck mt-3">

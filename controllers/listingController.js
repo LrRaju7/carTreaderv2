@@ -1,4 +1,5 @@
 const Listing = require('../models/listings/UnverifiedListing');
+const VerifiedListing = require('../models/listings/VerifiedListing.js');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const cloudinary = require('cloudinary');
@@ -274,11 +275,13 @@ exports.endListing = catchAsync(async (req, res, next) => {
 });
 
 exports.getActiveListingsByUser = catchAsync(async (req, res, next) => {
-  const listings = await Listing.find({
+  console.log("HIT HERE")
+  const listings = await VerifiedListing.find({
     createdBy: req.params.user_id,
     active: true
   }).populate('createdBy');
-
+  console.log("HIT HERE TOO")
+  console.log(listings)
   res.status(200).json({
     status: 'success',
     listings: listings.length,

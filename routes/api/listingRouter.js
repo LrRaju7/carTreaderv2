@@ -97,7 +97,7 @@ router.post('/:id', authController.authenticate, listingController.endListing);
 router.get(
   '/dashboard/active',
   authController.authenticate,
-  listingController.getUsersActiveListings
+  newListingController.getAllVerifiedListingsByUser
 );
 
 // @route    GET api/listings/dashboard/inactive

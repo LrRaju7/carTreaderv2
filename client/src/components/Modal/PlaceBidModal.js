@@ -47,16 +47,16 @@ function PlaceBidModal({ placeBid, userID, listing, history }) {
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-    const endDateTime = listing.endDateTime
-    const listingID = listing._id
-    const user = userID
+    // const endDateTime = listing.endDateTime
+    const listingID = listing
+    const user = userID['_id']
     const onSubmit = async e => {
         e.preventDefault();
         console.log("___________________BID_SUBMITTED___________________")
         if (verifyCallback) {
             console.log(bid)
             console.log(listing)
-            console.log(user)
+            console.log(userID)
             // createAuctionPayment(payment_amount,listingID);
 
 
@@ -64,7 +64,6 @@ function PlaceBidModal({ placeBid, userID, listing, history }) {
                 user,
                 bid,
                 listingID,
-                endDateTime,
                 history
             );
 

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import ListingPage from '../YourListingsPage'
 import { connect } from 'react-redux';
 import { getUserByToken, updateUserProfile } from '../../../actions/user';
 import { Link } from 'react-router-dom';
+import BiddingHistory from '../BiddingHistoryPage'
 import Spinner from '../../Layouts/Components/Spinner';
 import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import '../../../styles/components/_dashboard.scss';
@@ -85,6 +87,7 @@ const AuctionsPage = ({
                       </div>
                     </div>
                   </div>
+                  {/* <ListingPage/> */}
                   <Nav tabs className="nav-justified mt-3">
                     <NavItem>
                       <NavLink
@@ -107,7 +110,7 @@ const AuctionsPage = ({
                     <TabPane tabId="2">
                       <Row>
                         <Col sm="12">
-                          <div className="row clearfix row-deck mt-3">
+                          {/* <div className="row clearfix row-deck mt-3">
                             <div className="col-xl-9 col-lg-12">
                               <div className="card bg-light">
                                 <div className="card-header">
@@ -193,7 +196,7 @@ const AuctionsPage = ({
                                 </div>
                               </div>
                             </div>
-                            <div className="col-xl-3 col-lg-12">
+                            {/* <div className="col-xl-3 col-lg-12">
                               <div className="card bg-light">
                                 <div className="card-header">
                                   <h3 className="card-title">Bidding Statistics</h3>
@@ -281,9 +284,10 @@ const AuctionsPage = ({
                                   </table>
                                 </div>
                               </div>
-                            </div>
+                            </div> 
 
-                          </div>
+                          </div> */}
+                          <BiddingHistory/>
                         </Col>
                       </Row>
                     </TabPane>
@@ -292,7 +296,8 @@ const AuctionsPage = ({
                         <Col sm="12">
                           <Row>
                             <Col sm="12">
-                              <div className="row clearfix row-deck mt-3">
+                            <ListingPage/>
+                              {/* <div className="row clearfix row-deck mt-3">
                                 <div className="col-xl-3 col-lg-12">
                                   <div className="card bg-light">
                                     <div className="card-header">
@@ -467,7 +472,7 @@ const AuctionsPage = ({
                                     </div>
                                   </div>
                                 </div>
-                              </div>
+                              </div> */}
                             </Col>
                           </Row>
                         </Col>

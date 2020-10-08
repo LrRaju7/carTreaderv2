@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getBiddingHistory, getWonListings } from '../../actions/listing';
@@ -6,6 +6,7 @@ import ListItem from '../Listings/ListItem';
 import { Link } from 'react-router-dom';
 import { clearListings } from '../../actions/listing';
 import Spinner from '../Layouts/Components/Spinner';
+import { Listings } from '../Listings/ListingsPage';
 
 const BiddingHistoryPage = ({
   getBiddingHistory,
@@ -21,6 +22,7 @@ const BiddingHistoryPage = ({
     };
   }, [getBiddingHistory, clearListings]);
 
+
   const showWonListings = () => {
     clearListings();
     getWonListings();
@@ -34,6 +36,18 @@ const BiddingHistoryPage = ({
     clearListings();
     getBiddingHistory();
   };
+  let dataLength
+
+  
+
+  if(data === null){
+    dataLength = 0
+  }else{
+    dataLength = data.length
+
+  }
+  
+  
 
   return loading || data === null || auth.loading || auth.user === null ? (
     <Spinner />
@@ -43,7 +57,7 @@ const BiddingHistoryPage = ({
         <h4>Back to Dashboard</h4>
       </Link>{' '}
       <h2 className='large-heading'>Active listings you've bid on</h2>
-      <p className='small-text'>Found {data.length} results</p>
+      <p className='small-text'>Found {dataLength} results</p>
       <div className='button-row'>
         <button className='btn-gray large btn-spaced' onClick={showWonListings}>
           Show listings you've won
@@ -61,9 +75,9 @@ const BiddingHistoryPage = ({
           Show active listings you've bid on
         </button>
       </div>
-      {data.map(listing => (
+      {/* {data.map(listing => (
         <ListItem key={listing._id} listing={listing} />
-      ))}
+      ))} */}
     </div>
   );
 };

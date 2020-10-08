@@ -93,18 +93,18 @@ const Details = ({
   let curtime = curdate.getTime();
   let diff = endtime - curtime;
 
-  let uID = {UID}
+  let uID = UID
   let list = CAR;
   let button = []
   let BIDS = car.bids
   let totalBids = BIDS.length
   console.log("----------------USER DATA DETAILS PAGE----------------------")
-  console.log(data._id)
+  // console.log(data._id)
   console.log(totalBids)
   console.log("----------------USER DATA----------------------")
 
-  let user_id = data._id
-  let listing_id = list
+  // let user_id = data._id
+  // let listing_id = list
   // let isEntryfeePaid = getAuctionPayment(user_id,listing_id)
   let isEntryfeePaid = true
 
@@ -113,7 +113,7 @@ const Details = ({
   console.log("----------------isEntryfeePaid DATA----------------------")
 
   if(isAuthenticated){
-    button = isEntryfeePaid ? <PlaceBid userID={user_id} listing={car}/> : <EntryFee userID={uID} listingID={list} />
+    button = isEntryfeePaid ? <PlaceBid userID={uID} listing={list}/> : <EntryFee userID={uID} listingID={list} />
   }
   else{
     button = <Link to={`/login`}><button className="btn btn-outline-dark shadow" type="button" style={{ width: '100%' }}>Login to Bid</button></Link>
@@ -255,8 +255,8 @@ const Details = ({
                     <td>{car.startPrice}</td>
                   </tr>
                   <tr>
-                    <td style={{ fontWeight: 500 }}>Body Style</td>
-                    <td>{car["Title"]}</td>
+                    <td style={{ fontWeight: 500 }}>MInimum Inc.</td>
+                    <td>{car.minIncrement}</td>
                     <td style={{ fontWeight: 500 }}>Exterior Color</td>
                     <td>{car.car.color.exterior}</td>
                   </tr>

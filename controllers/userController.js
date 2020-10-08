@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const catchAsync = require('./../utils/catchAsync');
+const VerifiedListing = require('../models/listings/VerifiedListing.js');
 const AppError = require('./../utils/appError');
 const dotenv = require('dotenv').config();
 const userHelpers = require('./helpers/userHelpers.js')
@@ -102,10 +103,21 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 });
 
 exports.getUserBidHistory = catchAsync(async (req, res, next) => {
-  const listings = await Listing.find({
-    bids: { $elemMatch: { user: req.user.id } }
-  }).populate('createdBy');
 
+  console.log("------------------HITTING FROM GET USER BID HISTORY-------------------")
+  console.log(req.user.id)
+  console.log("------------------HITTING FROM GET USER BID HISTORY-------------------")
+  const user = req.user.id
+  // const listings = await VerifiedListing.find({
+  //   bids: { user: req.user.id } 
+  // }).populate('createdBy');
+  const listings = await VerifiedListing.find({
+    bids: {$elemMatch: {user: user}}
+  });
+  console.log("------------------HITTING FROM GET USER BID HISTORY-------------------")
+  console.log("------------------LISTINGS-------------------")
+  console.log(listings)
+  console.log("------------------HITTING FROM GET USER BID HISTORY-------------------")
   res.status(200).json({
     status: 'success',
     listings: listings.length,

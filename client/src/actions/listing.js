@@ -148,7 +148,6 @@ export const placeBid = (
   user,
   bid,
   listingID,
-  endDateTime,
   history
 ) => async dispatch => {
   try {
@@ -162,7 +161,6 @@ export const placeBid = (
       user,
       bid,
       listingID,
-      endDateTime
     };
 
     console.log("-----------------------HITTING_________________")
@@ -190,6 +188,10 @@ export const placeBid = (
 export const getActiveListingsByUserId = id => async dispatch => {
   try {
     const res = await axios.get(`/api/listings/${id}/active`);
+    console.log("=-=-=-=-=-RESPONSE Get Active Listings By UserId-=-=-=--=-=-=-=-=")
+    console.log(res)
+    // let _path = res.data.listing.slug
+    console.log("=-=-=-=-=-Get Active Listings By UserId DATA-=-=-=--=-=-=-=-=")
     dispatch({
       type: GET_USERS_ACTIVE_LISTINGS,
       payload: res.data
@@ -239,6 +241,10 @@ export const getInactiveListingsByToken = () => async dispatch => {
 export const getBiddingHistory = () => async dispatch => {
   try {
     const res = await axios.get(`/api/users/bids`);
+    console.log("=-=-=-=-=-RESPONSE Get Bidding History-=-=-=--=-=-=-=-=")
+    console.log(res)
+    // let _path = res.data.listing.slug
+    console.log("=-=-=-=-=-Get Bidding History DATA-=-=-=--=-=-=-=-=")
     dispatch({
       type: GET_LISTINGS,
       payload: res.data

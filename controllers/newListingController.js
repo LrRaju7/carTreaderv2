@@ -99,8 +99,11 @@ exports.getAllVerifiedListings = catchAsync(async (req, res, next) => {
 })
 
 exports.getAllVerifiedListingsByUser = catchAsync(async (req, res, next) => {
-    const user = req.user
-    const listings = await VerifiedListing.find({created_by: user.id});
+    console.log("GETTING ALL VERIFIED LISTINGS BY USER")
+    const user = req.user['id']
+    console.log(user)
+    const listings = await VerifiedListing.find({createdBy: user});
+    console.log(listings)
     res.status(200).json({
         status: 'success',
         listings: listings.length,
@@ -111,9 +114,9 @@ exports.getAllVerifiedListingsByUser = catchAsync(async (req, res, next) => {
 })
 
 exports.getVerifiedListingByUser = catchAsync(async (req, res, next) => {
-    const user = req.user
+    const user = req.user['id']
     const {listing_id} = req.body
-    const listing = await VerifiedListing.findOne({_id: listing_id, created_by: user.id});
+    const listing = await VerifiedListing.findOne({_id: listing_id, createdBy: user});
     res.status(200).json({
         status: 'success',
         data: {
