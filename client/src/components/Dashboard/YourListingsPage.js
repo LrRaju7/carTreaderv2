@@ -41,6 +41,8 @@ const YourListingsPage = ({
     };
   }, [clearListings, getActiveListingsByToken]);
 
+  console.log(data);
+
   return loading || data === null || auth.loading || auth.user === null ? (
     <Spinner />
   ) : (

@@ -88,7 +88,7 @@ const ProfilePage = ({
 									<div className="profile-header shadow">
 										<div className="overlay"></div>
 										<div className="profile-main">
-											<img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="100x100" />
+											<img src={user.data.avatar[0].avatar} className="rounded-circle image-size shadow" alt="100x100" />
 											<h2 className="name mt-5">{user.data.name}</h2>
 											<span className="online-status status-available">Available</span>
 										</div>
@@ -145,7 +145,7 @@ const ProfilePage = ({
 										<div className="card bg-light">
 											<div className="card-header text-center">
 												<div className="profile-main">
-													<img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="100x100" />
+													<img src={user.data.avatar[0].avatar} className="rounded-circle image-size shadow" alt="100x100" />
 													<h3 className="name">{user.data.name}</h3>
 													<span className="online-status status-available">Available</span>
 												</div>

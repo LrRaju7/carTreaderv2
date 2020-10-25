@@ -70,7 +70,7 @@ const EditProfilePage = ({
     updatePassword(currentPassword, newPassword, confirmNewPassword);
   };
 
-  console.log(data._id)
+  // console.log(data._id)
 
   return loading || data === null ? (
     <Spinner />
@@ -87,7 +87,7 @@ const EditProfilePage = ({
                       <Row>
                         <Col lg={4} className='text-center'>
                           <span>
-                            <img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="avatar" />
+                            <img src={data.avatar[0].avatar} className="rounded-circle image-size shadow" alt="avatar" />
                           </span>
                         </Col>
                         <Col lg={4} className='text-center'>

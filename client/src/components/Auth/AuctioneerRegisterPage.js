@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
 import { Col, Row, Button, Form, FormGroup, Label, Input,FormText} from 'reactstrap';
+import axios from 'axios';
 import ImageUploader from 'react-images-upload';
 
 const Register = ({ register, isAuthenticated }) => {
@@ -17,14 +18,19 @@ const Register = ({ register, isAuthenticated }) => {
     tradeLicense: '',
     role: 'Auctioneer'
   });
+
+  const avatar = [];
+  const [pictures, setPictures] = useState([]);
+  const [uploading, setUploading] = useState(false);
+
   const [verified, setVerified] = useState(false);
   const role = 'Auctioneer'
   
   const { email, name, password, passwordConfirm, phone, location, nid, tradeLicense} = formData;
-  const [picture, setPicture] = useState([]);
+  
 
   const onDrop = picture => {
-    setPicture(picture);
+    setPictures([...pictures, picture]);
   };
   
   console.log(verified)
@@ -34,6 +40,7 @@ const Register = ({ register, isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
+    setUploading(true);
     console.log("----------------------------->ROLE IS ", role)
     console.log("----------------------------->PHONE IS ", phone)
     console.log("----------------------------->LOCATION IS ", location)
@@ -45,10 +52,32 @@ const Register = ({ register, isAuthenticated }) => {
     console.log("----------------------------->documents.nid IS ", documents.nid)
     console.log("----------------------------->documents.trade_license IS ", documents.trade_license)
     if (verifyCallback) {
-      register(name, email, password, passwordConfirm, location, phone, role, documents.nid, documents.trade_license);
+      console.log(pictures)
+      console.log(pictures[0].length)
+      let picData;
+      if (pictures[0]) {
+        for (const picture of pictures[0]) {
+          let formData = new FormData();
+          formData.append('image', picture);
+          picData = await axios.post('/api/listings/upload/image', formData)
+          console.log(picData)
+          console.log(picData.data.url)
+          console.log(picData.data.imageId)
+          // if (picture === pictures[0][0]) {
+          //   var feed = { image: picData.data.url, _id: picData.data.imageId, highlighted: true }
+          // } else {
+          //   var feed = { image: picData.data.url, _id: picData.data.imageId, highlighted: false }
+          // }
+          var feed = { avatar: picData.data.url, _id: picData.data.imageId, active: true }
+          avatar.push(feed)
+        }
+        console.log(avatar)
+      }
+      register(name, email, password, passwordConfirm, avatar, location, phone, role, documents.nid, documents.trade_license);
     } else {
       alert('Do the CAPTCHA');
     }
+    setUploading(false);
   };
 
   const verifyCallback = async e => {
@@ -86,7 +115,7 @@ const Register = ({ register, isAuthenticated }) => {
           </Col>
         </Row>
         <FormGroup>
-          <Label for="images">Avatar</Label>
+          <Label for="avatar">Avatar</Label>
           <ImageUploader
               withIcon={true}
               buttonText='Choose images'

@@ -35,6 +35,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
     email,
     avatar,
     password,
+    avatar,
     location,
     phone,
     role,

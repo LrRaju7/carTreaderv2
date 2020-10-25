@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Image = require("./Image");
+const Avatar = require("./Avatar");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -16,8 +16,8 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   avatar: {
-    type: Image,
-    // required: true
+    type: [Avatar],
+    required: true
   },
   location: {
     type: String

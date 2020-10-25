@@ -3,6 +3,8 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../actions/auth';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import axios from 'axios';
+import ImageUploader from 'react-images-upload';
 
 const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -14,23 +16,53 @@ const Register = ({ register, isAuthenticated }) => {
     phone:'',
     role:'Buyer',
   });
+
+  const avatar = [];
+  const [pictures, setPictures] = useState([]);
   const [uploading, setUploading] = useState(false);
+
   const role = 'Buyer'
   const { email, name, password, passwordConfirm, location, phone} = formData;
   const [verified, setVerified] = useState(false);
   console.log(verified)
+  const onDrop = picture => {
+    setPictures([...pictures, picture]);
+  };
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
     
   const onSubmit = async e => {
     e.preventDefault();
+    setUploading(true);
     console.log("----------------------------->ROLE IS ", role)
     if (verifyCallback) {
-      register(name, email, password, passwordConfirm , location, phone, role);
+      console.log(pictures)
+      console.log(pictures[0].length)
+      let picData;
+      if (pictures[0]) {
+        for (const picture of pictures[0]) {
+          let formData = new FormData();
+          formData.append('image', picture);
+          picData = await axios.post('/api/listings/upload/image', formData)
+          console.log(picData)
+          console.log(picData.data.url)
+          console.log(picData.data.imageId)
+          // if (picture === pictures[0][0]) {
+          //   var feed = { image: picData.data.url, _id: picData.data.imageId, highlighted: true }
+          // } else {
+          //   var feed = { image: picData.data.url, _id: picData.data.imageId, highlighted: false }
+          // }
+          var feed = { avatar: picData.data.url, _id: picData.data.imageId, active: true }
+          avatar.push(feed)
+        }
+        console.log(avatar)
+      }
+      register(name, email, password, passwordConfirm, avatar, location, phone, role);
     } else {
       alert('Do the CAPTCHA');
     }
+    setUploading(false);
   };
 
   const verifyCallback = async e => {
@@ -66,6 +98,18 @@ const Register = ({ register, isAuthenticated }) => {
             </FormGroup>
           </Col>
         </Row>
+        <FormGroup>
+          <Label for="avatar">Avatar</Label>
+          <ImageUploader
+              withIcon={true}
+              buttonText='Choose images'
+              withPreview={true}
+              onChange={onDrop}
+              imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
+              maxFileSize={5242880}
+              singleImage={true}
+            />
+        </FormGroup>
         <FormGroup>
           <Label for="examplePhone">Buyer Phone</Label>
           <Input type="number" name="phone" value={phone} id="examplephone" onChange={e => onChange(e)}/>

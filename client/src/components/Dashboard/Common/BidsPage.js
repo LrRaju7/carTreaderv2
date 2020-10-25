@@ -57,7 +57,7 @@ const BidsPage = ({
                                             <Row>
                                                 <Col lg={4} className='text-center'>
                                                     <span>
-                                                        <img src="https://i.ytimg.com/vi/u1dVdYLMCK4/maxresdefault.jpg" className="rounded-circle image-size shadow" alt="100x100" />
+                                                        <img src={data.avatar[0].avatar} className="rounded-circle image-size shadow" alt="100x100" />
                                                     </span>
                                                 </Col>
                                                 <Col lg={8} className='text-center'>
