@@ -242,9 +242,10 @@ export const getBiddingHistory = () => async dispatch => {
   try {
     const res = await axios.get(`/api/users/bids`);
     console.log("=-=-=-=-=-RESPONSE Get Bidding History-=-=-=--=-=-=-=-=")
-    console.log(res)
+    console.log(res.data.listings)
     // let _path = res.data.listing.slug
     console.log("=-=-=-=-=-Get Bidding History DATA-=-=-=--=-=-=-=-=")
+    // const listings = res.data.data.listings
     dispatch({
       type: GET_LISTINGS,
       payload: res.data

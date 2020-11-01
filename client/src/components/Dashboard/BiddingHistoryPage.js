@@ -12,7 +12,7 @@ const BiddingHistoryPage = ({
   getBiddingHistory,
   clearListings,
   getWonListings,
-  listings: { data, loading },
+  listings: { data, loading, errors },
   auth
 }) => {
   useEffect(() => {
@@ -47,7 +47,9 @@ const BiddingHistoryPage = ({
 
   }
   
-  
+  console.log("--------------BIDDING HISTORY--------------")
+  console.log(data)
+  console.log("--------------BIDDING HISTORY--------------")
 
   return loading || data === null || auth.loading || auth.user === null ? (
     <Spinner />

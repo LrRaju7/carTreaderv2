@@ -121,6 +121,7 @@ exports.getUserBidHistory = catchAsync(async (req, res, next) => {
   console.log("------------------HITTING FROM GET USER BID HISTORY-------------------")
   res.status(200).json({
     status: 'success',
+    // listings: listings.length,
     listings: listings.length,
     data: {
       listings

@@ -97,7 +97,7 @@ function PlaceBidModal({ placeBid, userID, listing, history }) {
                                 </div>
                                 <hr className="mb-4" />
                                 <div className='text-center mb-4'>
-                                    <button style={{ width: 'auto' }} className="btn btn-primary mb-3 shadow" type="submit">Pay Entry Fee</button>
+                                    <button style={{ width: 'auto' }} className="btn btn-primary mb-3 shadow" type="submit">Place Bid</button>
                                 </div>
                             </form>
                         </div>

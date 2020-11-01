@@ -15,6 +15,7 @@ import Countdown from '../Layouts/Components/Countdown';
 import ViewBidsModal from '../Bids/ViewBidsModal';
 import ListingCard from './ListingCard';
 import Spinner from './../Layouts/Components/Spinner';
+import { Listings } from '../Listings/ListingsPage';
 
 const Listing = ({
   getListing,
@@ -29,7 +30,7 @@ const Listing = ({
 }) => {
   const [uploading, setUploading] = useState(false);
   useEffect(() => {
-    getListing(match.params.slug);
+    getListing();
     var socket_connect = function(room) {
       return io('http://127.0.0.1:5000/', {
         query: 'r_var=' + room
@@ -37,13 +38,15 @@ const Listing = ({
     };
     var room = window.location.pathname;
     var socket = socket_connect(room);
-
+    console.log("############_LISTINGS_############")
+    console.log(Listings.data)
+    console.log("############_LISTINGS_############")
     socket.emit('join');
 
     setSocketData({ socket });
 
     socket.on('bid', function() {
-      getListing(match.params.slug);
+      getListing();
     });
     return () => {
       clearListing();
@@ -51,11 +54,11 @@ const Listing = ({
       console.log('disconnecting..');
       socket.emit('unsubscribe', room);
     };
-  }, [getListing, clearListings, clearListing, match.params.slug]);
+  }, [getListing, clearListings, clearListing]);
 
   useEffect(() => {
     getListings('?limit=5');
-  }, [getListings, match.params.slug]);
+  }, [getListings]);
 
   const [socketData, setSocketData] = useState({
     socket: ''

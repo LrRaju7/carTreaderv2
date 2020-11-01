@@ -107,6 +107,7 @@ const Details = ({
   // let listing_id = list
   // let isEntryfeePaid = getAuctionPayment(user_id,listing_id)
   let isEntryfeePaid = true
+  // let isEntryfeePaid = false
 
   console.log("----------------isEntryfeePaid DATA----------------------")
   console.log(isEntryfeePaid)

@@ -1,7 +1,14 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import {
+  getListing,
+  placeBid,
+  getListings,
+  clearListing,
+  clearListings
+} from '../../../actions/listing';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import ListingPage from '../YourListingsPage'
+import ListingPage from '../../Listing/ListingPage'
 import { connect } from 'react-redux';
 import { getUserByToken, updateUserProfile } from '../../../actions/user';
 import { Link } from 'react-router-dom';
