@@ -63,11 +63,6 @@ const Register = ({ register, isAuthenticated }) => {
           console.log(picData)
           console.log(picData.data.url)
           console.log(picData.data.imageId)
-          // if (picture === pictures[0][0]) {
-          //   var feed = { image: picData.data.url, _id: picData.data.imageId, highlighted: true }
-          // } else {
-          //   var feed = { image: picData.data.url, _id: picData.data.imageId, highlighted: false }
-          // }
           var feed = { avatar: picData.data.url, _id: picData.data.imageId, active: true }
           avatar.push(feed)
         }

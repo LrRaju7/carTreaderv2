@@ -22,7 +22,8 @@ const BiddingHistoryPage = ({
     };
   }, [getBiddingHistory, clearListings]);
 
-
+    
+    
   const showWonListings = () => {
     clearListings();
     getWonListings();
@@ -46,6 +47,8 @@ const BiddingHistoryPage = ({
     dataLength = data.length
 
   }
+  
+  
   
   console.log("--------------BIDDING HISTORY--------------")
   console.log(data)
