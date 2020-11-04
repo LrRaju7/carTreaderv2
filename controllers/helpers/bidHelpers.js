@@ -23,24 +23,28 @@ exports.verifyBidAmountAndSave = async (listing_id, bid, user) => {
     console.log(bidVar)
     console.log("-----------------------BID CHECK AMOUNT_________________")
 
-    if ((bid > listing.highest_bid.amount) && (bid >= bidVar)){
-        try {
-            listing.bids.push({user: user, bid: bid});
-            listing.highest_bid = {amount: bid, user: user.id}
-            console.log("-----------------------HITTING_________________")
-    console.log("-----------------------BID SAVING-------------------")
-    console.log(listing.bids)
-    console.log(listing.highest_bid)
-    console.log("-----------------------BID SAVING_________________")
-            await listing.save()
-            return {
-                listing
+    if(user != listing.highest_bid.user){
+        if ((bid > listing.highest_bid.amount) && (bid >= bidVar) ){
+            try {
+                listing.bids.push({user: user, bid: bid});
+                listing.highest_bid = {amount: bid, user: user}
+                console.log("-----------------------HITTING_________________")
+        console.log("-----------------------BID SAVING-------------------")
+        console.log(listing.bids)
+        console.log(listing.highest_bid)
+        console.log("-----------------------BID SAVING_________________")
+                await listing.save()
+                return {
+                    listing
+                }
+            } catch(err){
+                errRes.err = err
             }
-        } catch(err){
-            errRes.err = err
+        } else {
+          errRes.errType = 'Bid amount is less than the minimum increment'
         }
-    } else {
-      errRes.errType = 'Bid amount is less than the minimum increment'
+    }else{
+        errRes.errType = 'You Are Winning the bid'
     }
     return errRes
 }
