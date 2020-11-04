@@ -55,6 +55,8 @@ const Register = ({ register, isAuthenticated }) => {
       console.log(pictures)
       console.log(pictures[0].length)
       let picData;
+      let nidData;
+      let licenseData;
       if (pictures[0]) {
         for (const picture of pictures[0]) {
           let formData = new FormData();
@@ -68,6 +70,28 @@ const Register = ({ register, isAuthenticated }) => {
         }
         console.log(avatar)
       }
+    //   if (nid) {
+    //       let formData = new FormData();
+    //       formData.append('nid', nid);
+    //       nidData = await axios.post('/api/listings/upload/image', formData)
+    //       console.log(nidData)
+    //       console.log(nidData.data.url)
+    //       console.log(nidData.data.imageId)
+    //       var feed = { nid: nidData.data.url, _id: nidData.data.imageId, active: true }
+    //       documents.nid.push(feed)
+    //     console.log(documents.nid)
+    //   }
+    //   if (tradeLicense) {
+    //     let formData = new FormData();
+    //     formData.append('tradeLicense', tradeLicense);
+    //     licenseData = await axios.post('/api/listings/upload/image', formData)
+    //     console.log(licenseData)
+    //     console.log(licenseData.data.url)
+    //     console.log(licenseData.data.imageId)
+    //     var feed = { nid: licenseData.data.url, _id: licenseData.data.imageId, active: true }
+    //     documents.trade_license.push(feed)
+    //   console.log(documents.trade_license)
+    // }
       register(name, email, password, passwordConfirm, avatar, location, phone, role, documents.nid, documents.trade_license);
     } else {
       alert('Do the CAPTCHA');
@@ -153,8 +177,11 @@ const Register = ({ register, isAuthenticated }) => {
           </p>
         </FormGroup>
         <div className='text-center'>
-        <Button style={{width: '50%'}} className="btn-success shadow">Register</Button>
+          <Input style={{ width: 'auto' }} type='submit' className="btn btn-success mt-5 shadow" value={uploading ? 'Registering..' : 'Register'} disabled={uploading} />
         </div>
+        {/* <div className='text-center'>
+        <Button style={{width: '50%'}} className="btn-success shadow">Register</Button>
+        </div> */}
       </Form>
     </section>
   );

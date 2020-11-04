@@ -67,7 +67,7 @@ class Navbar extends Component {
                 <NavLink href={`/dashboard`} ><i className='fa fa-dashboard' /><span className="ml-3">Dashboard</span></NavLink>
               </DropdownItem>
               <DropdownItem>
-                <NavLink href='/logout' onClick= {LOGOUT}><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
+                <NavLink href='/' onClick= {logout}><i className='fa fa-sign-out' /><span className="ml-3">Log Out</span></NavLink>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
