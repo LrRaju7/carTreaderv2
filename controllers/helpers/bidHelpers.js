@@ -10,10 +10,10 @@ exports.verifyBidAmountAndSave = async (listing_id, bid, user) => {
     console.log(listing_id)
     console.log(user)
     console.log("-----------------------HITTING_________________")
-    
+
 
     const currDateTime = Date.now()
-    let errRes = {isError: true}
+    let errRes = { isError: true }
     if (!listing) errRes.errType = 'There is no listing by this ID'
     if (listing.endDateTime < currDateTime) errRes.errType = 'The listing has expired'
     let bidVar = listing.minIncrement + listing.highest_bid.amount
@@ -23,27 +23,27 @@ exports.verifyBidAmountAndSave = async (listing_id, bid, user) => {
     console.log(bidVar)
     console.log("-----------------------BID CHECK AMOUNT_________________")
 
-    if(user != listing.highest_bid.user){
-        if ((bid > listing.highest_bid.amount) && (bid >= bidVar) ){
+    if (user != listing.highest_bid.user) {
+        if ((bid > listing.highest_bid.amount) && (bid >= bidVar)) {
             try {
-                listing.bids.push({user: user, bid: bid});
-                listing.highest_bid = {amount: bid, user: user}
+                listing.bids.push({ user: user, bid: bid });
+                listing.highest_bid = { amount: bid, user: user }
                 console.log("-----------------------HITTING_________________")
-        console.log("-----------------------BID SAVING-------------------")
-        console.log(listing.bids)
-        console.log(listing.highest_bid)
-        console.log("-----------------------BID SAVING_________________")
+                console.log("-----------------------BID SAVING-------------------")
+                console.log(listing.bids)
+                console.log(listing.highest_bid)
+                console.log("-----------------------BID SAVING_________________")
                 await listing.save()
                 return {
                     listing
                 }
-            } catch(err){
+            } catch (err) {
                 errRes.err = err
             }
         } else {
-          errRes.errType = 'Bid amount is less than the minimum increment'
+            errRes.errType = 'Bid amount is less than the minimum increment'
         }
-    }else{
+    } else {
         errRes.errType = 'You Are Winning the bid'
     }
     return errRes
